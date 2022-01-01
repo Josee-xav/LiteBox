@@ -1,5 +1,5 @@
 # LiteBox
-Alternative Shell
+Alternative Shell. Inspired by https://blackbox4windows.com/. amazing community and shell.
 
 Fully functioning shell that goes ON TOP of the explorer shell as the explorer shell poses alot of functionality on windows 10. for example no explorer shell means no settings app and so on... which SUCKS :( as u cant FULLY replace the shell.
 
