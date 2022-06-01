@@ -49,7 +49,7 @@ bool inspectNormalWindow(HWND hWnd , int currentProcessId , std::string classNam
     return true;
 }
 
-bool foundChildren;
+bool foundTHEchild = false;
 BOOL CALLBACK ProcessWindow(HWND hwnd , LPARAM lparam)
 {
     DWORD childProcessId;
@@ -68,14 +68,16 @@ BOOL CALLBACK ProcessWindow(HWND hwnd , LPARAM lparam)
                 return false;
 
             if (childClassName == "MicrosoftEdgeCP") {
-                if (windowText == "CoreInput")
+                if (windowText == "CoreInput") {
+                    foundTHEchild = true;
                     return true;
-
-                if (windowText == "about:tabs")
+                }
+                if (windowText == "about:tabs") {
+                    foundTHEchild = true;
                     return true;
+                }
             }
 
-            foundChildren = true;
         }
     }
 
@@ -93,13 +95,13 @@ bool inspectWindows10AppWindow(HWND hWnd , std::string className , bool cloakTes
             return false;
     }
 
-    foundChildren = false;
+    foundTHEchild = false;
     DWORD processId;
     GetWindowThreadProcessId(hWnd , &processId);
 
     EnumChildWindows(hWnd , ProcessWindow , processId);
 
-    if (!foundChildren)// NEVERUSED always true
+    if (!foundTHEchild)// NEVERUSED always true
     {
         TCHAR text[200];
         GetWindowTextA(hWnd , text , 200);
@@ -108,7 +110,7 @@ bool inspectWindows10AppWindow(HWND hWnd , std::string className , bool cloakTes
             return true;
         }
     }
-
+    return false;
 }
 
 // improved by Clodio Pontes with the help of stackoverflow and a huge thanks to Christian Rondeau on github.
@@ -288,34 +290,35 @@ taskItemList* TaskService::getTaskList()
     return taskList;
 }
 
+
 void TaskService::TaskWndProc(WPARAM wParam , LPARAM lparam)
 {
-    HWND hwnd = (HWND)lparam;
+    HWND winTaskApplication = (HWND)lparam;
 
     switch ((int)wParam & 0x7FFF) {
         case HSHELL_WINDOWCREATED:
-            if (isAppWindow(hwnd , false)) // checks if the hwnd is not NULL and checks if the hwnd is actually a app window
+            if (isAppWindow(winTaskApplication , false)) // checks if the hwnd is not NULL and checks if the hwnd is actually a app window
             {
-                std::string windowTitle = ShellApi::getWindowTitle(hwnd);
+                std::string windowTitle = ShellApi::getWindowTitle(winTaskApplication);
                 OutputDebugStringA((windowTitle + " WINDOW CREATEDD\n").c_str()); // for debugging....
 
-                AppendTaskBtn(0 , windowTitle.c_str() , 1 , hwnd , ShellApi::getHICONFromHWND(hwnd , IconSizes::icon_small));
+                AppendTaskBtn(0 , windowTitle.c_str() , 1 , winTaskApplication , ShellApi::getHICONFromHWND(winTaskApplication , IconSizes::icon_small));
                 taskList->invalidate(true);
             }
             break;
         case HSHELL_WINDOWDESTROYED:
         {
-            removeBtn(hwnd);
+            removeBtn(winTaskApplication);
         }
         break;
         case HSHELL_WINDOWACTIVATED:
-            if (hwnd) {
-                updateActiveTask(hwnd);
+            if (winTaskApplication) {
+                updateActiveTask(winTaskApplication);
             }
             break;
         case  HSHELL_REDRAW: // Used to update the title when the window title has been changed
-            if (hwnd) {
-                bool ret = updateWindow(hwnd);
+            if (winTaskApplication) {
+                bool ret = updateWindow(winTaskApplication);
 
                 //if (ret == false && isAppWindow(hwnd)) {
                 //    std::string windowTitle = ShellApi::getWindowTitle(hwnd);
@@ -326,7 +329,9 @@ void TaskService::TaskWndProc(WPARAM wParam , LPARAM lparam)
                 //}
             }
             break;
-    }
-}
 
+
+    }
+
+}
 

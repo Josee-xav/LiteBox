@@ -82,10 +82,10 @@ RECT ShellApi::getPrimaryScreenRes()
 bool ShellApi::executeShell(HWND hwnd , const char* verb , const char* file , const char* args , const char* dir , int showCmds , int flags)
 {
     SHELLEXECUTEINFO sei;
-    char workdir[MAX_PATH];
 
     if (NULL == dir || 0 == dir[0]) {
-        dir = getExePath().c_str();
+        std::string temp = getExePath().c_str();
+        dir = temp.c_str();
     }
 
     memset(&sei , 0 , sizeof(sei));

@@ -712,7 +712,6 @@ void PopupMenu::OnMouseMove(HWND hWnd , short x , short y)
     int             item , newitem;
     POINT           p;
     TCHAR           szClass[100];
-    PopupMenu* pClass;
 
     // get a DC and the window rectangle
 
@@ -748,18 +747,13 @@ void PopupMenu::OnMouseMove(HWND hWnd , short x , short y)
 
     if (m_SelectedItem != -1 && newitem != m_SelectedItem) {
         // kill any ongoing timer
-
         KillTimer(m_hWnd , 1);
 
         //	// remove any popups associated with the last active item
-
         if (m_Items[m_SelectedItem].m_pPopup && m_Items[m_SelectedItem].m_pPopup->m_State != stateInactive)
             DestroyWindow(m_Items[m_SelectedItem].m_pPopup->m_hWnd);
 
-
-
         //	// deselect the old item
-
         item = m_SelectedItem;
         m_SelectedItem = -1;
 
@@ -767,16 +761,13 @@ void PopupMenu::OnMouseMove(HWND hWnd , short x , short y)
     }
 
     // new selected item?
-
     if (newitem != -1 && m_SelectedItem != newitem) {
 
         // draw the new item
-
         m_SelectedItem = newitem;
         DrawItem(hWnd , hDC , m_SelectedItem , m_Items[m_SelectedItem]);
 
         // start a timer if this is a popup
-
         if (m_Items[m_SelectedItem].m_pPopup)
             SetTimer(m_hWnd , 1 , m_PopupDelay , NULL);
     }

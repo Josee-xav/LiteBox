@@ -177,7 +177,6 @@ void CTaskbar::calc_barItemLists()
                 break;
 
             case M_TASKLIST:
-                taskzone_width = 1;
                 break;
 
             case M_TRAYLIST:
@@ -186,19 +185,18 @@ void CTaskbar::calc_barItemLists()
         }
     }
 
-    xpos += m_Style.borderWidth;
 
     // assign variable widths
-    int rest_width = max(0 , mainbarRect.right - xpos);
+    int rest_width = max(0 , mainbarRect.right - xpos); // for the taskzone.
 
     int top = 0;
     int height = mainbarRect.bottom;
 
     // 2nd passsss
-    xpos = m_Style.borderWidth;
 
     taskzone_width = rest_width;
 
+    xpos = 0;
     int ypos = 0;
     for (int i = 0; i < m_barItemList.size(); i++) {
 
@@ -229,38 +227,27 @@ void CTaskbar::calc_barItemLists()
 bool CTaskbar::create(int x , int y , HWND hWnd , HINSTANCE hInstance , StyleStruct style , const UINT bitmap_id)
 {
     // save variables
-
     m_hInstance = hInstance;
     m_BitmapID = bitmap_id;
     m_Style = style;
 
 
     // register the class
-
     if (!m_bClassRegistered) {
         if (!registerTaskbarClass())
             return false;
 
         m_bClassRegistered = true;
     }
-
-
-
     // create GDI objects
-
     createObjects();
 
     HDC hDC;
-    std::vector<baritemlist>::iterator it;
     RECT rcScreen;
 
     // get an information context for the screen
 
     hDC = CreateIC("DISPLAY" , NULL , NULL , NULL);
-
-    // get the greatest item width
-    // finished with the DC
-
     DeleteDC(hDC);
 
     // get the screen dimensions and adjust x and y if necessary
@@ -270,8 +257,7 @@ bool CTaskbar::create(int x , int y , HWND hWnd , HINSTANCE hInstance , StyleStr
         x = max(0 , rcScreen.right - defaultStyle::TASKBAR_WIDTH);
 
     // create the window
-
-    m_hWnd = ::CreateWindowEx(WS_EX_TOOLWINDOW ,         // prevent button appearing on taskbar
+    m_hWnd = ::CreateWindowEx(WS_EX_TOOLWINDOW | WS_EX_TOPMOST ,         // prevent button appearing on taskbar
                               "taskbarClass" ,
                               "" ,
                               WS_POPUP | WS_VISIBLE ,
@@ -283,12 +269,12 @@ bool CTaskbar::create(int x , int y , HWND hWnd , HINSTANCE hInstance , StyleStr
                               NULL ,
                               m_hInstance ,
                               this);
-
     // check created OK
 
     if (m_hWnd == NULL)
         return false;
 
+    ShowWindow(m_hWnd , SW_SHOW);
     // already in the , no need to wait for any buttons
     m_State = stateShow;
 
@@ -325,7 +311,6 @@ bool CTaskbar::registerTaskbarClass(void)
 
 void CTaskbar::OnPaint(HWND hWnd , HDC hDC)
 {
-
     calc_barItemLists();
 
     // draw each item
@@ -336,7 +321,31 @@ void CTaskbar::OnPaint(HWND hWnd , HDC hDC)
     }
 }
 
+// todo :test move somewhere.
+bool isFullscreen(HWND hwnd , HMONITOR hmon)
+{
+    if (hwnd == GetShellWindow())
+        return false;
 
+    HMONITOR hwndMon = MonitorFromWindow(hwnd , MONITOR_DEFAULTTONULL);
+    if (!hwndMon || hwndMon != hmon)
+        return false;
+    MONITORINFO mi;
+    mi.cbSize = sizeof(mi);
+    if (!GetMonitorInfo(hwndMon , &mi))
+        return false;
+
+    RECT appBounds = { 0 };
+    GetWindowRect(hwnd , &appBounds);
+
+    if (EqualRect(&appBounds , &mi.rcMonitor)) {
+        return true;
+    }
+
+
+
+    return false;
+}
 
 /*************************/
 /* stub window procedure */
@@ -349,7 +358,8 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd , UINT uMsg , WPARAM wParam , LP
     CTaskbar* pClass = ((CTaskbar*)GetWindowLongPtr(hWnd , GWLP_USERDATA));
     switch (uMsg) {
         case WM_CREATE:
-            SetWindowLongPtr(hWnd , GWLP_USERDATA , (LONG_PTR)((LPCREATESTRUCT)lParam)->lpCreateParams); break;
+            SetWindowLongPtr(hWnd , GWLP_USERDATA , (LONG_PTR)((LPCREATESTRUCT)lParam)->lpCreateParams);
+            SetTimer(hWnd , 0 , 2000 , 0);
             break;
         case WM_ERASEBKGND:
 
@@ -379,6 +389,26 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd , UINT uMsg , WPARAM wParam , LP
             //CTaskbar::p_rcPaint = &ps.rcPaint;
 
             EndPaint(hWnd , &ps);
+        }
+        break;
+
+        case WM_TIMER:
+        {
+            if (wParam == 0) // check full screen app timer
+            {
+                bool hideWindow = isFullscreen(GetForegroundWindow() , MonitorFromWindow(hWnd , MONITOR_DEFAULTTONULL));
+
+
+                if (hideWindow == true) {
+                    pClass->m_State = stateInactive;
+                    ShowWindow(hWnd , SW_HIDE);
+                }
+                else if (pClass->m_State == stateInactive) {
+                    pClass->m_State = stateShow;
+                    ShowWindow(hWnd , SW_SHOW);
+
+                }
+            }
         }
         break;
 

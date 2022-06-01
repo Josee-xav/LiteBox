@@ -80,7 +80,7 @@ public:
     //-----------------------------
     ~clockBtn() override;
 
-    void setTimer();
+    void createClockTimer();
 
     //-----------------------------
     void draw(HWND hWnd , HDC hDC) override;
@@ -164,7 +164,6 @@ public:
 
     // calc size of the baritemlist as a whole and its items in it, automatically.
     bool calc_size(int* px , int y , int w , int h , int m) override;
-
 };
 
 class taskItemList : public baritemlist

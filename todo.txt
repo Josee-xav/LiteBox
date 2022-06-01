@@ -1,5 +1,4 @@
 TODO WHEN NOT BUSY:
 
-* Fix that some of the system tray icons dont seem to work when right click to open the application tray menu
 * Implement the ability to move the taskbar top, left,right.
 * Mabye allow the system tray snap outside of the main bar so it can be placed elsewhere? (not sure)

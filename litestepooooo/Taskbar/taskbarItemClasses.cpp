@@ -25,9 +25,6 @@
 //
 //    DeleteObject(m_hBorderPen);
 //}
-
-
-
 //////////////////
 
 taskEntryBtn::taskEntryBtn() : barItem(M_TASK)
@@ -143,9 +140,6 @@ void taskEntryBtn::mouse_event(int mx , int my , int message , unsigned flags)
 void TrayEntryBtn::trayMouseDown(int message)
 {
     TrayItem* ni = (_TrayItem*)m_data;
-
-    OutputDebugStringA(ShellApi::getWindowClassName(ni->hWnd).c_str());
-
     DWORD procId = 0;
     GetWindowThreadProcessId(ni->hWnd , &procId);
     AllowSetForegroundWindow(procId);
@@ -155,18 +149,25 @@ void TrayEntryBtn::trayMouseDown(int message)
         SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , WM_LBUTTONDOWN | (ni->uID << 16));
 }
 
+// only when the mouse is up is when the menu is actually opened. 
 void TrayEntryBtn::trayMouseUp(int message)
 {
     TrayItem* ni = (_TrayItem*)m_data;
+
+    POINT ps;
+    GetCursorPos(&ps);
+    LPARAM lparam = MAKELPARAM(ps.x , ps.y);
 
     DWORD procId = 0;
     GetWindowThreadProcessId(ni->hWnd , &procId);
     AllowSetForegroundWindow(procId);
     if (message == WM_LBUTTONUP)
+        //SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , NIN_SELECT | (ni->uID << 16));
         SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , NIN_SELECT | (ni->uID << 16));
-    else if (message == WM_RBUTTONUP)
-        SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , WM_CONTEXTMENU | (ni->uID << 16));
-
+    else if (message == WM_RBUTTONUP) {
+        SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , WM_RBUTTONUP); // TODO: this only seems to open the system tray icons but not the non system tray applications
+        SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , lparam , WM_CONTEXTMENU | (ni->uID << 16)); // TODO: this only seems to open the system tray icons but not the non system tray applications
+    }
 }
 
 void TrayEntryBtn::trayMouseDOUBLECLICKDown(int message)
@@ -407,9 +408,9 @@ bool baritemlist::calc_size(int* px , int y , int w , int h , int m)
 
 bool taskItemList::calc_itemsSizes()
 {
-    int ts = m_Items.size();
+    int amountOfTasks = m_Items.size();
 
-    if (0 == ts)
+    if (0 == amountOfTasks)
         return false;
 
     int b = 1 + mainbar->m_Style.taskbuttonSpacing;
@@ -420,21 +421,23 @@ bool taskItemList::calc_itemsSizes()
     int is = h + b;
     int min_width = is / 2;
     int max_width = max(w * defaultStyle::MAX_TASKWIDTH / 100 , is);
-    if (w / ts >= max_width)
-        w = ts * max_width;
+    if (w / amountOfTasks >= max_width)
+        w = amountOfTasks * max_width;
+
 
     int n = 0;
     for (int i = 0; i < m_Items.size(); i++) {
         int left , right;
         {
-            left = xpos + w * n / ts;
-            right = xpos + w * (n + 1) / ts - b;
+            left = xpos + w * n / amountOfTasks;
+            right = xpos + w * (n + 1) / amountOfTasks - b;
             if (right - left < min_width)
                 right = left + min_width;
         }
 
-        if (right > itemRect.right)
-            break;
+        if (right > itemRect.right - b)
+            right -= b;
+
 
         m_Items[i]->calc_size(&left , itemRect.top , right - left , h , 0);
         ++n;
@@ -523,20 +526,15 @@ void clockBtn::updateClock(clockFormat format)
 LRESULT clockBtn::timerProc(HWND hwnd , UINT msg , WPARAM wParam , LPARAM lParam)
 {
     switch (msg) {
-
         case WM_TIMER:
         {
             ((clockBtn*)GetWindowLongPtr(hwnd , GWLP_USERDATA))->updateClock(static_cast<clockFormat>(mainbar->m_Style.clockTimeFormat));
 
             SYSTEMTIME time;
             GetLocalTime(&time);
-            SetTimer(mainbar->m_hWnd , 333 , 1100 - time.wMilliseconds , 0);
+            SetTimer(hwnd , 333 , 1100 - time.wMilliseconds , 0);
         }
         break;
-        case WM_DESTROY:
-        {
-
-        }
     }
 
     return DefWindowProc(hwnd , msg , wParam , lParam);
@@ -546,7 +544,7 @@ bool clockBtn::classRegistered = false;
 
 clockBtn::clockBtn() : barItem(M_CLOCK)
 {
-    setTimer();
+    createClockTimer();
 }
 
 clockBtn::~clockBtn()
@@ -554,7 +552,7 @@ clockBtn::~clockBtn()
     DestroyWindow(messageWindow);
 }
 
-void clockBtn::setTimer()
+void clockBtn::createClockTimer()
 {
     if (!classRegistered) {
         WNDCLASS wc = { };

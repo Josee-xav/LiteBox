@@ -228,7 +228,7 @@ COLORREF ParseLiteralColor(LPCSTR color)
         return (COLORREF)-1;
 
     memcpy(buf , color , l);
-    /*strlwr(buf); */
+    buf[sizeof buf - 1] = '\0';
 
     while (NULL != (p = strchr(buf , ' ')))
         strcpy(p , p + 1) , --l;

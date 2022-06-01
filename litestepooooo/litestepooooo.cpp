@@ -10,15 +10,33 @@
 #include "colors.h"
 #include "Services/TaskService.h"
 #include "settings.h"
+#include <stdlib.h>
 #pragma warning(disable : 4996)
 #define SC_RESTORE      0xF120
 #define SC_MINIMIZE     0xF020
 
 
+std::string windowClassName{ "desktopWindoww" };
+
 CTaskbar* taskbar;
 HWND hDesktopWnd = NULL;
 HINSTANCE main_hInstance = NULL;
 
+BOOL isRunning()
+{
+
+    HANDLE h = CreateMutexA(NULL , TRUE , (LPCSTR)windowClassName.c_str());
+
+    if (h) {
+        if (GetLastError() == ERROR_ALREADY_EXISTS) {
+            return TRUE;
+        }
+    }
+    else {
+        return TRUE;
+    }
+    return FALSE;
+}
 
 LRESULT CALLBACK WndProcParent(HWND hwnd , UINT msg , WPARAM wParam , LPARAM lParam);
 int APIENTRY WinMain(HINSTANCE hInstance ,
@@ -28,13 +46,11 @@ int APIENTRY WinMain(HINSTANCE hInstance ,
 {
     MSG msg;
     WNDCLASSEX wc;
-    std::string windowClassName{ "desktopWindoww" };
 
     main_hInstance = hInstance;
 
-    // Check if the taskbar is already running
-    HWND checkOldhwnd = FindWindow(windowClassName.c_str() , NULL);
-    if (checkOldhwnd) // if the HWND is not null then that means that it found the proccess
+    // Check if the taskbar is already running NULL);
+    if (isRunning()) // if the HWND is not null then that means that it found the proccess
     {
         if (ShellApi::messageBox(MB_OK , main_hInstance , "Error!" , "Application is already running!\nClose all of the other instances and try again."))
             return 0;
@@ -59,7 +75,7 @@ int APIENTRY WinMain(HINSTANCE hInstance ,
         MessageBoxA(NULL , "errrorrr register" , "error" , MB_OK);
 
     HWND hWnd = CreateWindowEx(
-        WS_EX_TOOLWINDOW ,
+        WS_EX_TOPMOST | WS_EX_TOOLWINDOW ,
         wc.lpszClassName ,
         NULL ,
         WS_POPUP ,
@@ -70,8 +86,8 @@ int APIENTRY WinMain(HINSTANCE hInstance ,
         NULL
     );
 
-    ShowWindow(hWnd , nCmdShow);
 
+    ShowWindow(hWnd , nCmdShow);
 
     while (GetMessage(&msg , NULL , 0 , 0)) {
         TranslateMessage(&msg);
@@ -97,7 +113,7 @@ void edit_file(int id)
         case 0: // style file. id.
         {
             char buffer[2 * MAX_PATH];
-            sprintf(buffer , "\"%s\" \"%s\"" , "notepad.exe" , getStylePath());
+            sprintf(buffer , "\"%s\" \"%s\"" , "notepad.exe" , getStylePath().c_str());
             ShellApi::executeShell(NULL , NULL , "notepad.exe" , getStylePath().c_str() , ShellApi::getExePath().c_str() , 1 , 0);
         }
         break;
@@ -167,7 +183,8 @@ LRESULT CALLBACK WndProcParent(HWND hwnd , UINT msg , WPARAM wParam , LPARAM lPa
         case WM_DESTROY:
         {
             exitShellHook(hwnd);
-            ShellApi::restartExplorerWindow();
+            /*ShellApi::restartExplorerWindow();*/
+            ShellApi::showExplorer();
 
             PostQuitMessage(0);
         }
