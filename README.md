@@ -12,3 +12,5 @@ Can be styled as you wish. Examples:
 ![app screenshot](https://github.com/danieljo12/LiteBox/blob/main/pics/style3.PNG?raw=true)
 
 ![app screenshot](https://github.com/danieljo12/LiteBox/blob/main/pics/style4.png)
+
+![app screenshot](https://github.com/danieljo12/LiteBox/blob/main/pics/pink.png)
