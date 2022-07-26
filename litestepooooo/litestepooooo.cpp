@@ -37,6 +37,7 @@ BOOL isRunning()
     }
     return FALSE;
 }
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
 LRESULT CALLBACK WndProcParent(HWND hwnd , UINT msg , WPARAM wParam , LPARAM lParam);
 int APIENTRY WinMain(HINSTANCE hInstance ,
@@ -85,7 +86,6 @@ int APIENTRY WinMain(HINSTANCE hInstance ,
         NULL ,
         NULL
     );
-
 
     ShowWindow(hWnd , nCmdShow);
 

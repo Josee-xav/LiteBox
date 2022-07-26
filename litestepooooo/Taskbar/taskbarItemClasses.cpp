@@ -111,8 +111,8 @@ void taskEntryBtn::draw(HWND hWnd , HDC hDC)
     DrawText(hDC , m_strName.c_str() , -1 , &drawingRect , DT_LEFT | DT_VCENTER | DT_SINGLELINE | DT_WORD_ELLIPSIS | DT_NOPREFIX);
     SelectObject(hDC , hOldFont);
 
-    DeleteObject(taskBrush);
     DeleteObject(taskPen);
+    DeleteObject(taskBrush);
 }
 
 
@@ -352,14 +352,12 @@ void baritemlist::draw(HWND hWnd , HDC hDC)
 void baritemlist::mouse_event(int mx , int my , int message , unsigned flags)
 {
     RECT            rect;
-    HDC             hDC;
     int              newitem;
     POINT           p;
 
     // get a DC and the window rectangle
     HWND mainbarHwnd = mainbar->m_hWnd;
     GetClientRect(mainbarHwnd , &rect);
-    hDC = GetDC(mainbarHwnd);
 
     // shift tracking if we're over another menu
 

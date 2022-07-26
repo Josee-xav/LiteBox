@@ -146,6 +146,7 @@ void CTaskbar::createObjects(void)
     // finished with the DC
 
     DeleteDC(hDC);
+    DeleteObject(hOldFont);
 
     // create pens and brushes
 
@@ -342,8 +343,6 @@ bool isFullscreen(HWND hwnd , HMONITOR hmon)
         return true;
     }
 
-
-
     return false;
 }
 
@@ -442,14 +441,12 @@ void CTaskbar::OnDestroy(HWND hWnd)
 void CTaskbar::OnMouseMove(HWND hWnd , short x , short y)
 {
     RECT            rect;
-    HDC             hDC;
     int              newitem;
     POINT           p;
 
     // get a DC and the window rectangle
 
     GetClientRect(hWnd , &rect);
-    hDC = GetDC(hWnd);
 
     // shift tracking if we're over another 
 

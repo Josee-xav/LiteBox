@@ -171,6 +171,7 @@ void PopupMenu::CreateObjects(void)
     // finished with the DC
 
     DeleteDC(hDC);
+    DeleteObject(hOldFont);
 
     // create pens and brushes
 
@@ -187,6 +188,7 @@ void PopupMenu::CreateObjects(void)
 
     if (m_BitmapID != (UINT)-1)
         m_hBitmap = LoadBitmap(m_hInstance , MAKEINTRESOURCE(m_BitmapID));
+
 }
 
 
@@ -654,6 +656,11 @@ void PopupMenu::DrawItem(HWND hWnd , HDC hDC , const int index , const CItem& it
 
         SelectObject(hDC , hOldPen);
     }
+
+
+    DeleteObject(hOldPen);
+    DeleteObject(hOldBrush);
+    DeleteObject(hOldFont);
 }
 
 
@@ -672,6 +679,8 @@ void PopupMenu::DrawSeparator(HDC hDC , int top)
     hOldPen = SelectObject(hDC , m_hBorderPen);
     Polyline(hDC , p , 2);
     SelectObject(hDC , hOldPen);
+
+    DeleteObject(hOldPen);
 }
 
 
@@ -921,6 +930,10 @@ void PopupMenu::OnEraseBkgnd(HWND hWnd , HDC hDC)
 
     SelectObject(hDC , hOldBrush);
     SelectObject(hDC , hOldPen);
+
+    DeleteObject(hOldBrush);
+    DeleteObject(hOldPen);
+
 }
 
 
