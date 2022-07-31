@@ -60,7 +60,6 @@ public:
     StyleStruct m_Style;
 
 private:
-    //PopupMenu& operator=(const PopupMenu& src) { return *this; }    // not allowed
 
 protected:
     bool registerTaskbarClass();

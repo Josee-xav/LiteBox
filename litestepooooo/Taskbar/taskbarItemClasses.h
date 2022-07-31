@@ -148,7 +148,6 @@ public:
 
     int getItem(short x , short y , const RECT& rect);
 
-
     // adds a bar item to the list.
     virtual void add(barItem* entry);
 
@@ -183,4 +182,6 @@ class trayItemList : public baritemlist
 {
 public:
     trayItemList();
+
+
 };

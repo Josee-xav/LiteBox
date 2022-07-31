@@ -1,0 +1,37 @@
+﻿  colors.cpp
+  drawingApi.cpp
+  iniParser.cpp
+E:\codeee\cpp\LiteBox-main\litestepooooo\iniParser.cpp(203,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  FlatPopupMenu.cpp
+E:\codeee\cpp\LiteBox-main\litestepooooo\MENU\FlatPopupMenu.cpp(328,94): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+E:\codeee\cpp\LiteBox-main\litestepooooo\MENU\FlatPopupMenu.cpp(461,36): warning C4244: 'argument': conversion from 'WPARAM' to 'unsigned short', possible loss of data
+E:\codeee\cpp\LiteBox-main\litestepooooo\MENU\FlatPopupMenu.cpp(500,36): warning C4302: 'type cast': truncation from 'LPSTR' to 'TCHAR'
+E:\codeee\cpp\LiteBox-main\litestepooooo\MENU\FlatPopupMenu.cpp(506,162): warning C4302: 'type cast': truncation from 'LPSTR' to 'TCHAR'
+E:\codeee\cpp\LiteBox-main\litestepooooo\MENU\FlatPopupMenu.cpp(637,107): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+E:\codeee\cpp\LiteBox-main\litestepooooo\MENU\FlatPopupMenu.cpp(804,47): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  settings.cpp
+  StylingStruct.cpp
+  taskbarItemClasses.cpp
+E:\codeee\cpp\LiteBox-main\litestepooooo\Taskbar\taskbarItemClasses.cpp(270,47): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+E:\codeee\cpp\LiteBox-main\litestepooooo\Taskbar\taskbarItemClasses.cpp(280,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\codeee\cpp\LiteBox-main\litestepooooo\Taskbar\taskbarItemClasses.cpp(409,39): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  barItem.cpp
+  CTaskbar.cpp
+E:\codeee\cpp\LiteBox-main\litestepooooo\Taskbar\CTaskbar.cpp(167,150): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+E:\codeee\cpp\LiteBox-main\litestepooooo\Taskbar\CTaskbar.cpp(485,53): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  litestepooooo.cpp
+E:\codeee\cpp\LiteBox-main\litestepooooo\litestepooooo.cpp(102,15): warning C4244: 'return': conversion from 'WPARAM' to 'int', possible loss of data
+  TaskService.cpp
+  TrayService.cpp
+E:\codeee\cpp\LiteBox-main\litestepooooo\Services\TrayService.cpp(54,19): warning C4244: 'initializing': conversion from 'LRESULT' to 'int', possible loss of data
+E:\codeee\cpp\LiteBox-main\litestepooooo\Services\TrayService.cpp(72,71): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'long'
+E:\codeee\cpp\LiteBox-main\litestepooooo\Services\TrayService.cpp(72,71): warning C4302: 'type cast': truncation from 'LPVOID' to 'long'
+  UsefulShellApi.cpp
+E:\codeee\cpp\LiteBox-main\litestepooooo\UsefulShellApi.cpp(51,103): warning C4312: 'type cast': conversion from 'DWORD' to 'HICON' of greater size
+E:\codeee\cpp\LiteBox-main\litestepooooo\UsefulShellApi.cpp(55,111): warning C4312: 'type cast': conversion from 'DWORD' to 'HICON' of greater size
+  ShellHookingFunctionality.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 1073 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  litestepooooo.vcxproj -> E:\codeee\cpp\LiteBox-main\x64\Release\litestepooooo.exe

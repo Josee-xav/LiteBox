@@ -780,6 +780,8 @@ void PopupMenu::OnMouseMove(HWND hWnd , short x , short y)
         if (m_Items[m_SelectedItem].m_pPopup)
             SetTimer(m_hWnd , 1 , m_PopupDelay , NULL);
     }
+
+    ReleaseDC(hWnd , hDC);
 }
 
 

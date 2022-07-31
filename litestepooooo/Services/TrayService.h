@@ -9,13 +9,13 @@ public:
     ~TrayService();
 
     trayItemList* getTrayList();
+    std::vector<TrayEntryBtn::_TrayItem* > getTrayItems();
+    bool AppendTrayBtn(const DWORD dwFlags , LPCTSTR pszName , const UINT itemid , HWND appHwnd , HICON icon , TrayEntryBtn::_TrayItem* trayItem);
 private:
     trayItemList* trayBtnList;
 
-    bool AppendTrayBtn(const DWORD dwFlags , LPCTSTR pszName , const UINT itemid , HWND appHwnd , HICON icon , TrayEntryBtn::_TrayItem* trayItem);
 
     void initTrayService();
 
-    std::vector<TrayEntryBtn::_TrayItem* > getTrayItems();
 
 };

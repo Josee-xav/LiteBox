@@ -33,7 +33,6 @@ CTaskbar::CTaskbar()
     barItem::mainbar = this;
 
     m_barItemList.push_back(taskService.getTaskList());
-
     m_barItemList.push_back(trayService.getTrayList());
     m_barItemList.push_back(new clockBtn());
 }
@@ -46,7 +45,7 @@ CTaskbar::CTaskbar()
 CTaskbar::~CTaskbar()
 {
     // if we're tracking, release it
-
+    OutputDebugStringA("destructor ctaskabr\n");
     if (m_State == stateTrack)
         ReleaseCapture();
 
@@ -85,7 +84,9 @@ void CTaskbar::cleanup(void)
 
 
         for (int i = 0; i < m_barItemList.size(); i++) {
-            delete m_barItemList.at(i);
+            barItem* bi = m_barItemList.at(i);
+            delete bi;
+            bi = nullptr;
         }
         m_barItemList.clear();
     }
@@ -100,7 +101,6 @@ void CTaskbar::createObjects(void)
 {
     LOGFONT    lf;
     HDC        hDC;
-    HGDIOBJ    hOldFont;
     TEXTMETRIC tm;
 
     // cleanup any previous
@@ -134,6 +134,7 @@ void CTaskbar::createObjects(void)
 
     // get the font heights
 
+    HGDIOBJ    hOldFont;
     hOldFont = SelectObject(hDC , m_hFont);
     GetTextMetrics(hDC , &tm);
     m_FontHeight = tm.tmHeight;
@@ -146,9 +147,6 @@ void CTaskbar::createObjects(void)
     // finished with the DC
 
     DeleteDC(hDC);
-    DeleteObject(hOldFont);
-
-    // create pens and brushes
 
 
 }
@@ -160,12 +158,13 @@ void CTaskbar::calc_barItemLists()
     int taskzone_width ,
         clock_width = 0;
 
-
+    int trayWidth = 0;
     RECT mainbarRect;
     GetClientRect(m_hWnd , &mainbarRect);
 
     int xpos = m_Style.borderWidth;
-    int trayWidth = defaultStyle::ICON_SIZE * trayService.getTrayList()->m_Items.size() + m_Style.borderWidth + defaultStyle::TASKBAR_GENERAL_SPACING;
+    if (trayService.getTrayList() != NULL)
+        trayWidth = defaultStyle::ICON_SIZE * trayService.getTrayList()->m_Items.size() + m_Style.borderWidth + defaultStyle::TASKBAR_GENERAL_SPACING;
 
     // --- 1st pass ----------------------------------
     for (int i = 0; i < m_barItemList.size(); i++) {

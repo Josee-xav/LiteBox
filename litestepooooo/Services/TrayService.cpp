@@ -18,7 +18,7 @@ HWND findTrayToolbarWindow()
     return hWnd;
 }
 
-TrayService::TrayService()
+TrayService::TrayService() : trayBtnList(NULL)
 {
     initTrayService();
 }
@@ -82,8 +82,7 @@ std::vector<TrayEntryBtn::_TrayItem* > TrayService::getTrayItems()
         //ReadProcessMemory(hProcess, (void*)(pvAddress), icon, _MAX_PATH * sizeof(HICON), &nNumberOfBytesRead);
 
         strcpy_s(tray->sIconText , _MAX_PATH , szBtnText);
-        HICON hico = CopyIcon(tray->hIcon);
-        tray->hIcon = hico;
+        tray->hIcon = CopyIcon(tray->hIcon);
 
         trayItems.push_back(tray);
     }
