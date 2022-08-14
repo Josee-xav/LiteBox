@@ -12,7 +12,7 @@ public:
     int             m_Xpos;                        // xpos
 
     DWORD           m_dwFlags;                    // various flags
-    std::string     m_strName;                    // text name
+    std::wstring     m_strName;                    // text name
     HICON            m_icon;                  // index into the bitmap
     int buttonType;
 

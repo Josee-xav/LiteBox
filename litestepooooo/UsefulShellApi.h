@@ -14,14 +14,14 @@ enum class IconSizes
 
 namespace ShellApi {
 
-    bool executeShell(HWND hwnd , const char* verb , const char* file , const char* args , const char* dir , int showCmds , int flags);
+    bool executeShell(HWND hwnd , const wchar_t* verb , const wchar_t* file , const wchar_t* args , const wchar_t* dir , int showCmds , int flags);
 
     //Returns the last Win32 error, in string format. Returns an empty string if there is no error.
     std::string getLastErrorAsString();
 
     void restartExplorerWindow();
 
-    std::string getWindowTitle(HWND hwnd);
+    std::wstring getWindowTitle(HWND hwnd);
 
     HBITMAP getBitmapFromHicon(HICON icon);
 
@@ -31,11 +31,11 @@ namespace ShellApi {
 
     void setWorkArea(int height);
 
-    std::string getWindowClassName(HWND hwnd);
+    std::wstring getWindowClassName(HWND hwnd);
 
-    std::string getExePath();
+    std::wstring getExePath();
 
-    int messageBox(int uType , HINSTANCE instance , std::string title , std::string text);
+    int messageBox(int uType , HINSTANCE instance , std::wstring title , std::wstring text);
 
     void showExplorer();
     void hideExplorer();

@@ -50,7 +50,7 @@ public:
         int             m_Top;                        // top
         int             m_Height;                     // height
         DWORD           m_dwFlags;                    // various flags
-        std::string     m_strName;                    // text name
+        std::wstring     m_strName;                    // text name
         UINT            m_ItemID;                     // item ID
         int             m_IconIndex;                  // index into the bitmap
 
@@ -71,7 +71,7 @@ public:
     HINSTANCE          m_hInstance;                 // bitmaps are loaded from here
     UINT               m_BitmapID;                  // bitmap resource ID
     std::vector<CItem> m_Items;                     // items in this menu
-    std::string        m_strFont;                   // font name for items
+    std::wstring        m_strFont;                   // font name for items
     int                m_FontSize;                  // font point-size for items
     int                m_PopupDelay;                // popup menu delay
     COLORREF           m_Colors[numColors];         // the color settings

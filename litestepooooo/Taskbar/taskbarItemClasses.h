@@ -69,7 +69,7 @@ class clockBtn : public barItem
 private:
     static bool classRegistered;          // once-per-app window class registration flag
     HWND messageWindow;
-    std::string convert24hourTo12HourTime(int time24Hour , int time24minute);
+    std::wstring convert24hourTo12HourTime(int time24Hour , int time24minute);
     void updateClock(clockFormat format);
     static LRESULT CALLBACK timerProc(HWND hwnd , UINT msg , WPARAM wParam , LPARAM lParam);
 

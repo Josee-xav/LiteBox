@@ -16,7 +16,7 @@
 #define SC_MINIMIZE     0xF020
 
 
-std::string windowClassName{ "desktopWindoww" };
+std::wstring windowClassName{ L"desktopWindoww" };
 
 CTaskbar* taskbar;
 HWND hDesktopWnd = NULL;
@@ -53,7 +53,7 @@ int APIENTRY WinMain(HINSTANCE hInstance ,
     // Check if the taskbar is already running NULL);
     if (isRunning()) // if the HWND is not null then that means that it found the proccess
     {
-        if (ShellApi::messageBox(MB_OK , main_hInstance , "Error!" , "Application is already running!\nClose all of the other instances and try again."))
+        if (ShellApi::messageBox(MB_OK , main_hInstance , L"Error!" , L"Application is already running!\nClose all of the other instances and try again."))
             return 0;
     }
 
@@ -102,9 +102,9 @@ int APIENTRY WinMain(HINSTANCE hInstance ,
     return msg.wParam;
 }
 
-std::string getStylePath()
+std::wstring getStylePath()
 {
-    return (ShellApi::getExePath() + "\\defaultStyle.ini");
+    return (ShellApi::getExePath() + L"\\defaultStyle.ini");
 }
 
 void edit_file(int id)
@@ -114,7 +114,7 @@ void edit_file(int id)
         {
             char buffer[2 * MAX_PATH];
             sprintf(buffer , "\"%s\" \"%s\"" , "notepad.exe" , getStylePath().c_str());
-            ShellApi::executeShell(NULL , NULL , "notepad.exe" , getStylePath().c_str() , ShellApi::getExePath().c_str() , 1 , 0);
+            ShellApi::executeShell(NULL , NULL , L"notepad.exe" , getStylePath().c_str() , ShellApi::getExePath().c_str() , 1 , 0);
         }
         break;
 
@@ -125,7 +125,9 @@ void edit_file(int id)
 void runTaskbar()
 {
     StyleStruct mStyle;
-    readStyle(getStylePath().c_str() , &mStyle);
+    std::wstring buf = getStylePath();
+    std::string str(buf.begin() , buf.end());
+    readStyle(str.c_str() , &mStyle);
 
 
     // create it

@@ -125,10 +125,11 @@ void taskEntryBtn::mouse_event(int mx , int my , int message , unsigned flags)
         SetForegroundWindow(taskAppHwnd);
         // sends WM_SYSCOMMAND the parm SC_RESTORE which is kinda like right clicking the taskbutton on the normal windows shell and clicking open or something
         SendMessageTimeout(taskAppHwnd , WM_SYSCOMMAND , SC_RESTORE , 0 , 2 , 500 , &dwResult);
+        mainbar->taskService.updateActiveTask(taskAppHwnd);
     }
     else if (message == WM_RBUTTONDOWN) {
         SendMessageTimeout(taskAppHwnd , WM_SYSCOMMAND , SC_MINIMIZE , 0 , 2 , 500 , &dwResult);
-
+        mainbar->taskService.updateActiveTask(NULL , true);
     }
 }
 
@@ -466,52 +467,52 @@ trayItemList::trayItemList() : baritemlist(M_TRAYLIST)
 {
 }
 
-std::string clockBtn::convert24hourTo12HourTime(int time24Hour , int time24minute)
+std::wstring clockBtn::convert24hourTo12HourTime(int time24Hour , int time24minute)
 {
-    char buff[20];
+    wchar_t  buff[20];
     switch (time24Hour) {
         case 12:
-            sprintf(buff , "%02d:%02d PM" , time24Hour , time24minute);
+            swprintf(buff , 20 , L"%02d:%02d PM" , time24Hour , time24minute);
             break;
         case 00:
-            sprintf(buff , "%02d:%02d AM" , time24Hour + 12 , time24minute);
+            swprintf(buff , 20 , L"%02d:%02d AM" , time24Hour + 12 , time24minute);
             break;
         default:
         {
             if (time24Hour > 12) {
-                sprintf(buff , "%02d:%02d PM" , time24Hour - 12 , time24minute);
+                swprintf(buff , 20 , L"%02d:%02d PM" , time24Hour - 12 , time24minute);
 
             }
             else {
-                sprintf(buff , "%02d:%02d AM" , time24Hour , time24minute);
+                swprintf(buff , 20 , L"%02d:%02d AM" , time24Hour , time24minute);
 
             }
             break;
         }
         break;
     }
-    std::string ret = buff;
+    std::wstring ret = buff;
     return ret;
 }
 
 void clockBtn::updateClock(clockFormat format)
 {
-    std::string formatTime;
+    std::wstring formatTime;
 
     // gets the date and time 
     SYSTEMTIME dateAndTime;
     GetLocalTime(&dateAndTime);
-    char buff[20];
 
     if (format == clockFormat::format_12hour) {
-        formatTime = convert24hourTo12HourTime(dateAndTime.wHour , dateAndTime.wMinute);;
+        formatTime = convert24hourTo12HourTime(dateAndTime.wHour , dateAndTime.wMinute);
         if (formatTime != m_strName) {// so it doesnt set time when its not necessary
             m_strName = formatTime;
             invalidate(1);
         }
     }
     else {
-        sprintf(buff , "%02d:%02d" , dateAndTime.wHour , dateAndTime.wMinute);
+        wchar_t buff[20];
+        swprintf(buff , 20 , L"%02d:%02d" , dateAndTime.wHour , dateAndTime.wMinute);
 
         formatTime = buff;
         if (formatTime != m_strName) {// so it doesnt set time when its not necessary
@@ -557,7 +558,7 @@ void clockBtn::createClockTimer()
 
         wc.lpfnWndProc = timerProc;
         wc.hInstance = mainbar->m_hInstance;
-        wc.lpszClassName = "clockproo";
+        wc.lpszClassName = L"clockproo";
 
         if (!RegisterClass(&wc)) {
             return;
@@ -567,7 +568,7 @@ void clockBtn::createClockTimer()
 
     // Create the window.
 
-    messageWindow = CreateWindow("clockproo" , 0 , 0 , 0 , 0 , 0 , 0 , HWND_MESSAGE , 0 , 0 , 0);
+    messageWindow = CreateWindow(L"clockproo" , 0 , 0 , 0 , 0 , 0 , 0 , HWND_MESSAGE , 0 , 0 , 0);
     SetWindowLongPtr(messageWindow , GWLP_USERDATA , (LONG_PTR)this); // sets the GWLP_USERDATA to the object so we can get it easily via the HWND 
 
     SYSTEMTIME lt;

@@ -7,10 +7,10 @@ HWND findTrayToolbarWindow()
 {
     HWND hWnd = NULL;
 
-    if ((hWnd = FindWindow(("Shell_TrayWnd") , NULL)) != NULL) {
-        if ((hWnd = FindWindowEx(hWnd , 0 , ("TrayNotifyWnd") , NULL)) != NULL) {
-            if (hWnd = FindWindowEx(hWnd , 0 , ("SysPager") , NULL)) {
-                hWnd = FindWindowEx(hWnd , 0 , ("ToolbarWindow32") , NULL);
+    if ((hWnd = FindWindow((L"Shell_TrayWnd") , NULL)) != NULL) {
+        if ((hWnd = FindWindowEx(hWnd , 0 , (L"TrayNotifyWnd") , NULL)) != NULL) {
+            if (hWnd = FindWindowEx(hWnd , 0 , (L"SysPager") , NULL)) {
+                hWnd = FindWindowEx(hWnd , 0 , (L"ToolbarWindow32") , NULL);
             }
         }
     }
@@ -81,7 +81,7 @@ std::vector<TrayEntryBtn::_TrayItem* > TrayService::getTrayItems()
 
         //ReadProcessMemory(hProcess, (void*)(pvAddress), icon, _MAX_PATH * sizeof(HICON), &nNumberOfBytesRead);
 
-        strcpy_s(tray->sIconText , _MAX_PATH , szBtnText);
+        wcscpy_s(tray->sIconText , _MAX_PATH , szBtnText);
         tray->hIcon = CopyIcon(tray->hIcon);
 
         trayItems.push_back(tray);

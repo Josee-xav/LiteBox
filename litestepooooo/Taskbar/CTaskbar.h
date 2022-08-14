@@ -29,7 +29,7 @@ public:
     HINSTANCE          m_hInstance;                 // bitmaps are loaded from here
     UINT               m_BitmapID;                  // bitmap resource ID
     std::vector<barItem*> m_barItemList;                     // items in this taskbar
-    std::string        m_strFont;                   // font name for items
+    std::wstring        m_strFont;                   // font name for items
     int                m_FontSize;                  // font point-size for items
 
 
@@ -75,7 +75,7 @@ public:
     CTaskbar();
     ~CTaskbar();
 
-    void SetFont(LPCTSTR pszFont);
+    void SetFont(std::wstring pszFont);
     void SetFontSize(const int size);
 
     bool create(int x , int y , HWND hWnd , HINSTANCE hInstance , StyleStruct style , const UINT bitmap_id = (UINT)-1);
@@ -94,7 +94,7 @@ public:
 
 // Set the font
 
-inline void CTaskbar::SetFont(LPCTSTR pszFont)
+inline void CTaskbar::SetFont(std::wstring pszFont)
 {
     m_strFont = pszFont;
 }

@@ -17,7 +17,7 @@ CTaskbar::CTaskbar()
 
     // default font and size
 
-    m_strFont = "MS Sans Serif";
+    m_strFont = L"MS Sans Serif";
     m_FontSize = 8;
 
 
@@ -114,7 +114,7 @@ void CTaskbar::createObjects(void)
 
     ZeroMemory(&lf , sizeof(lf));
 
-    hDC = CreateIC("DISPLAY" , NULL , NULL , NULL);
+    hDC = CreateICA("DISPLAY" , NULL , NULL , NULL);
     lf.lfHeight = -MulDiv(m_FontSize , GetDeviceCaps(hDC , LOGPIXELSY) , 72);
 
     lf.lfWeight = FW_NORMAL;
@@ -247,7 +247,7 @@ bool CTaskbar::create(int x , int y , HWND hWnd , HINSTANCE hInstance , StyleStr
 
     // get an information context for the screen
 
-    hDC = CreateIC("DISPLAY" , NULL , NULL , NULL);
+    hDC = CreateICA("DISPLAY" , NULL , NULL , NULL);
     DeleteDC(hDC);
 
     // get the screen dimensions and adjust x and y if necessary
@@ -257,18 +257,18 @@ bool CTaskbar::create(int x , int y , HWND hWnd , HINSTANCE hInstance , StyleStr
         x = max(0 , rcScreen.right - defaultStyle::TASKBAR_WIDTH);
 
     // create the window
-    m_hWnd = ::CreateWindowEx(WS_EX_TOOLWINDOW | WS_EX_TOPMOST ,         // prevent button appearing on taskbar
-                              "taskbarClass" ,
-                              "" ,
-                              WS_POPUP | WS_VISIBLE ,
-                              x ,
-                              y ,
-                              defaultStyle::TASKBAR_WIDTH ,
-                              defaultStyle::TASKBAR_HEIGHT + m_Style.marginWidth + m_Style.borderWidth ,
-                              NULL ,
-                              NULL ,
-                              m_hInstance ,
-                              this);
+    m_hWnd = ::CreateWindowExA(WS_EX_TOOLWINDOW | WS_EX_TOPMOST ,         // prevent button appearing on taskbar
+                               "taskbarClass" ,
+                               "" ,
+                               WS_POPUP | WS_VISIBLE ,
+                               x ,
+                               y ,
+                               defaultStyle::TASKBAR_WIDTH ,
+                               defaultStyle::TASKBAR_HEIGHT + m_Style.marginWidth + m_Style.borderWidth ,
+                               NULL ,
+                               NULL ,
+                               m_hInstance ,
+                               this);
     // check created OK
 
     if (m_hWnd == NULL)
@@ -301,7 +301,7 @@ bool CTaskbar::registerTaskbarClass(void)
     wc.hCursor = LoadCursor(NULL , IDC_ARROW);
     wc.hbrBackground = NULL;
     wc.lpszMenuName = NULL;
-    wc.lpszClassName = "taskbarClass";
+    wc.lpszClassName = L"taskbarClass";
 
     return ::RegisterClass(&wc) != FALSE;
 }
@@ -533,11 +533,11 @@ void CTaskbar::OnMouseButton(HWND hWnd , int message , WPARAM wparam , short x ,
 
         // add some items
 
-        menu.AppendItem(PopupMenu::itemBold | PopupMenu::itemNotSelectable , "LiteBox" , 0);
+        menu.AppendItem(PopupMenu::itemBold | PopupMenu::itemNotSelectable , L"LiteBox" , 0);
         menu.AppendItem(PopupMenu::itemSeparator , NULL , 0);
-        menu.AppendItem(0 , "Exit LiteBox" , 1);
-        menu.AppendItem(0 , "Restart LiteBox" , 2);
-        menu.AppendItem(0 , "Open Style File" , 3);
+        menu.AppendItem(0 , L"Exit LiteBox" , 1);
+        menu.AppendItem(0 , L"Restart LiteBox" , 2);
+        menu.AppendItem(0 , L"Open Style File" , 3);
 
         POINT pos;
         GetCursorPos(&pos);

@@ -10,36 +10,29 @@
 
 HWND getLastVisibleActivePopUpOfWindow(HWND window)
 {
-    int level = 50;
-    HWND currentWindow = window;
-    while (level-- > 0) {
-        HWND lastPopUp = GetLastActivePopup(currentWindow);
+    HWND lastWindow = GetLastActivePopup(window);
 
-        if (IsWindowVisible(lastPopUp))
-            return lastPopUp;
+    if (IsWindowVisible(lastWindow))
+        return lastWindow;
 
-        if (lastPopUp == currentWindow)
-            return NULL;
-
-        currentWindow = lastPopUp;
-    }
-
-    return NULL;
+    if (lastWindow == window)
+        return (HWND)NULL;
+    return getLastVisibleActivePopUpOfWindow(lastWindow);
 }
 
 
-bool inspectNormalWindow(HWND hWnd , int currentProcessId , std::string className)
+bool inspectNormalWindow(HWND hWnd , int currentProcessId , std::wstring className)
 {
 
-    if (className == "Shell_TrayWnd" || className == "DV2ControlHost" || className == "MsgrIMEWindowClass" || className == "SysShadow" || className == "Button"
-        || className == "Windows.UI.Core.CoreWindow" || className == "Frame Alternate Owner" || className == "MultitaskingViewFrame") {
+    if (className == L"Shell_TrayWnd" || className == L"DV2ControlHost" || className == L"MsgrIMEWindowClass" || className == L"SysShadow" || className == L"Button"
+        || className == L"Windows.UI.Core.CoreWindow" || className == L"Frame Alternate Owner" || className == L"MultitaskingViewFrame") {
         return false;
     }
 
 
-    TCHAR text[200];
-    GetWindowTextA(hWnd , text , 200);
-    std::string windowText(text);
+    wchar_t text[200];
+    GetWindowText(hWnd , text , 200);
+    std::wstring windowText(text);
 
     DWORD lpdwProcessId;
     GetWindowThreadProcessId(hWnd , &lpdwProcessId);
@@ -55,27 +48,23 @@ BOOL CALLBACK ProcessWindow(HWND hwnd , LPARAM lparam)
     DWORD childProcessId;
     GetWindowThreadProcessId(hwnd , &childProcessId);
     if (lparam != childProcessId) {
-        char buffer[200] = "";
+        wchar_t buffer[200] = L"";
         GetClassName(hwnd , buffer , 200);
-        std::string childClassName(buffer);
+        std::wstring childClassName(buffer);
 
 
-        TCHAR text[200] = "";
-        GetWindowTextA(hwnd , text , 200);
-        std::string windowText(text);
-        if (windowText != "") {
-            if (childClassName == "MicrosoftEdge")
+        GetWindowText(hwnd , buffer , 200);
+        std::wstring windowText(buffer);
+        if (windowText != L"") {
+            if (childClassName == L"MicrosoftEdge")
                 return false;
 
-            if (childClassName == "MicrosoftEdgeCP") {
-                if (windowText == "CoreInput") {
+            if (childClassName == L"MicrosoftEdgeCP") {
+                if (windowText == L"CoreInput") {
                     foundTHEchild = true;
                     return true;
                 }
-                if (windowText == "about:tabs") {
-                    foundTHEchild = true;
-                    return true;
-                }
+
             }
 
         }
@@ -84,7 +73,7 @@ BOOL CALLBACK ProcessWindow(HWND hwnd , LPARAM lparam)
     return true;
 }
 
-bool inspectWindows10AppWindow(HWND hWnd , std::string className , bool cloakTest = true)
+bool inspectWindows10AppWindow(HWND hWnd , bool cloakTest = true)
 {
     // check if windows is not cloaked
     if (cloakTest) {
@@ -103,10 +92,9 @@ bool inspectWindows10AppWindow(HWND hWnd , std::string className , bool cloakTes
 
     if (!foundTHEchild)// NEVERUSED always true
     {
-        TCHAR text[200];
-        GetWindowTextA(hWnd , text , 200);
-        std::string windowText(text);
-        if (windowText != "") {
+        wchar_t text[200];
+        GetWindowText(hWnd , text , 200);
+        if (text != L"") {
             return true;
         }
     }
@@ -114,7 +102,7 @@ bool inspectWindows10AppWindow(HWND hWnd , std::string className , bool cloakTes
 }
 
 // improved by Clodio Pontes with the help of stackoverflow and a huge thanks to Christian Rondeau on github.
-bool isAppWindow(HWND hwnd , bool check = true)
+bool isAppWindow(HWND hwnd , bool checkWin10 = true)
 {
     if (hwnd == GetShellWindow())
         return false;
@@ -125,23 +113,22 @@ bool isAppWindow(HWND hwnd , bool check = true)
     if (getLastVisibleActivePopUpOfWindow(root) != hwnd)
         return false;
 
-    char name[200] = "";
+    wchar_t name[200] = L"";
     GetClassName(hwnd , name , 200);
-    std::string className(name);
+    std::wstring className(name);
 
     bool ret;
-    if (className == "ApplicationFrameWindow")
-        ret = inspectWindows10AppWindow(hwnd , className , check);
+    if (className == L"ApplicationFrameWindow")
+        ret = inspectWindows10AppWindow(hwnd , checkWin10);
     else
         ret = inspectNormalWindow(hwnd , GetCurrentProcessId() , className);
 
-    TCHAR text[200];
-    GetWindowTextA(hwnd , text , 200);
-    std::string windowText(text);
+    wchar_t text[200];
+    GetWindowText(hwnd , text , 200);
 
     // had to add this because when this function is used in 
-    if (check)
-        if (windowText.length() == 0)
+    if (checkWin10)
+        if (wcslen(text) == 0)
             return false;
 
     return ret;
@@ -155,7 +142,7 @@ BOOL CALLBACK initTaskProc(HWND hwnd , LPARAM lParam)
 
     // checks if the app is a window and checks if the hwnd is not the taskbar
     if (isAppWindow(hwnd)) {
-        std::string wName = ShellApi::getWindowTitle(hwnd);
+        std::wstring wName = ShellApi::getWindowTitle(hwnd);
         HICON icon = ShellApi::getHICONFromHWND(hwnd , IconSizes::icon_small);
         windowsVec->push_back(new taskButtonData(hwnd , wName , icon));
     }
@@ -222,16 +209,20 @@ bool TaskService::removeBtn(int index)
     return true;
 }
 
-void TaskService::updateActiveTask(HWND hwnd)
+void TaskService::updateActiveTask(HWND hwnd , bool removeUnactive)
 {
     // Checks if the activeBtn has already been set to that active window.  
     if (activeBtn != nullptr)
-        if (hwnd == (HWND)activeBtn->m_data)
+        if (hwnd == (HWND)activeBtn->m_data && activeBtn->m_dwFlags == taskbarItemFlags::M_TASKBUTTONACTIVE_FLAG)
             return;
 
     if (activeBtn != nullptr) {
         activeBtn->m_dwFlags = 0;
         activeBtn->invalidate(true);
+    }
+
+    if (removeUnactive == true) {
+        return;
     }
 
     for (int i = 0; i < taskList->m_Items.size(); i++) {
@@ -268,10 +259,10 @@ bool TaskService::updateWindow(HWND hwnd)
 
 
             // updates tooltip
-            std::string windowText = ShellApi::getWindowTitle(hwnd);
+            std::wstring windowText = ShellApi::getWindowTitle(hwnd);
 
             // if its not "ERROR" then it updates the button else it removes the button.
-            if (windowText != "ERROR")
+            if (windowText != L"ERROR")
                 item->m_strName = windowText;
             else {
                 OutputDebugStringA("\nremoved a button. \n");
@@ -297,15 +288,17 @@ void TaskService::TaskWndProc(WPARAM wParam , LPARAM lparam)
 
     switch ((int)wParam & 0x7FFF) {
         case HSHELL_WINDOWCREATED:
+        {
+            std::wstring windowTitle = ShellApi::getWindowTitle(winTaskApplication);
+            OutputDebugString((windowTitle + L" WINDOW CREATEDD\n").c_str()); // for debugging....
+
             if (isAppWindow(winTaskApplication , false)) // checks if the hwnd is not NULL and checks if the hwnd is actually a app window
             {
-                std::string windowTitle = ShellApi::getWindowTitle(winTaskApplication);
-                OutputDebugStringA((windowTitle + " WINDOW CREATEDD\n").c_str()); // for debugging....
-
                 AppendTaskBtn(0 , windowTitle.c_str() , 1 , winTaskApplication , ShellApi::getHICONFromHWND(winTaskApplication , IconSizes::icon_small));
                 taskList->invalidate(true);
             }
-            break;
+        }
+        break;
         case HSHELL_WINDOWDESTROYED:
         {
             removeBtn(winTaskApplication);

@@ -34,7 +34,7 @@ PopupMenu::PopupMenu()
 
     // default font and size
 
-    m_strFont = "MS Sans Serif";
+    m_strFont = L"MS Sans Serif";
     m_FontSize = 8;
 
     // 400ms is the default submenu delay
@@ -139,7 +139,7 @@ void PopupMenu::CreateObjects(void)
 
     ZeroMemory(&lf , sizeof(lf));
 
-    hDC = CreateIC("DISPLAY" , NULL , NULL , NULL);
+    hDC = CreateICA("DISPLAY" , NULL , NULL , NULL);
     lf.lfHeight = -MulDiv(m_FontSize , GetDeviceCaps(hDC , LOGPIXELSY) , 72);
 
     lf.lfWeight = FW_NORMAL;
@@ -240,7 +240,7 @@ bool PopupMenu::RegisterClass(void)
     wc.hCursor = LoadCursor(NULL , IDC_ARROW);
     wc.hbrBackground = NULL;
     wc.lpszMenuName = NULL;
-    wc.lpszClassName = "fpmMenuClass";
+    wc.lpszClassName = L"fpmMenuClass";
 
     return ::RegisterClass(&wc) != FALSE;
 }
@@ -313,7 +313,7 @@ UINT PopupMenu::Track(int x , int y , HWND hWnd , const bool bModal , const bool
 
     // get an information context for the screen
 
-    hDC = CreateIC("DISPLAY" , NULL , NULL , NULL);
+    hDC = CreateICA("DISPLAY" , NULL , NULL , NULL);
 
     // get the greatest item width
 
@@ -358,18 +358,18 @@ UINT PopupMenu::Track(int x , int y , HWND hWnd , const bool bModal , const bool
 
     // create the window
 
-    m_hWnd = ::CreateWindowEx(WS_EX_TOOLWINDOW ,         // prevent button appearing on taskbar
-                              "fpmMenuClass" ,
-                              "" ,
-                              WS_POPUP | WS_VISIBLE ,
-                              x ,
-                              y ,
-                              m_Width ,
-                              top + 2 ,
-                              NULL ,
-                              NULL ,
-                              m_hInstance ,
-                              this);
+    m_hWnd = ::CreateWindowExA(WS_EX_TOOLWINDOW ,         // prevent button appearing on taskbar
+                               "fpmMenuClass" ,
+                               "" ,
+                               WS_POPUP | WS_VISIBLE ,
+                               x ,
+                               y ,
+                               m_Width ,
+                               top + 2 ,
+                               NULL ,
+                               NULL ,
+                               m_hInstance ,
+                               this);
 
     // check created OK
 
@@ -735,7 +735,7 @@ void PopupMenu::OnMouseMove(HWND hWnd , short x , short y)
 
     //!= NULL && GetClassName(hPointWnd, szClass, sizeof(szClass) / sizeof(TCHAR)) && !lstrcmp(szClass, "fpmMenuClass")
 
-    if ((hPointWnd = WindowFromPoint(p)) != NULL && GetClassName(hPointWnd , szClass , sizeof(szClass) / sizeof(TCHAR)) && !lstrcmp(szClass , "fpmMenuClass")) {
+    if ((hPointWnd = WindowFromPoint(p)) != NULL && GetClassName(hPointWnd , szClass , sizeof(szClass) / sizeof(TCHAR)) && !lstrcmp(szClass , L"fpmMenuClass")) {
         PopupMenu* pClass = ((PopupMenu*)GetWindowLongPtr(hPointWnd , GWLP_USERDATA));
         if (pClass != this) {
             ReleaseCapture();
@@ -1128,7 +1128,7 @@ bool PopupMenu::GetString(const UINT itemid , LPTSTR pszText , const UINT cchTex
     if (pItem->m_strName.length() + 1 > cchText)
         return false;
 
-    lstrcpy(pszText , pItem->m_strName.c_str());
+    pItem->m_strName = pszText;
     return true;
 }
 

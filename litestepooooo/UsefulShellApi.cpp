@@ -2,7 +2,7 @@
 
 std::vector<HWND> explorerHwnds;
 
-int ShellApi::messageBox(int uType , HINSTANCE instance , std::string title , std::string text)
+int ShellApi::messageBox(int uType , HINSTANCE instance , std::wstring title , std::wstring text)
 {
     MSGBOXPARAMS mb;
     ZeroMemory(&mb , sizeof mb); // "To avoid any undesired effects of optimizing compilers"
@@ -16,13 +16,13 @@ int ShellApi::messageBox(int uType , HINSTANCE instance , std::string title , st
     return MessageBoxIndirect(&mb);
 }
 
-std::string ShellApi::getWindowTitle(HWND hwnd)
+std::wstring ShellApi::getWindowTitle(HWND hwnd)
 {
-    char windowTitle[100];
-    if (GetWindowTextA(hwnd , windowTitle , sizeof(windowTitle)))
+    wchar_t windowTitle[100];
+    if (GetWindowText(hwnd , windowTitle , 100))
         return windowTitle;
     else
-        return "ERROR";
+        return L"ERROR";
 }
 
 HBITMAP ShellApi::getBitmapFromHicon(HICON icon)
@@ -58,7 +58,7 @@ HICON ShellApi::getHICONFromHWND(HWND hwnd , IconSizes iconsize)
         }
     }
     if (hIco == NULL)
-        hIco = CopyIcon(LoadIconA(NULL , IDI_ASTERISK));
+        hIco = CopyIcon(LoadIcon(NULL , IDI_ASTERISK));
 
     return hIco;
 }
@@ -79,12 +79,12 @@ RECT ShellApi::getPrimaryScreenRes()
 #define RUN_NOSUBST    16
 #define RUN_ISPIDL     32
 #define RUN_WINDIR     64
-bool ShellApi::executeShell(HWND hwnd , const char* verb , const char* file , const char* args , const char* dir , int showCmds , int flags)
+bool ShellApi::executeShell(HWND hwnd , const wchar_t* verb , const wchar_t* file , const wchar_t* args , const wchar_t* dir , int showCmds , int flags)
 {
     SHELLEXECUTEINFO sei;
 
     if (NULL == dir || 0 == dir[0]) {
-        std::string temp = getExePath().c_str();
+        std::wstring temp = ShellApi::getExePath().c_str();
         dir = temp.c_str();
     }
 
@@ -171,22 +171,22 @@ void ShellApi::setWorkArea(int height)
 
 
 
-std::string ShellApi::getWindowClassName(HWND hwnd)
+std::wstring ShellApi::getWindowClassName(HWND hwnd)
 {
-    char windowClass[256] = {};
+    wchar_t windowClass[256] = {};
     if (GetClassName(hwnd , windowClass , sizeof(windowClass)))
         return windowClass;
     else
-        return "CLASS ERROR";
+        return L"CLASS ERROR";
 }
 
-std::string ShellApi::getExePath()
+std::wstring ShellApi::getExePath()
 {
 
     TCHAR buffer[MAX_PATH] = { 0 };
     GetModuleFileName(NULL , buffer , MAX_PATH);
-    std::string::size_type pos = std::string(buffer).find_last_of("\\/");
-    return std::string(buffer).substr(0 , pos);
+    std::string::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
+    return std::wstring(buffer).substr(0 , pos);
 
 }
 
@@ -198,10 +198,10 @@ void hideWindow(HWND hwnd)
 
 BOOL CALLBACK EnumExplorerWindowsProc(HWND hwnd , LPARAM lParam)
 {
-    char temp[32];
-    if (GetClassName(hwnd , temp , sizeof temp)
-        && (0 == strcmp(temp , "BaseBar")
-        || 0 == strcmp(temp , "Button")
+    wchar_t temp[32];
+    if (GetClassName(hwnd , temp , 32)
+        && (0 == wcscmp(temp , L"BaseBar")
+        || 0 == wcscmp(temp , L"Button")
         ))
         hideWindow(hwnd);
     return TRUE;
@@ -209,7 +209,7 @@ BOOL CALLBACK EnumExplorerWindowsProc(HWND hwnd , LPARAM lParam)
 
 void ShellApi::hideExplorer()
 {
-    HWND hw = FindWindow("Shell_TrayWnd" , NULL);
+    HWND hw = FindWindow(L"Shell_TrayWnd" , NULL);
     if (hw) {
         hideWindow(hw);
         EnumWindows((WNDENUMPROC)EnumExplorerWindowsProc , 0);
@@ -226,7 +226,7 @@ void ShellApi::restartExplorerWindow()
     if (explorerHandle) {
         TerminateProcess(explorerHandle , 0);
     }
-    ShellExecuteA(NULL , NULL , TEXT("explorer.exe") , NULL , NULL , SW_HIDE);
+    ShellExecute(NULL , NULL , L"explorer.exe" , NULL , NULL , SW_HIDE);
 }
 
 void ShellApi::showExplorer()
