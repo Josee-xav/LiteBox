@@ -6,7 +6,7 @@
 #include <CommCtrl.h>
 #include <dwmapi.h>
 #include "StylingStruct.h"
-
+#include "autostart.h"
 #include "colors.h"
 #include "Services/TaskService.h"
 #include "settings.h"
@@ -16,7 +16,7 @@
 #define SC_MINIMIZE     0xF020
 
 
-std::wstring windowClassName{ L"desktopWindoww" };
+std::wstring windowClassName{ L"LiteBoxDesktopWindoww" };
 
 CTaskbar* taskbar;
 HWND hDesktopWnd = NULL;
@@ -37,7 +37,6 @@ BOOL isRunning()
     }
     return FALSE;
 }
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
 LRESULT CALLBACK WndProcParent(HWND hwnd , UINT msg , WPARAM wParam , LPARAM lParam);
 int APIENTRY WinMain(HINSTANCE hInstance ,
@@ -76,17 +75,18 @@ int APIENTRY WinMain(HINSTANCE hInstance ,
         MessageBoxA(NULL , "errrorrr register" , "error" , MB_OK);
 
     HWND hWnd = CreateWindowEx(
-        WS_EX_TOPMOST | WS_EX_TOOLWINDOW ,
+       0 ,
         wc.lpszClassName ,
         NULL ,
-        WS_POPUP ,
+        NULL ,
         0 , 0 , 0 , 0 ,
-        NULL/*GetDesktopWindow()*/ ,
+        HWND_MESSAGE/*GetDesktopWindow()*/ ,
         NULL ,
         NULL ,
         NULL
     );
 
+    setAutostart(1, 0);
     ShowWindow(hWnd , nCmdShow);
 
     while (GetMessage(&msg , NULL , 0 , 0)) {
@@ -133,7 +133,7 @@ void runTaskbar()
     // create it
     RECT monitorSize = ShellApi::getPrimaryScreenRes();
 
-    ShellApi::setWorkArea((defaultStyle::TASKBAR_HEIGHT + mStyle.marginWidth + mStyle.borderWidth));
+    ShellApi::setWorkArea((defaultStyle::TASKBAR_HEIGHT + mStyle.marginWidth + mStyle.borderWidth + 2));
     ShellApi::hideExplorer();// hides the taskbar
 
     taskbar = new CTaskbar();
@@ -148,6 +148,7 @@ LRESULT CALLBACK WndProcParent(HWND hwnd , UINT msg , WPARAM wParam , LPARAM lPa
         {
             hDesktopWnd = hwnd;
             initShellHook(hDesktopWnd);
+            
             runTaskbar();
         }
         break;
@@ -196,6 +197,7 @@ LRESULT CALLBACK WndProcParent(HWND hwnd , UINT msg , WPARAM wParam , LPARAM lPa
             DestroyWindow(hwnd);
         }
         break;
+       
         default:
         {
             if (msg == WM_ShellHook) {

@@ -41,8 +41,7 @@ public:
 
     int taskbuttonSpacing;
     int taskbuttonTopSpacing;
-
-
+    int popupMenu_fontSize;
 
     StyleStruct();
 

@@ -24,6 +24,5 @@ StyleStruct::StyleStruct()
 
     taskbuttonSpacing = 0;
     taskbuttonTopSpacing = 0;
-
-
+    popupMenu_fontSize = 8;
 }

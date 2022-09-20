@@ -62,7 +62,11 @@ enum STYLE_INDEX
     S_ROUNDED_TASKBUTTONS ,
 
     S_TASKBTN_SPACING ,
-    S_TASKBTN_TOPSPACING ,
+    S_TASKBTN_TOP_SPACING ,
+    S_FONT_SIZE ,
+
+
+    S_M_FONT_SIZE ,
 };
 
 struct items
@@ -91,8 +95,9 @@ static const struct items StyleItems[] = {
     { style_data_types::C_BOOL, S_ROUNDED_CLOCK, "ROUNDED_EDGE_CLOCK"},
 
     { style_data_types::C_INT, S_TASKBTN_SPACING , "TASKBTN_SPACING"},
-    { style_data_types::C_INT, S_TASKBTN_TOPSPACING, "TASKBTN_TOP_SPACING"},
+    { style_data_types::C_INT, S_TASKBTN_TOP_SPACING , "TASKBTN_TOP_SPACING"},
 
+    { style_data_types::C_INT, S_M_FONT_SIZE , "MENU_FONT_SIZE"},
 
     { style_data_types::C_NULL, 0 }
 };
@@ -143,8 +148,11 @@ void* StyleStructPtr(int sn_index , StyleStruct* pStyle)
         case  S_TASKBTN_SPACING:
             return &pStyle->taskbuttonSpacing;
             break;
-        case  S_TASKBTN_TOPSPACING:
+        case  S_TASKBTN_TOP_SPACING:
             return &pStyle->taskbuttonTopSpacing;
+            break;
+        case  S_M_FONT_SIZE:
+            return &pStyle->popupMenu_fontSize;
             break;
         default: return NULL;
     }

@@ -43,11 +43,11 @@ void taskEntryBtn::draw(HWND hWnd , HDC hDC)
     COLORREF color;
 
     RECT drawingRect;
-    int margin = mainbar->m_Style.taskbuttonTopSpacing;//Margins create extra space around an element
+
     drawingRect.left = itemRect.left;
-    drawingRect.top = margin;
-    drawingRect.right = m_Xpos + itemRect.right;
-    drawingRect.bottom = itemRect.bottom - (margin);
+    drawingRect.top = itemRect.top + mainbar->m_Style.taskbuttonTopSpacing;
+    drawingRect.right =  itemRect.right;
+    drawingRect.bottom = itemRect.bottom - (itemRect.top + mainbar->m_Style.taskbuttonTopSpacing)  ;
 
 
     HBRUSH taskBrush = CreateSolidBrush(bSelected ? mainbar->m_Style.taskFocusColor : mainbar->m_Style.windowBackgroundColor);
@@ -166,8 +166,8 @@ void TrayEntryBtn::trayMouseUp(int message)
         //SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , NIN_SELECT | (ni->uID << 16));
         SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , NIN_SELECT | (ni->uID << 16));
     else if (message == WM_RBUTTONUP) {
-        SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , WM_RBUTTONUP); // TODO: this only seems to open the system tray icons but not the non system tray applications
-        SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , lparam , WM_CONTEXTMENU | (ni->uID << 16)); // TODO: this only seems to open the system tray icons but not the non system tray applications
+        SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , 0 , WM_RBUTTONUP);
+        SendNotifyMessage(ni->hWnd , ni->uCallbackMessage , lparam , WM_CONTEXTMENU | (ni->uID << 16));
     }
 }
 
@@ -200,7 +200,7 @@ void TrayEntryBtn::draw(HWND hWnd , HDC hDC)
     int y = mainbar->m_Style.borderWidth;
     drawingRect.left = itemRect.left;
     drawingRect.top = y;
-    drawingRect.right = m_Xpos + itemRect.right;
+    drawingRect.right =  itemRect.right;
     drawingRect.bottom = itemRect.bottom - (y);
 
     // draw/clear the selection rectangle
@@ -251,9 +251,6 @@ void TrayEntryBtn::mouse_event(int mx , int my , int message , unsigned flags)
 }
 
 // BARITEMLIST
-
-
-
 int baritemlist::getItem(short x , short y , const RECT& rect)
 {
 
@@ -264,7 +261,7 @@ int baritemlist::getItem(short x , short y , const RECT& rect)
         newitem = -1;
     else {
         for (i = 0; i < m_Items.size(); i++) {
-            if (x > m_Items[i]->m_Xpos && x < m_Items[i]->m_Xpos + m_Items[i]->itemRect.right)
+            if (x > 2 && x <  m_Items[i]->itemRect.right)
                 break;
         }
 
@@ -366,9 +363,6 @@ void baritemlist::mouse_event(int mx , int my , int message , unsigned flags)
     p.y = my;
     ClientToScreen(mainbarHwnd , &p);
 
-    // get new selected item, if any
-    newitem = getItem(mx , my , rect);
-
     switch (message) {
         case WM_LBUTTONUP:
         case WM_RBUTTONUP:
@@ -376,6 +370,9 @@ void baritemlist::mouse_event(int mx , int my , int message , unsigned flags)
         case WM_LBUTTONDOWN:
         case WM_LBUTTONDBLCLK:
         {
+            // get new selected item, if any
+            newitem = getItem(mx , my , rect);
+
             if (newitem != -1)
                 m_Items[newitem]->mouse_event(mx , my , message , 0);
         }
@@ -416,6 +413,7 @@ bool taskItemList::calc_itemsSizes()
     int w = itemRect.right - itemRect.left;
     int h = itemRect.bottom - itemRect.top;
     int xpos = itemRect.left + b;
+    int y = itemRect.top + mainbar->m_Style.borderWidth;
 
     int is = h + b;
     int min_width = is / 2;
@@ -438,7 +436,7 @@ bool taskItemList::calc_itemsSizes()
             right -= b;
 
 
-        m_Items[i]->calc_size(&left , itemRect.top , right - left , h , 0);
+        m_Items[i]->calc_size(&left , y , right - left , h , 0);
         ++n;
     }
     return TRUE;
@@ -586,7 +584,7 @@ void clockBtn::draw(HWND hWnd , HDC hDC)
     int y = mainbar->m_Style.borderWidth;
     drawingRect.left = itemRect.left;
     drawingRect.top = y;
-    drawingRect.right = m_Xpos + itemRect.right;
+    drawingRect.right = itemRect.right;
     drawingRect.bottom = itemRect.bottom - (y);
 
     // draw/clear the selection rectangle

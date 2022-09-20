@@ -1,6 +1,8 @@
 #pragma once
 #include "../Taskbar/taskbarItemClasses.h"
+#include "../ShellHookingFunctionality.h"
 
+#define UWP_APP_UNCLOAKED (WM_USER + 44)
 struct taskButtonData
 {
     HWND hwnd;

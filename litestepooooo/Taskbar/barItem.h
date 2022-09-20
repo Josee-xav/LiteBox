@@ -9,8 +9,6 @@ class barItem
 public:
     static CTaskbar* mainbar;
     RECT itemRect; // use this to know where it is.
-    int             m_Xpos;                        // xpos
-
     DWORD           m_dwFlags;                    // various flags
     std::wstring     m_strName;                    // text name
     HICON            m_icon;                  // index into the bitmap

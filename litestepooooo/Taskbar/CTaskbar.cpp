@@ -15,12 +15,6 @@ bool CTaskbar::m_bClassRegistered = false;
 CTaskbar::CTaskbar()
 {
 
-    // default font and size
-
-    m_strFont = L"MS Sans Serif";
-    m_FontSize = 8;
-
-
     // GDI objects
 
     m_hFont = NULL;
@@ -103,6 +97,12 @@ void CTaskbar::createObjects(void)
     HDC        hDC;
     TEXTMETRIC tm;
 
+    // default font and size
+
+    m_strFont = L"MS Sans Serif"; // TODO. could allow the user to change fonts but
+    m_FontSize = 10; // TODO: make it so it automatically adjusts depending on the margin???
+
+
     // cleanup any previous
 
     cleanup();
@@ -114,8 +114,9 @@ void CTaskbar::createObjects(void)
 
     ZeroMemory(&lf , sizeof(lf));
 
-    hDC = CreateICA("DISPLAY" , NULL , NULL , NULL);
-    lf.lfHeight = -MulDiv(m_FontSize , GetDeviceCaps(hDC , LOGPIXELSY) , 72);
+
+    hDC = CreateICA("DISPLAY", NULL, NULL, NULL);
+    lf.lfHeight = -MulDiv(m_FontSize, GetDeviceCaps(hDC, LOGPIXELSY), 92);
 
     lf.lfWeight = FW_NORMAL;
     lf.lfCharSet = ANSI_CHARSET;
@@ -239,18 +240,12 @@ bool CTaskbar::create(int x , int y , HWND hWnd , HINSTANCE hInstance , StyleStr
 
         m_bClassRegistered = true;
     }
+
     // create GDI objects
     createObjects();
 
-    HDC hDC;
-    RECT rcScreen;
-
-    // get an information context for the screen
-
-    hDC = CreateICA("DISPLAY" , NULL , NULL , NULL);
-    DeleteDC(hDC);
-
     // get the screen dimensions and adjust x and y if necessary
+    RECT rcScreen;
     SystemParametersInfo(SPI_GETWORKAREA , 0 , &rcScreen , 0);
 
     if (x + defaultStyle::TASKBAR_WIDTH > rcScreen.right)
@@ -321,29 +316,6 @@ void CTaskbar::OnPaint(HWND hWnd , HDC hDC)
     }
 }
 
-// todo :test move somewhere.
-bool isFullscreen(HWND hwnd , HMONITOR hmon)
-{
-    if (hwnd == GetShellWindow())
-        return false;
-
-    HMONITOR hwndMon = MonitorFromWindow(hwnd , MONITOR_DEFAULTTONULL);
-    if (!hwndMon || hwndMon != hmon)
-        return false;
-    MONITORINFO mi;
-    mi.cbSize = sizeof(mi);
-    if (!GetMonitorInfo(hwndMon , &mi))
-        return false;
-
-    RECT appBounds = { 0 };
-    GetWindowRect(hwnd , &appBounds);
-
-    if (EqualRect(&appBounds , &mi.rcMonitor)) {
-        return true;
-    }
-
-    return false;
-}
 
 /*************************/
 /* stub window procedure */
@@ -394,7 +366,7 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd , UINT uMsg , WPARAM wParam , LP
         {
             if (wParam == 0) // check full screen app timer
             {
-                bool hideWindow = isFullscreen(GetForegroundWindow() , MonitorFromWindow(hWnd , MONITOR_DEFAULTTONULL));
+                bool hideWindow = ShellApi::isFullscreen(GetForegroundWindow());
 
 
                 if (hideWindow == true) {
@@ -454,7 +426,6 @@ void CTaskbar::OnMouseMove(HWND hWnd , short x , short y)
     ClientToScreen(hWnd , &p);
 
     // get new selected item, if any
-
     newitem = getItem(x , y , rect);
 
     if (newitem != -1)
@@ -475,10 +446,8 @@ int CTaskbar::getItem(short x , short y , const RECT& rect)
     if (x <= 1 || y <= 1 || x > rect.right || y > rect.bottom)
         newitem = -1;
     else {
-
-
         for (i = 0; i < m_barItemList.size(); i++) {
-            if (x > m_barItemList[i]->m_Xpos && x < m_barItemList[i]->m_Xpos + m_barItemList[i]->itemRect.right)
+            if (x > 1 && x <  m_barItemList[i]->itemRect.right)
                 break;
         }
 
@@ -521,11 +490,11 @@ void CTaskbar::OnMouseButton(HWND hWnd , int message , WPARAM wparam , short x ,
 
         PopupMenu menu;
         // set some of the colors
-        menu.SetColor(PopupMenu::colorBorder , m_Style.borderColor);
+        menu.SetColor(PopupMenu::colorBorder , m_Style.borderWidth == 0 ? m_Style.windowBackgroundColor : m_Style.borderColor);
         menu.SetColor(PopupMenu::colorText , m_Style.focusedTextColor);
         menu.SetColor(PopupMenu::colorBackground , m_Style.windowBackgroundColor);
         menu.SetColor(PopupMenu::colorHighlight , m_Style.taskFocusColor);
-
+        menu.SetFontSize(m_Style.popupMenu_fontSize);
 
         // create it
 

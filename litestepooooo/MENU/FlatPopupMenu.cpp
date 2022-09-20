@@ -555,6 +555,7 @@ void PopupMenu::DrawItem(HWND hWnd , HDC hDC , const int index , const CItem& it
     int     i , x , y , h , nColor;
     RECT    rect;
 
+
     // test if a separator
 
     if ((item.m_dwFlags & itemSeparator) != 0) {

@@ -13,14 +13,13 @@ void barItem::Assign(const barItem& src)
     m_strName = src.m_strName;
     m_ItemID = src.m_ItemID;
     m_icon = src.m_icon;
-    m_Xpos = src.m_Xpos;
     m_data = src.m_data;
     buttonType = src.buttonType;
 }
 
 // CItem constructor
 
-barItem::barItem(int type) : itemRect{ 0,0,0,0 } , m_Xpos(0) , m_strName(L"") , m_icon(NULL) , m_ItemID(0) , m_data(NULL) , buttonType(type) , m_dwFlags(NULL)
+barItem::barItem(int type) : itemRect{ 0,0,0,0 } ,  m_strName(L"") , m_icon(NULL) , m_ItemID(0) , m_data(NULL) , buttonType(type) , m_dwFlags(NULL)
 {
     m_ItemID = ++s_id;
 

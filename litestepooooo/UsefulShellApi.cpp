@@ -22,7 +22,7 @@ std::wstring ShellApi::getWindowTitle(HWND hwnd)
     if (GetWindowText(hwnd , windowTitle , 100))
         return windowTitle;
     else
-        return L"ERROR";
+        return ShellApi::getWindowClassName(hwnd);
 }
 
 HBITMAP ShellApi::getBitmapFromHicon(HICON icon)
@@ -79,6 +79,43 @@ RECT ShellApi::getPrimaryScreenRes()
 #define RUN_NOSUBST    16
 #define RUN_ISPIDL     32
 #define RUN_WINDIR     64
+
+bool ShellApi::IsWinShell(HWND hwnd) {
+    std::wstring className = ShellApi::getWindowClassName(hwnd);
+    if (className == L"Shell_TrayWnd" || className == L"DV2ControlHost" || className == L"MsgrIMEWindowClass" || className == L"SysShadow" || className == L"Button"
+        || className == L"Windows.UI.Core.CoreWindow" || className == L"Frame Alternate Owner" || className == L"MultitaskingViewFrame" || className == L"Progman" || className == L"WorkerW") {
+        return false;
+    }
+
+    if (hwnd == GetShellWindow() || hwnd == GetDesktopWindow())
+        return false;
+}
+
+bool ShellApi::isFullscreen(HWND hwnd)
+{
+    if (!ShellApi::IsWinShell(hwnd))
+        return false;
+
+    HMONITOR hwndMon = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
+    if (!hwndMon )
+        return false;
+    MONITORINFO mi;
+    mi.cbSize = sizeof(mi);
+    if (!GetMonitorInfo(hwndMon, &mi))
+        return false;
+
+    RECT appBounds = { 0 };
+    GetWindowRect(hwnd, &appBounds);
+
+    if (EqualRect(&appBounds, &mi.rcMonitor)) {
+        return true;
+    }
+
+    return false;
+}
+
+// THE
+
 bool ShellApi::executeShell(HWND hwnd , const wchar_t* verb , const wchar_t* file , const wchar_t* args , const wchar_t* dir , int showCmds , int flags)
 {
     SHELLEXECUTEINFO sei;
@@ -155,7 +192,7 @@ std::string ShellApi::getLastErrorAsString()
     return message;
 }
 
-// TODO: sometimes doesnt work.... idfk whyyyyy cus it works sometimes but other times it doesnt... fking windows 10.
+// TODO: sometimes doesnt work.... fking windows 10.
 void ShellApi::setWorkArea(int height)
 {
     //setOldDesktopWorkArea();

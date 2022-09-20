@@ -78,6 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <CodeAnalysisRuleSet>..\..\..\Users\Ussssrr\Documents\UNUSEDCODEEE.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -118,6 +119,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>C:\Codee\Equinox-Logger-main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="autostart.cpp" />
     <ClCompile Include="colors.cpp" />
     <ClCompile Include="drawingApi.cpp" />
     <ClCompile Include="iniParser.cpp" />
@@ -157,8 +160,10 @@
     <ClCompile Include="Services\TrayService.cpp" />
     <ClCompile Include="UsefulShellApi.cpp" />
     <ClCompile Include="ShellHookingFunctionality.cpp" />
+    <ClCompile Include="WindowQueryHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="autostart.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="drawingApi.h" />
     <ClInclude Include="iniParser.h" />
@@ -172,6 +177,7 @@
     <ClInclude Include="Services\TrayService.h" />
     <ClInclude Include="UsefulShellApi.h" />
     <ClInclude Include="ShellHookingFunctionality.h" />
+    <ClInclude Include="WindowQueryHelpers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

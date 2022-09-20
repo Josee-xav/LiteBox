@@ -1,10 +1,10 @@
 #pragma once
-#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <shellapi.h>
 #include <string>
 #include <vector>
 #include <string>
+#include <ShellScalingApi.h>
 
 enum class IconSizes
 {
@@ -13,6 +13,8 @@ enum class IconSizes
 };
 
 namespace ShellApi {
+    bool IsWinShell(HWND hwnd);
+    bool isFullscreen(HWND hwnd);
 
     bool executeShell(HWND hwnd , const wchar_t* verb , const wchar_t* file , const wchar_t* args , const wchar_t* dir , int showCmds , int flags);
 

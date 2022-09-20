@@ -175,7 +175,6 @@ inline void PopupMenu::SetColor(const menuColor id , const COLORREF cr)
     m_Colors[id] = cr;
 }
 
-
 // Set the font
 
 inline void PopupMenu::SetFont(LPCTSTR pszFont)
