@@ -145,7 +145,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="autostart.cpp" />
     <ClCompile Include="colors.cpp" />
     <ClCompile Include="Taskbar\drawingApi.cpp" />
     <ClCompile Include="iniParser.cpp" />
@@ -162,7 +161,6 @@
     <ClCompile Include="WinShellFunctionality\WindowQueryHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="autostart.h" />
     <ClInclude Include="colors.h" />
     <ClInclude Include="Taskbar\drawingApi.h" />
     <ClInclude Include="iniParser.h" />

@@ -54,9 +54,6 @@
     <ClCompile Include="Styling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="autostart.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WinShellFunctionality\WindowQueryHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,9 +93,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MENU\FlatPopupMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="autostart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WinShellFunctionality\WindowQueryHelpers.h">
