@@ -452,16 +452,10 @@ taskItemList::taskItemList() : baritemlist(M_TASKLIST)
 
 bool compareString(barItem* a , barItem* b)
 {
-    HWND parentOfA = GetParent((HWND)a->m_data);
-    HWND parentOfB = GetParent((HWND)b->m_data);
-
     TCHAR           abuf[100];
-    GetClassName(parentOfA , abuf , 100);
+    GetClassName((HWND)a->m_data , abuf , 100);
     TCHAR           bbuf[100];
-    GetClassName(parentOfB , bbuf , 100);
-
-    OutputDebugString(abuf);
-    OutputDebugString(abuf);
+    GetClassName((HWND)b->m_data , bbuf , 100);
 
     return std::wcscmp(abuf , bbuf) < 0;
 }
