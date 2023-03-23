@@ -85,6 +85,7 @@ void CTaskbar::cleanup(void)
 			bi = nullptr;
 		}
 		m_barItemList.clear();
+
 	}
 }
 

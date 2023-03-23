@@ -9,6 +9,8 @@ HWND TrayService::hTrayWnd = NULL;
 HINSTANCE TrayService::hinstTrayLib = NULL;
 trayItemList* TrayService::trayBtnList = NULL;
 
+trayHookDll_EntryFunc TrayService::th_libfunc = NULL;
+
 TrayService::TrayService()
 {
 	trayBtnList = new trayItemList();
@@ -17,6 +19,7 @@ TrayService::TrayService()
 
 TrayService::~TrayService()
 {
+	(th_libfunc)(NULL);
 	FreeLibrary(hinstTrayLib);
 }
 
@@ -24,7 +27,7 @@ trayItemList* TrayService::getTrayList()
 {
 	return trayBtnList;
 }
-typedef int (*trayHookDll_EntryFunc)(HWND);
+
 HWND TrayService::create_Tray_Child(HWND hwndParent, const wchar_t* class_name)
 {
 	LB_Api::register_class(class_name, LB_Api::main_hinstance, TrayNotifyWndProc, 0);
@@ -54,7 +57,7 @@ void TrayService::initTrayService()
 	// ^ i feel like this is a better way as the tray hook doesnt seem to work 100% the time for me on windows 10
 	// TODO mabye just hook shell_notify instead..... super autistic tho.
 
-	trayHookDll_EntryFunc th_libfunc = NULL;
+
 	YLogger::Info("Tray Starting!");
 
 	std::wstring trayClassName = L"Shell_TrayWnd";

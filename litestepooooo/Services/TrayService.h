@@ -3,6 +3,9 @@
 #include "../Taskbar/taskbarItemClasses.h"
 
 #include "../WinShellFunctionality/TrayShit.h"
+typedef int (*trayHookDll_EntryFunc)(HWND);
+
+
 class TrayService
 {
 public:
@@ -21,6 +24,7 @@ private:
 	HWND create_Tray_Child(HWND hwndParent, const wchar_t* class_name);
 	void initTrayService();
 
+	static trayHookDll_EntryFunc th_libfunc;
 	static HWND hTrayWnd;
 	static HINSTANCE hinstTrayLib;
 
