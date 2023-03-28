@@ -20,23 +20,23 @@ public:
     // data members
     enum
     {
-        itemSeparator = 0x1 ,                            // not valid with anything else
-        itemNotSelectable = 0x2 ,                        // cannot select this item
-        itemBold = 0x4 ,                                 // display in bold face text
+        itemSeparator = 0x1,                            // not valid with anything else
+        itemNotSelectable = 0x2,                        // cannot select this item
+        itemBold = 0x4,                                 // display in bold face text
         itemGrayed = 0x8                                // display grayed out
     };
 
     enum menuColor
     {
-        colorBorder ,                                  // menu border and separator line
-        colorBackground ,                              // background fill
-        colorText ,                                    // normal text
-        colorGrayedText ,                              // grayed out text
-        colorHighlightText ,                           // selected text
-        colorHighlight ,                               // selected background
-        colorIconTransparent ,                         // color that shows through bitmaps
-        colorLightShadow ,                             // for edges facing the light source
-        colorDarkShadow ,                              // for edges facing away from the light source
+        colorBorder,                                  // menu border and separator line
+        colorBackground,                              // background fill
+        colorText,                                    // normal text
+        colorGrayedText,                              // grayed out text
+        colorHighlightText,                           // selected text
+        colorHighlight,                               // selected background
+        colorIconTransparent,                         // color that shows through bitmaps
+        colorLightShadow,                             // for edges facing the light source
+        colorDarkShadow,                              // for edges facing away from the light source
 
         numColors
     };
@@ -76,12 +76,12 @@ public:
     int                m_PopupDelay;                // popup menu delay
     COLORREF           m_Colors[numColors];         // the color settings
 
-  // internal state settings
+    // internal state settings
 
     enum
     {
-        stateInactive ,
-        stateShow ,
+        stateInactive,
+        stateShow,
         stateTrack
     } m_State;
 
@@ -119,44 +119,46 @@ protected:
     bool RegisterClass(void);
     void Cleanup(void);
     void CreateObjects(void);
-    bool CheckOutsideMenu(HWND hWnd , const RECT& rect , short x , short y);
-    void DrawItem(HWND hWnd , HDC hDC , const int index , const CItem& item);
-    void DrawTransparentBitmap(HDC hdc , const int xSrcOffset , const int xStart , const int yStart);
-    void DrawSeparator(HDC hDC , int top);
-    int GetItem(short x , short y , const RECT& rect);
-    CItem* GetItem(const UINT itemid , const bool bByPosition);
+    bool CheckOutsideMenu(HWND hWnd, const RECT& rect, short x, short y);
+    void DrawItem(HWND hWnd, HDC hDC, const int index, const CItem& item);
+    void DrawTransparentBitmap(HDC hdc, const int xSrcOffset, const int xStart, const int yStart);
+    void DrawSeparator(HDC hDC, int top);
+    int GetItem(short x, short y, const RECT& rect);
+    CItem* GetItem(const UINT itemid, const bool bByPosition);
     void DestroyAll(void);
-    void ButtonDown(HWND hWnd , short x , short y , const bool bLeft);
+    void ButtonDown(HWND hWnd, short x, short y, const bool bLeft);
     void SetReturn(const UINT id);
 
 public:
     PopupMenu();
     ~PopupMenu();
 
-    void SetColor(const menuColor id , const COLORREF cr);
+    void SetColor(const menuColor id, const COLORREF cr);
     void SetFont(LPCTSTR pszFont);
     void SetFontSize(const int size);
     void SetPopupDelay(const int delay);
 
-    bool Create(HINSTANCE hInstance , const UINT bitmap_id = (UINT)-1);
-    bool AppendItem(const DWORD dwFlags , LPCTSTR pszName , const UINT itemid , const int icon = -1);
-    bool AppendPopup(const DWORD dwFlags , LPCTSTR pszName , PopupMenu& popup , const int icon = -1);
-    bool SetMenuItemText(const UINT itemid , LPCTSTR pszName , const bool bByPosition = false);
-    bool SetMenuItemFlags(const UINT itemid , const DWORD dwFlags , const bool bByPosition = false);
-    bool SetMenuItemIcon(const UINT itemid , const int icon , const bool bByPosition = false);
-    bool GetString(const UINT itemid , LPTSTR pszText , const UINT cchText , const bool bByPosition = false);
-    UINT Track(int x , int y , HWND hWnd , const bool bModal , const bool bPopup = false);
+    bool Create(HINSTANCE hInstance, const UINT bitmap_id = (UINT)-1);
+    bool AppendItem(const DWORD dwFlags, LPCTSTR pszName, const UINT itemid, const int icon = -1);
+    bool AppendPopup(const DWORD dwFlags, LPCTSTR pszName, PopupMenu& popup, const int icon = -1);
+    bool SetMenuItemText(const UINT itemid, LPCTSTR pszName, const bool bByPosition = false);
+    bool SetMenuItemFlags(const UINT itemid, const DWORD dwFlags, const bool bByPosition = false);
+    bool SetMenuItemIcon(const UINT itemid, const int icon, const bool bByPosition = false);
+    bool GetString(const UINT itemid, LPTSTR pszText, const UINT cchText, const bool bByPosition = false);
+    UINT Track(int x, int y, HWND hWnd, const bool bModal, const bool bPopup = false);
 
-    void OnPaint(HWND hWnd , HDC hDC);
-    void OnEraseBkgnd(HWND hWnd , HDC hDC);
-    void OnLButtonDown(HWND hWnd , short x , short y);
-    void OnRButtonDown(HWND hWnd , short x , short y);
-    void OnLButtonUp(HWND hWnd , short x , short y);
-    void OnRButtonUp(HWND hWnd , short x , short y);
+    void hidePopUp();
+
+    void OnPaint(HWND hWnd, HDC hDC);
+    void OnEraseBkgnd(HWND hWnd, HDC hDC);
+    void OnLButtonDown(HWND hWnd, short x, short y);
+    void OnRButtonDown(HWND hWnd, short x, short y);
+    void OnLButtonUp(HWND hWnd, short x, short y);
+    void OnRButtonUp(HWND hWnd, short x, short y);
     void OnDestroy(HWND hWnd);
-    void OnMouseMove(HWND hWnd , short x , short y);
-    void OnTimer(HWND hWnd , unsigned short id);
-    void OnChar(HWND hWnd , TCHAR c);
+    void OnMouseMove(HWND hWnd, short x, short y);
+    void OnTimer(HWND hWnd, unsigned short id);
+    void OnChar(HWND hWnd, TCHAR c);
 };
 
 
@@ -170,7 +172,7 @@ inline void PopupMenu::SetPopupDelay(const int delay)
 
 // Set a color
 
-inline void PopupMenu::SetColor(const menuColor id , const COLORREF cr)
+inline void PopupMenu::SetColor(const menuColor id, const COLORREF cr)
 {
     m_Colors[id] = cr;
 }
@@ -193,7 +195,7 @@ inline void PopupMenu::SetFontSize(const int size)
 
 // WM_PAINT
 
-inline void PopupMenu::OnPaint(HWND hWnd , HDC hDC)
+inline void PopupMenu::OnPaint(HWND hWnd, HDC hDC)
 {
     std::vector<CItem>::const_iterator it;
     int pos;
@@ -202,23 +204,23 @@ inline void PopupMenu::OnPaint(HWND hWnd , HDC hDC)
 
     pos = 0;
     for (it = m_Items.begin(); it != m_Items.end(); it++)
-        DrawItem(hWnd , hDC , pos++ , *it);
+        DrawItem(hWnd, hDC, pos++, *it);
 }
 
 
 // WM_LBUTTONDOWN
 
-inline void PopupMenu::OnLButtonDown(HWND hWnd , short x , short y)
+inline void PopupMenu::OnLButtonDown(HWND hWnd, short x, short y)
 {
-    ButtonDown(hWnd , x , y , true);
+    ButtonDown(hWnd, x, y, true);
 }
 
 
 // WM_RBUTTONDOWN
 
-inline void PopupMenu::OnRButtonDown(HWND hWnd , short x , short y)
+inline void PopupMenu::OnRButtonDown(HWND hWnd, short x, short y)
 {
-    ButtonDown(hWnd , x , y , false);
+    ButtonDown(hWnd, x, y, false);
 }
 
 

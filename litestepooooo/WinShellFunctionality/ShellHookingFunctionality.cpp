@@ -57,7 +57,7 @@ BOOL getShellFunctions()
     if (!_hUser32) {
         _hUser32 = LoadLibraryW(L"user32.dll");
         if (!_hUser32) {
-            //outputDebugStringA("ERRORORRRR IN INIT HELPER");
+            //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
     }
@@ -65,21 +65,21 @@ BOOL getShellFunctions()
     if (!_IsShellManagedWindow) {
         _IsShellManagedWindow = (pIsShellManagedWindow)GetProcAddress(_hUser32 , (LPCSTR)2574);
         if (!_IsShellManagedWindow) {
-            //outputDebugStringA("ERRORORRRR IN INIT HELPER");
+            //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
     }
     if (!_IsShellFrameWindow) {
         _IsShellFrameWindow = (pIsShellManagedWindow)GetProcAddress(_hUser32 , (LPCSTR)2573);
         if (!_IsShellFrameWindow) {
-            //outputDebugStringA("ERRORORRRR IN INIT HELPER");
+            //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
     }
     if (!_GhostWindowFromHungWindow) {
         _GhostWindowFromHungWindow = (pGhostWindowFromHungWindow)GetProcAddress(_hUser32 , "GhostWindowFromHungWindow");
         if (!_GhostWindowFromHungWindow) {
-            //outputDebugStringA("ERRORORRRR IN INIT HELPER");
+            //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
 
@@ -87,7 +87,7 @@ BOOL getShellFunctions()
     if (!_HungWindowFromGhostWindow) {
         _HungWindowFromGhostWindow = (pHungWindowFromGhostWindow)GetProcAddress(_hUser32 , "HungWindowFromGhostWindow");
         if (!_HungWindowFromGhostWindow) {
-            //outputDebugStringA("ERRORORRRR IN INIT HELPER");
+            //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
     }

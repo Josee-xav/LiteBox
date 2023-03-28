@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="colors.cpp" />
+    <ClCompile Include="Logging\FLogger.cpp" />
     <ClCompile Include="Taskbar\drawingApi.cpp" />
     <ClCompile Include="iniParser.cpp" />
     <ClCompile Include="MENU\FlatPopupMenu.cpp" />
@@ -166,7 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="colors.h" />
-    <ClInclude Include="Logging\YLogger.h" />
+    <ClInclude Include="Logging\FLogger.h" />
     <ClInclude Include="Taskbar\drawingApi.h" />
     <ClInclude Include="iniParser.h" />
     <ClInclude Include="MENU\FlatPopupMenu.h" />

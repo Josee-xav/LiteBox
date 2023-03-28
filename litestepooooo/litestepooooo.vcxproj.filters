@@ -60,6 +60,9 @@
     <ClCompile Include="WinShellFunctionality\WindowQueryHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Logging\FLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Taskbar\CTaskbar.h">
@@ -107,7 +110,7 @@
     <ClInclude Include="WinShellFunctionality\WindowQueryHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Logging\YLogger.h">
+    <ClInclude Include="Logging\FLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

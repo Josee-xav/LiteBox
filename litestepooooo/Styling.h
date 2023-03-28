@@ -40,9 +40,9 @@ struct _Stylizing
 	//font stuff
 	static std::wstring font;
 	static int task_fontSize;
+	static int clock_fontSize;
 	static int menu_fontSize;
 	static LONG fontWeight;
-	static int popupMenu_fontSize;
 
 	// bevels
 	static int task_BevelStyle;

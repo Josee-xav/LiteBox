@@ -124,7 +124,7 @@ bool TaskService::updateWindow(HWND hwnd)
 			// updates tooltip
 			std::wstring windowText = LB_Api::getWindowTitle(hwnd);
 
-			if (windowText != L"ERROR")
+			if (windowText != L"error")
 				item->m_strName = windowText;
 			else {
 				//OutputDebugStringA("\nremoved a button. \n");

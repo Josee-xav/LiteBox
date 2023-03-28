@@ -60,8 +60,8 @@ RECT LB_Api::getPrimaryScreenRes()
 	return RECT{ 0, 0, screenWidth, screenHeight };
 }
 
-#define RUN_SHOWERRORS  0
-#define RUN_NOERRORS    1
+#define RUN_SHOWerrorS  0
+#define RUN_NOerrorS    1
 #define RUN_WAIT        2
 #define RUN_HIDDEN      4
 #define RUN_NOARGS      8
@@ -131,10 +131,10 @@ bool LB_Api::executeShell(HWND hwnd, const wchar_t* verb, const wchar_t* file, c
 		sei.fMask = SEE_MASK_DOENVSUBST | SEE_MASK_FLAG_NO_UI;
 		sei.lpFile = file;
 		if (NULL == file || 0 == file[0]) {
-			/*if (0 == (flags & RUN_NOERRORS)) {
+			/*if (0 == (flags & RUN_NOerrorS)) {
 				char msg[200];
-				MessageBox(MB_OK , NLS2("$Error_Execute$" ,
-						   "Error: Could not execute: %s\n(%s)") ,
+				MessageBox(MB_OK , NLS2("$error_Execute$" ,
+						   "error: Could not execute: %s\n(%s)") ,
 						   file && file[0] ? file : NLS1("<empty>") ,
 						   win_error(msg , sizeof msg));
 			}*/
@@ -146,10 +146,10 @@ bool LB_Api::executeShell(HWND hwnd, const wchar_t* verb, const wchar_t* file, c
 	if (ShellExecuteEx(&sei))
 		return TRUE;
 
-	/* if (0 == (flags & RUN_NOERRORS)) {
+	/* if (0 == (flags & RUN_NOerrorS)) {
 		 char msg[200];
-		 BBMessageBox(MB_OK , NLS2("$Error_Execute$" ,
-					  "Error: Could not execute: %s\n(%s)") ,
+		 BBMessageBox(MB_OK , NLS2("$error_Execute$" ,
+					  "error: Could not execute: %s\n(%s)") ,
 					  file && file[0] ? file : NLS1("<empty>") ,
 					  win_error(msg , sizeof msg));
 	 }*/
@@ -176,7 +176,7 @@ bool LB_Api::register_class(const wchar_t* classname, HINSTANCE hinstance, WNDPR
 }
 
 //Returns the last Win32 error, in string format. Returns an empty string if there is no error.
-std::string LB_Api::getLastErrorAsString()
+std::string LB_Api::getLasterrorAsString()
 {
 	//Get the error message ID, if any.
 	DWORD errorMessageID = ::GetLastError();
@@ -210,7 +210,7 @@ void LB_Api::setWorkArea(int height)
 	bool ret = SystemParametersInfo(SPI_SETWORKAREA, 0, &primaryScreenRect, 0);
 
 	if (ret) {
-		//outputDebugStringA((getLastErrorAsString() + "\n").c_str());
+		//outputDebugStringA((getLasterrorAsString() + "\n").c_str());
 	}
 }
 
@@ -222,7 +222,7 @@ std::wstring LB_Api::getWindowClassName(HWND hwnd)
 	if (GetClassName(hwnd, windowClass, sizeof(windowClass)))
 		return windowClass;
 	else
-		return L"ERROR";
+		return L"error";
 }
 
 std::wstring LB_Api::getLBExePath()
