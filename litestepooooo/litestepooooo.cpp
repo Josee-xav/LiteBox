@@ -189,7 +189,13 @@ LRESULT CALLBACK WndProcParent(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
         runTaskbar();
     }
     break;
-    case RESTART_TASKBAR:
+    case RESTART_TASKBAR: // TODO should probably remove, causes gdi object issues. i cant seem to find out why anymore.
+    /*
+    
+    GDI objects that have been released or deleted are not immediately removed from the GDI object pool. 
+    Instead, they are marked as "free" and can be reused when a new GDI object is requested by the process.
+    */
+        // probs cus ? https://stackoverflow.com/questions/67712605/brushes-deleteobjecthbrush-in-c
     {
         if (taskbar != NULL) {
             delete taskbar;

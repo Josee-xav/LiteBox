@@ -24,7 +24,6 @@ public:
     // menu item class
     static bool        m_bClassRegistered;          // once-per-app window class registration flag
 
-    UINT               m_BitmapID;                  // bitmap resource ID
     std::vector<barItem*> m_barItemList;                     // items in this taskbar
     std::wstring        m_strFont;                   // font name for items
     int                m_FontSize;                  // font point-size for items
@@ -73,7 +72,7 @@ public:
     void SetFont(std::wstring pszFont);
     void SetFontSize(const int size);
 
-    bool create(int x, int y, HWND hWnd, const UINT bitmap_id = (UINT)-1);
+    bool create(int x, int y, HWND hWnd);
 
     void calc_barItemLists();
 

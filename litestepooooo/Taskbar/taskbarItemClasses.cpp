@@ -27,6 +27,9 @@
 //	DeleteObject(m_hBorderPen);
 //}
 
+//HBRUSH taskEntryBtn::Selected_taskBrush = CreateSolidBrush(m_Style.task_FocusColor);
+//HBRUSH taskEntryBtn::normal_taskBrush = CreateSolidBrush(m_Style.windowBackgroundColor);
+
 taskEntryBtn::taskEntryBtn() : barItem(M_TASK)
 {
 }
@@ -34,6 +37,8 @@ taskEntryBtn::taskEntryBtn() : barItem(M_TASK)
 taskEntryBtn::~taskEntryBtn()
 {
 }
+
+
 
 void taskEntryBtn::draw(HWND hWnd, HDC hDC)
 {
@@ -55,7 +60,10 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
 
     // draw/clear the selection rectangle
     hOldBrush = SelectObject(hDC, taskBrush);
-    hOldPen = SelectObject(hDC, m_Style.task_BevelStyle == 1 ? taskPen : GetStockObject(NULL_PEN)); // allows the pen to make a bevel for us so its easier when its rounded for example.
+
+
+
+    hOldPen = m_Style.task_BevelStyle == 1 ? SelectObject(hDC, taskPen) : GetStockObject(NULL_PEN); // allows the pen to make a bevel for us so its easier when its rounded for example.
 
     if (m_Style.rectRoundedEdge_TaskButtons != true)
         Rectangle(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom);
@@ -66,8 +74,6 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
     if (m_Style.task_BevelStyle != 0 && m_Style.task_BevelStyle != 1)
         DrawingApi::drawBevel(hDC, m_Style.borderColor, &drawingRect, m_Style.task_BevelStyle, BF_RECT);
 
-    SelectObject(hDC, hOldPen);
-    SelectObject(hDC, hOldBrush);
 
     // is there an icon?
     if (m_icon != NULL) {
@@ -107,9 +113,13 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
     SetTextColor(hDC, color);
     DrawText(hDC, m_strName.c_str(), -1, &drawingRect, DT_LEFT | DT_VCENTER | DT_SINGLELINE | DT_WORD_ELLIPSIS | DT_NOPREFIX);
     SelectObject(hDC, hOldFont);
+    SelectObject(hDC, hOldPen);
+    SelectObject(hDC, hOldBrush);
+    SelectObject(hDC, GetStockObject(NULL_BRUSH));
 
     DeleteObject(taskPen);
     DeleteObject(taskBrush);
+
 }
 
 
@@ -183,9 +193,13 @@ void TrayEntryBtn::trayMouseDOUBLECLICKDown(int message)
 TrayEntryBtn::TrayEntryBtn() : barItem(M_TRAY)
 {
 }
+// TODO
+//HBRUSH TrayEntryBtn::brush = CreateSolidBrush(m_Style.windowBackgroundColor);
+
 
 TrayEntryBtn::~TrayEntryBtn()
 {
+
 }
 
 void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
@@ -193,7 +207,6 @@ void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
     FLogger log;
     const int trayIconSize = 16;//TODO
 
-    HGDIOBJ hOldPen, hOldBrush;
     int      h{ 0 };
     RECT drawingRect;
     int y = m_Style.border_Width;
@@ -204,8 +217,7 @@ void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
 
     // draw/clear the selection rectangle
     HBRUSH brush = CreateSolidBrush(m_Style.windowBackgroundColor);
-    hOldBrush = SelectObject(hDC, brush);
-    hOldPen = SelectObject(hDC, GetStockObject(NULL_PEN));
+    HGDIOBJ hOldBrush = SelectObject(hDC, brush);
 
     Rectangle(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom);
     // is there an icon?
@@ -225,8 +237,8 @@ void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
 
 
 
-    SelectObject(hDC, hOldPen);
     SelectObject(hDC, hOldBrush);
+    SelectObject(hDC, GetStockObject(NULL_BRUSH));
     DeleteObject(brush);
 }
 
@@ -278,6 +290,7 @@ bool baritemlist::calc_itemsSizes()
 {
     return FALSE;
 }
+
 baritemlist::baritemlist(int type) : barItem(type)
 {
 
@@ -412,6 +425,8 @@ bool taskItemList::calc_itemsSizes()
     return TRUE;
 }
 
+
+
 taskItemList::taskItemList() : baritemlist(M_TASKLIST)
 {
 }
@@ -446,6 +461,7 @@ void taskItemList::remove(barItem* entry)
         }
     }
 }
+
 
 
 bool trayItemList::calc_itemsSizes()
@@ -556,9 +572,12 @@ LRESULT clockBtn::timerProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
         SYSTEMTIME time;
         GetLocalTime(&time);
-        SetTimer(hwnd, 333, 1100 - time.wMilliseconds, 0);
+        SetTimer(hwnd, CLOCK_TIMER, 1100 - time.wMilliseconds, 0);
     }
     break;
+    case WM_DESTROY:
+        KillTimer(hwnd, CLOCK_TIMER);
+        break;
     }
 
     return DefWindowProc(hwnd, msg, wParam, lParam);
@@ -603,7 +622,6 @@ void clockBtn::createClockTimer()
 
 void clockBtn::draw(HWND hWnd, HDC hDC)
 {
-    HGDIOBJ hOldPen, hOldBrush, hOldFont;
     int      h{ 0 };
     COLORREF color;
 
@@ -618,8 +636,8 @@ void clockBtn::draw(HWND hWnd, HDC hDC)
     HBRUSH background = CreateSolidBrush(m_Style.clock_Color != CLR_INVALID ? m_Style.clock_Color : m_Style.windowBackgroundColor);
     HPEN borderPen = CreatePen(PS_SOLID, 1, m_Style.borderColor);
 
-    hOldBrush = SelectObject(hDC, background);
-    hOldPen = SelectObject(hDC, m_Style.clock_BevelStyle == 1 ? borderPen : GetStockObject(NULL_PEN)); // allows the pen to make a bevel for us so its easier when its rounded for example.
+    HGDIOBJ hOldBrush = SelectObject(hDC, background);
+    HGDIOBJ hOldPen = SelectObject(hDC, m_Style.clock_BevelStyle == 1 ? borderPen : GetStockObject(NULL_PEN)); // allows the pen to make a bevel for us so its easier when its rounded for example.
 
     if (m_Style.rectRoundedEdge_Clock != true)
         Rectangle(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom);
@@ -630,11 +648,10 @@ void clockBtn::draw(HWND hWnd, HDC hDC)
     if (m_Style.clock_BevelStyle != 0 && m_Style.clock_BevelStyle != 1)
         DrawingApi::drawBevel(hDC, m_Style.borderColor, &drawingRect, m_Style.clock_BevelStyle, BF_RECT);
 
-    SelectObject(hDC, hOldPen);
-    SelectObject(hDC, hOldBrush);
 
 
-    hOldFont = SelectObject(hDC, mainbar->m_hClockFont);
+
+    HGDIOBJ hOldFont = SelectObject(hDC, mainbar->m_hClockFont);
 
     SetBkMode(hDC, TRANSPARENT);
 
@@ -645,6 +662,9 @@ void clockBtn::draw(HWND hWnd, HDC hDC)
     SetTextColor(hDC, color);
     DrawText(hDC, m_strName.c_str(), -1, &drawingRect, DT_CENTER | DT_VCENTER | DT_SINGLELINE | DT_NOPREFIX);
     SelectObject(hDC, hOldFont);
+    SelectObject(hDC, hOldPen);
+    SelectObject(hDC, hOldBrush);
+    SelectObject(hDC, GetStockObject(NULL_BRUSH));
 
     DeleteObject(background);
     DeleteObject(borderPen);

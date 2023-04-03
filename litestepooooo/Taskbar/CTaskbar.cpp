@@ -1,8 +1,7 @@
 #include "CTaskbar.h"
-#include "taskbarItemClasses.h"
-#include "../Utils.h"
 #include "../Logging/FLogger.h"
-
+#include "../Utils.h"
+#include "taskbarItemClasses.h"
 
 // initialise the static member
 
@@ -12,8 +11,7 @@ bool CTaskbar::m_bClassRegistered = false;
 /* Constructor */
 /***************/
 
-CTaskbar::CTaskbar() : pmenu(nullptr)
-{
+CTaskbar::CTaskbar() : pmenu(nullptr) {
 
     // GDI objects
 
@@ -34,17 +32,16 @@ CTaskbar::CTaskbar() : pmenu(nullptr)
     m_barItemList.push_back(new clockBtn());
 }
 
-
 /**************/
 /* Destructor */
 /**************/
 
-CTaskbar::~CTaskbar()
-{
+CTaskbar::~CTaskbar() {
+
     cleanup();
 
     // if we're tracking, release it
-    //outputDebugStringA("destructor ctaskabr\n");
+    // outputDebugStringA("destructor ctaskabr\n");
     if (m_State == stateTrack)
         ReleaseCapture();
 
@@ -53,34 +50,24 @@ CTaskbar::~CTaskbar()
     if (m_hWnd)
         DestroyWindow(m_hWnd);
 
-    // clean up the GDI objects
-
 
 }
-
-
-
-
 
 /***********************/
 /* Cleanup GDI objects */
 /***********************/
 
-void CTaskbar::cleanup(void)
-{
-    if (m_hFont) {
+void CTaskbar::cleanup() {
+    if (m_hBackBrush) {
         DeleteObject(m_hFont);
         DeleteObject(m_hClockFont);
         DeleteObject(m_hBorderPen);
         DeleteObject(m_hBackBrush);
 
-
         m_hFont = NULL;
         m_hClockFont = NULL;
         m_hBorderPen = NULL;
         m_hBackBrush = NULL;
-
-
 
         for (int i = 0; i < m_barItemList.size(); i++) {
             barItem* bi = m_barItemList.at(i);
@@ -89,22 +76,18 @@ void CTaskbar::cleanup(void)
         }
         m_barItemList.clear();
 
-
         delete pmenu;
         pmenu = nullptr;
-
     }
 }
-
 
 /**********************/
 /* Create GDI objects */
 /**********************/
 
-void CTaskbar::createObjects(void)
-{
-    LOGFONT    lf;
-    HDC        hDC;
+void CTaskbar::createObjects(void) {
+    LOGFONT lf;
+    HDC hDC;
     TEXTMETRIC tm;
 
     // default font and size
@@ -112,40 +95,39 @@ void CTaskbar::createObjects(void)
     m_strFont = m_Style.font;
     m_FontSize = m_Style.task_fontSize;
 
-
-    // cleanup any previous
-
-    cleanup();
-
-    m_hBorderPen = CreatePen(PS_SOLID, m_Style.border_Width, m_Style.border_Width == 0 ? m_Style.windowBackgroundColor : m_Style.borderColor);
+    m_hBorderPen =
+        CreatePen(PS_SOLID, m_Style.border_Width,
+            m_Style.border_Width == 0 ? m_Style.windowBackgroundColor
+            : m_Style.borderColor);
     m_hBackBrush = CreateSolidBrush(m_Style.windowBackgroundColor);
 
     // create normal  font
 
     ZeroMemory(&lf, sizeof(lf));
 
-
     hDC = CreateICA("DISPLAY", NULL, NULL, NULL);
     lf.lfHeight = m_FontSize;
 
-    lf.lfWeight = m_Style.fontWeight * 100; // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfonta
+    lf.lfWeight =
+        m_Style.fontWeight *
+        100; // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfonta
     lf.lfCharSet = DEFAULT_CHARSET;
     lf.lfOutPrecision = OUT_DEFAULT_PRECIS;
     lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
     lf.lfQuality = ANTIALIASED_QUALITY;
     lf.lfPitchAndFamily = FF_DONTCARE | DEFAULT_PITCH;
-    lstrcpyn(lf.lfFaceName, m_strFont.c_str(), sizeof(lf.lfFaceName) / sizeof(TCHAR));
+    lstrcpyn(lf.lfFaceName, m_strFont.c_str(),
+        sizeof(lf.lfFaceName) / sizeof(TCHAR));
     m_hFont = ::CreateFontIndirect(&lf);
 
-
-    lf.lfHeight = m_Style.clock_fontSize; // could use a rough caculation for this but meh 
+    lf.lfHeight =
+        m_Style.clock_fontSize; // could use a rough caculation for this but meh
     lf.lfWeight = 100;
     m_hClockFont = ::CreateFontIndirect(&lf);
 
-
     // get the font heights
 
-    HGDIOBJ    hOldFont;
+    HGDIOBJ hOldFont;
     hOldFont = SelectObject(hDC, m_hFont);
     GetTextMetrics(hDC, &tm);
 
@@ -155,17 +137,11 @@ void CTaskbar::createObjects(void)
     // finished with the DC
 
     DeleteDC(hDC);
-
-
 }
 
-
-
-void CTaskbar::calc_barItemLists()
-{
+void CTaskbar::calc_barItemLists() {
     FLogger log;
-    int taskzone_width,
-        clock_width = 0;
+    int taskzone_width, clock_width = 0;
 
     int trayWidth = 0;
     RECT mainbarRect;
@@ -193,7 +169,6 @@ void CTaskbar::calc_barItemLists()
             break;
         }
     }
-
 
     // assign variable widths
     int rest_width = max(0, mainbarRect.right - xpos); // for the taskzone.
@@ -232,16 +207,11 @@ void CTaskbar::calc_barItemLists()
     return;
 }
 
-
-bool CTaskbar::create(int x, int y, HWND hWnd, const UINT bitmap_id)
-{
-    // save variables
-    m_BitmapID = bitmap_id;
-
-
+bool CTaskbar::create(int x, int y, HWND hWnd) {
     // register the class
     if (!m_bClassRegistered) {
-        if (!LB_Api::register_class(L"LiteBox_TaskBar", LB_Api::main_hinstance, windowProc, 0)) {
+        if (!LB_Api::register_class(L"LiteBox_TaskBar", LB_Api::main_hinstance,
+            windowProc, 0)) {
             MessageBoxA(NULL, "LiteBox_TaskBar register class failed.", ".", S_OK);
             return false;
         }
@@ -262,23 +232,16 @@ bool CTaskbar::create(int x, int y, HWND hWnd, const UINT bitmap_id)
     }
 
     // create the window
-    m_hWnd = ::CreateWindowExA(WS_EX_TOOLWINDOW | WS_EX_TOPMOST,         // prevent button appearing on taskbar
-        "LiteBox_TaskBar",
-        "",
-        WS_POPUP | WS_VISIBLE,
-        x,
-        y,
-        m_Style.taskbar_Width,
-        m_Style.taskbar_Height + m_Style.border_Width,
-        NULL,
-        NULL,
-        LB_Api::main_hinstance,
-        this);
+    m_hWnd = ::CreateWindowExA(
+        WS_EX_TOOLWINDOW | WS_EX_TOPMOST, // prevent button appearing on taskbar
+        "LiteBox_TaskBar", "", WS_POPUP | WS_VISIBLE, x, y, m_Style.taskbar_Width,
+        m_Style.taskbar_Height + m_Style.border_Width, NULL, NULL,
+        LB_Api::main_hinstance, this);
     // check created OK
 
     if (m_hWnd == NULL) {
         MessageBoxA(NULL, "LiteBox_TaskBar create window failed.", ".", S_OK);
-        return false;//TODO log
+        return false; // TODO log
     }
 
     ShowWindow(m_hWnd, SW_SHOW);
@@ -290,18 +253,13 @@ bool CTaskbar::create(int x, int y, HWND hWnd, const UINT bitmap_id)
     return true;
 }
 
-
 /*****************************/
 /* Register the window class */
 /*****************************/
 
-
-
-
 // WM_PAINT
 
-void CTaskbar::OnPaint(HWND hWnd, HDC hDC)
-{
+void CTaskbar::OnPaint(HWND hWnd, HDC hDC) {
     calc_barItemLists();
 
     // draw each item
@@ -311,19 +269,19 @@ void CTaskbar::OnPaint(HWND hWnd, HDC hDC)
     }
 }
 
-
 /*************************/
 /* stub window procedure */
 /*************************/
 
-LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
+LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam,
+    LPARAM lParam) {
 
     // the usual window procedure...
     CTaskbar* pClass = ((CTaskbar*)GetWindowLongPtr(hWnd, GWLP_USERDATA));
     switch (uMsg) {
     case WM_CREATE:
-        SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)((LPCREATESTRUCT)lParam)->lpCreateParams);
+        SetWindowLongPtr(hWnd, GWLP_USERDATA,
+            (LONG_PTR)((LPCREATESTRUCT)lParam)->lpCreateParams);
         SetTimer(hWnd, 0, 2000, 0);
         break;
     case WM_ERASEBKGND:
@@ -343,26 +301,21 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
         pClass->OnMouseMove(hWnd, LOWORD(lParam), HIWORD(lParam));
         break;
 
-
-    case WM_PAINT:
-    {
+    case WM_PAINT: {
         PAINTSTRUCT ps;
 
         BeginPaint(hWnd, &ps);
 
         pClass->OnPaint(hWnd, ps.hdc);
-        //CTaskbar::p_rcPaint = &ps.rcPaint;
+        // CTaskbar::p_rcPaint = &ps.rcPaint;
 
         EndPaint(hWnd, &ps);
-    }
-    break;
+    } break;
 
-    case WM_TIMER:
-    {
+    case WM_TIMER: {
         if (wParam == 0) // check full screen app timer
         {
             bool hideWindow = LB_Api::isFullscreen(GetForegroundWindow());
-
 
             if (hideWindow == true) {
                 pClass->m_State = stateInactive;
@@ -371,11 +324,9 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
             else if (pClass->m_State == stateInactive) {
                 pClass->m_State = stateShow;
                 ShowWindow(hWnd, SW_SHOW);
-
             }
         }
-    }
-    break;
+    } break;
 
     case WM_DESTROY:
         pClass->OnDestroy(hWnd);
@@ -385,11 +336,12 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
-bool CTaskbar::createPopupMenu()
-{
+bool CTaskbar::createPopupMenu() {
     pmenu = new PopupMenu;
     // set some of the colors
-    pmenu->SetColor(PopupMenu::colorBorder, m_Style.border_Width == 0 ? m_Style.windowBackgroundColor : m_Style.borderColor);
+    pmenu->SetColor(PopupMenu::colorBorder, m_Style.border_Width == 0
+        ? m_Style.windowBackgroundColor
+        : m_Style.borderColor);
     pmenu->SetColor(PopupMenu::colorText, m_Style.focusedTextColor);
     pmenu->SetColor(PopupMenu::colorBackground, m_Style.windowBackgroundColor);
     pmenu->SetColor(PopupMenu::colorHighlight, m_Style.task_FocusColor);
@@ -402,24 +354,22 @@ bool CTaskbar::createPopupMenu()
 
     // add some items
 
-    pmenu->AppendItem(PopupMenu::itemBold | PopupMenu::itemNotSelectable, L"LiteBox", 0);
+    pmenu->AppendItem(PopupMenu::itemBold | PopupMenu::itemNotSelectable,
+        L"LiteBox", 0);
     pmenu->AppendItem(PopupMenu::itemSeparator, NULL, 0);
     pmenu->AppendItem(0, L"Exit LiteBox", 1);
     pmenu->AppendItem(0, L"Restart LiteBox", 2);
     pmenu->AppendItem(0, L"Open Style File", 3);
 
-
-
     return true;
 }
-
 
 /**************/
 /* WM_DESTROY */
 /**************/
 
-void CTaskbar::OnDestroy(HWND hWnd)
-{
+void CTaskbar::OnDestroy(HWND hWnd) {
+    KillTimer(hWnd,0);
     if (m_State == stateTrack)
         ReleaseCapture();
 
@@ -427,22 +377,20 @@ void CTaskbar::OnDestroy(HWND hWnd)
     m_hWnd = NULL;
 }
 
-
 /****************/
 /* WM_MOUSEMOVE */
 /****************/
 
-void CTaskbar::OnMouseMove(HWND hWnd, short x, short y)
-{
-    RECT            rect;
-    int              newitem;
-    POINT           p;
+void CTaskbar::OnMouseMove(HWND hWnd, short x, short y) {
+    RECT rect;
+    int newitem;
+    POINT p;
 
     // get a DC and the window rectangle
 
     GetClientRect(hWnd, &rect);
 
-    // shift tracking if we're over another 
+    // shift tracking if we're over another
 
     p.x = x;
     p.y = y;
@@ -453,16 +401,13 @@ void CTaskbar::OnMouseMove(HWND hWnd, short x, short y)
 
     if (newitem != -1)
         m_barItemList.at(newitem)->mouse_event(x, y, WM_MOUSEMOVE, 0);
-
 }
-
 
 /************************/
 /* Get item at position */
 /************************/
 
-int CTaskbar::getItem(short x, short y, const RECT& rect)
-{
+int CTaskbar::getItem(short x, short y, const RECT& rect) {
     int newitem;
     std::vector<baritemlist*>::size_type i;
 
@@ -480,28 +425,25 @@ int CTaskbar::getItem(short x, short y, const RECT& rect)
     return newitem;
 }
 
-
 /********************/
 /* a button is down */
 /********************/
 
-void CTaskbar::ButtonDown(HWND hWnd, short x, short y, const bool bLeft)
-{
+void CTaskbar::ButtonDown(HWND hWnd, short x, short y, const bool bLeft) {
     RECT rect;
 
-    // check for click outside 
+    // check for click outside
     GetClientRect(hWnd, &rect);
     if (checkOutsideWindow(rect, x, y))
         return;
 }
 
-
 /****************/
 /* WM_LBUTTONUP */
 /****************/
 
-void CTaskbar::OnMouseButton(HWND hWnd, int message, WPARAM wparam, short x, short y)
-{
+void CTaskbar::OnMouseButton(HWND hWnd, int message, WPARAM wparam, short x,
+    short y) {
     RECT rect;
 
     if (m_bWaitLeftButton) {
@@ -521,7 +463,7 @@ void CTaskbar::OnMouseButton(HWND hWnd, int message, WPARAM wparam, short x, sho
 
         case 2:
             SendMessage(m_hWndCommand, RESTART_TASKBAR, 0, 0);
-            //todo 
+            // todo
             return;
         case 3:
             SendMessage(m_hWndCommand, OPEN_STYLE_FILE, 0, 0);
@@ -537,8 +479,8 @@ void CTaskbar::OnMouseButton(HWND hWnd, int message, WPARAM wparam, short x, sho
     GetClientRect(hWnd, &rect);
     if (checkOutsideWindow(rect, x, y))
         return;
-    // shift tracking if we're over another  
-    POINT           p;
+    // shift tracking if we're over another
+    POINT p;
     p.x = x;
     p.y = y;
     ClientToScreen(hWnd, &p);
@@ -554,25 +496,22 @@ void CTaskbar::OnMouseButton(HWND hWnd, int message, WPARAM wparam, short x, sho
 /*************************/
 /* Check if outside window */
 /*************************/
-/// returns true if its outside 
-bool CTaskbar::checkOutsideWindow(const RECT& rect, short x, short y)
-{
+/// returns true if its outside
+bool CTaskbar::checkOutsideWindow(const RECT& rect, short x, short y) {
     if (x <= 2 || y <= 2 || x > rect.right || y > rect.bottom) {
         // is out
         return true;
     }
-    // is in 
+    // is in
     return false;
 }
-
 
 /*****************/
 /* WM_ERASEBKGND */
 /*****************/
 
-void CTaskbar::OnEraseBkgnd(HWND hWnd, HDC hDC)
-{
-    RECT    rect;
+void CTaskbar::OnEraseBkgnd(HWND hWnd, HDC hDC) {
+    RECT rect;
     HGDIOBJ hOldBrush, hOldPen = 0;
 
     GetClientRect(hWnd, &rect);
@@ -582,19 +521,15 @@ void CTaskbar::OnEraseBkgnd(HWND hWnd, HDC hDC)
     // draws border and the back of it
     Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
 
-
     SelectObject(hDC, hOldBrush);
     SelectObject(hDC, hOldPen);
-
-
 }
 
 /****************/
 /* Find an item */
 /****************/
 
-barItem* CTaskbar::getItem(const UINT itemid, const bool bByPosition)
-{
+barItem* CTaskbar::getItem(const UINT itemid, const bool bByPosition) {
     std::vector<baritemlist*>::iterator it;
 
     if (bByPosition) {

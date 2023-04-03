@@ -409,7 +409,7 @@ UINT PopupMenu::Track(int x, int y, HWND hWnd, const bool bModal, const bool bPo
 
 void PopupMenu::hidePopUp()
 {
-    if(m_hWnd)
+    if (m_hWnd)
         ShowWindow(m_hWnd, SW_HIDE);
 
 }
@@ -1064,7 +1064,7 @@ void PopupMenu::DrawTransparentBitmap(HDC hdc, const int xSrcOffset, const int x
     DeleteObject(SelectObject(hdcObject, bmObjectOld));
     DeleteObject(SelectObject(hdcMem, bmMemOld));
     DeleteObject(SelectObject(hdcSave, bmSaveOld));
-
+    SelectObject(hdc, GetStockObject(NULL_BRUSH));
     // Delete the memory DCs
 
     DeleteDC(hdcMem);
