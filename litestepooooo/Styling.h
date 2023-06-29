@@ -29,7 +29,9 @@ struct _Stylizing
 
 	//height stff
 	static int taskbar_Height;
-	static int iconSize;
+
+	static int task_iconSize;
+	static int tray_iconSize;
 
 	//===
 

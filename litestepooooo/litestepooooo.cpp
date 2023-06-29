@@ -1,4 +1,5 @@
-﻿#include <Windows.h>
+﻿
+#include <Windows.h>
 #include "Taskbar/CTaskbar.h"
 #include "Utils.h"
 #include "WinShellFunctionality/ShellHookingFunctionality.h"
@@ -143,17 +144,12 @@ std::wstring getStylePath()
 
 void edit_file(int id)
 {
-    switch (id) {
-    case 0: // style file. id.
-    {
-        char buffer[2 * MAX_PATH];
-        sprintf(buffer, "\"%s\" \"%s\"", "notepad.exe", getStylePath().c_str());
-        LB_Api::executeShell(NULL, NULL, L"notepad.exe", getStylePath().c_str(), LB_Api::getLBExePath().c_str(), 1, 0);
-    }
-    break;
-
-
-    }
+    
+    char buffer[2 * MAX_PATH];
+    sprintf(buffer, "\"%s\" \"%s\"", "notepad.exe", getStylePath().c_str());
+    LB_Api::executeShell(NULL, NULL, L"notepad.exe", getStylePath().c_str(), LB_Api::getLBExePath().c_str(), 1, 0);
+    
+    
 }
 
 void runTaskbar()
@@ -211,8 +207,9 @@ LRESULT CALLBACK WndProcParent(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
     break;
     case EXIT_TASKBAR:
     case WM_HOTKEY:
+    case WM_CLOSE:
     {
-        SendMessage(hwnd, WM_CLOSE, NULL, NULL);
+        DestroyWindow(hwnd);
     }
     break;
 
@@ -228,16 +225,14 @@ LRESULT CALLBACK WndProcParent(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
     break;
     case WM_DESTROY:
     {
+        if(taskbar != NULL){
+            delete taskbar;
+            taskbar = NULL;
+            }
         exitShellHook(hwnd);
         /*LB_Api::restartExplorerWindow();*/
         LB_Api::showExplorer();
-
         PostQuitMessage(0);
-    }
-    break;
-    case WM_CLOSE:
-    {
-        DestroyWindow(hwnd);
     }
     break;
 

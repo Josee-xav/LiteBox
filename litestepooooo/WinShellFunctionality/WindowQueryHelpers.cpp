@@ -173,7 +173,7 @@ void winEventProc(
 	DWORD idEventThread,
 	DWORD dwmsEventTime
 ) {
-	// TODO REPLACE THE LITERAL WITH THE ACTUAL CLASS
+	// SHOULD REMOVE THE LITERAL..
 	if ((event == EVENT_OBJECT_UNCLOAKED) && hwnd && idObject == OBJID_WINDOW && _IsShellFrameWindow(hwnd) && !_GhostWindowFromHungWindow(hwnd)) {
 		SendMessage(FindWindowW((L"LiteBoxDesktopWindoww"), NULL), WM_ShellHook, WM_USER + 44, (LPARAM)hwnd); // sends the UWP message to the SHELLHOOK proc wit WM_WINDOWCREATED
 	}

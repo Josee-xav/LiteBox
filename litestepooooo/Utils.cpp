@@ -74,16 +74,18 @@ bool LB_Api::IsWinShell(HWND hwnd)
     std::wstring className = LB_Api::getWindowClassName(hwnd);
     if (className == L"Shell_TrayWnd" || className == L"DV2ControlHost" || className == L"MsgrIMEWindowClass" || className == L"SysShadow" || className == L"Button"
         || className == L"Windows.UI.Core.CoreWindow" || className == L"Frame Alternate Owner" || className == L"MultitaskingViewFrame" || className == L"Progman" || className == L"WorkerW") {
-        return false;
+        return true;
     }
 
     if (hwnd == GetShellWindow() || hwnd == GetDesktopWindow())
-        return false;
+        return true;
+
+    return false;
 }
 
 bool LB_Api::isFullscreen(HWND hwnd)
 {
-    if (!LB_Api::IsWinShell(hwnd))
+    if (LB_Api::IsWinShell(hwnd))
         return false;
 
     HMONITOR hwndMon = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
@@ -105,7 +107,7 @@ bool LB_Api::isFullscreen(HWND hwnd)
 }
 
 // THE
-
+//TODO NO USE?
 bool LB_Api::executeShell(HWND hwnd, const wchar_t* verb, const wchar_t* file, const wchar_t* args, const wchar_t* dir, int showCmds, int flags)
 {
     SHELLEXECUTEINFO sei;
@@ -343,7 +345,7 @@ bool LB_Api::convert_string(char* dest, const void* src, int nmax, bool is_unico
 {
     char buffer[256];
     if (is_unicode) {
-        wideToMulti((const WCHAR*)src, buffer, sizeof buffer);
+        wideToMulti((const WCHAR*)src, buffer, sizeof buffer); // TODO
         src = buffer;
     }
     if (strcmp(dest, (const char*)src)) {

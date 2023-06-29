@@ -24,8 +24,8 @@ int _Stylizing::border_Width = 0;
 
 //height stff
 int _Stylizing::taskbar_Height = 20;
-int _Stylizing::iconSize = 20;
-
+int _Stylizing::task_iconSize = 20;
+int _Stylizing::tray_iconSize = 20;
 //===
 
 //spacings
@@ -72,6 +72,9 @@ enum STYLE_INDEX
     S_RECTROUNDEDEDGE_CLOCK,
     S_RECTROUNDEDEDGE_TASKBUTTONS,
 
+
+    S_TASK_ICONSIZE,
+    S_TRAY_ICONSIZE,
 
     //WIDTHS TUFF
     S_TASKBAR_WIDTH,
@@ -124,6 +127,9 @@ static const struct iniOptions StyleItems[] = {
     //HEIGHT
     { style_data_types::C_INT, S_TASKBAR_HEIGHT, "TASKBAR_HEIGHT"},
 
+
+    { style_data_types::C_INT, S_TASK_ICONSIZE, "TASK_ICONSIZE"},
+    { style_data_types::C_INT, S_TRAY_ICONSIZE, "TRAY_ICONSIZE"},
 
     //roundness
     { style_data_types::C_BOOL, S_RECTROUNDEDEDGE_TASKBUTTONS, "ROUNDED_EDGE_TASKBUTTONS"},
@@ -238,6 +244,14 @@ void* StyleStructPtr(int sn_index, _Stylizing* pStyle)
     case  S_RECTROUNDEDEDGE_TASKBUTTONS:
         return &pStyle->rectRoundedEdge_TaskButtons;
         break;
+
+    case  S_TASK_ICONSIZE:
+        return &pStyle->task_iconSize;
+        break;
+    case  S_TRAY_ICONSIZE:
+        return &pStyle->tray_iconSize;
+        break;
+
 
         //spacing
     case  S_TASK_BUTTONSPACING:

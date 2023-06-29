@@ -54,18 +54,17 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
     drawingRect.right = itemRect.right;
     drawingRect.bottom = itemRect.bottom - (itemRect.top + m_Style.task_buttonTopSpacing);
 
+    
 
     HBRUSH taskBrush = CreateSolidBrush(bSelected ? m_Style.task_FocusColor : m_Style.windowBackgroundColor);
-    HPEN taskPen = CreatePen(PS_SOLID, 1, m_Style.borderColor);
+    HPEN taskPen = CreatePen(PS_SOLID, 1, m_Style.task_BevelStyle == 1 ? m_Style.borderColor : m_Style.windowBackgroundColor);
 
     // draw/clear the selection rectangle
     hOldBrush = SelectObject(hDC, taskBrush);
-
-
-
-    hOldPen = m_Style.task_BevelStyle == 1 ? SelectObject(hDC, taskPen) : GetStockObject(NULL_PEN); // allows the pen to make a bevel for us so its easier when its rounded for example.
-
+    hOldPen =  SelectObject(hDC, taskPen); // allows the pen to make a bevel for us so its easier when its rounded for example.
+   
     if (m_Style.rectRoundedEdge_TaskButtons != true)
+
         Rectangle(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom);
     else
         RoundRect(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom, 5, 5);
@@ -74,14 +73,13 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
     if (m_Style.task_BevelStyle != 0 && m_Style.task_BevelStyle != 1)
         DrawingApi::drawBevel(hDC, m_Style.borderColor, &drawingRect, m_Style.task_BevelStyle, BF_RECT);
 
-
     // is there an icon?
     if (m_icon != NULL) {
 
-        int iconSize = ((drawingRect.bottom - drawingRect.top) - 3);
+        int iconSize = m_Style.task_iconSize;;
 
-        if (iconSize > (drawingRect.right - drawingRect.left)) { // make sure the icon is not bigger than the box.
-            iconSize = (drawingRect.right - drawingRect.left) - 1;
+        if (iconSize > (drawingRect.right - drawingRect.left)) {
+            iconSize = (drawingRect.right - drawingRect.left) - 1; //make sure the icon is not bigger than the box. the icon size does exceed the top tho which i like tbf
         }
 
         DrawIconEx(
@@ -94,25 +92,28 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
             0, NULL, DI_NORMAL);
 
     }
+    
 
 
 
-    // add spacing for text beside the icon
-    if (m_icon != NULL)
-        drawingRect.left += (drawingRect.bottom - drawingRect.top); // add the width of the icon for the basically the x cord for the text.
+    if(!m_Style.tasks_IconOnly){
+        // add spacing for text beside the icon
+        if (m_icon != NULL)
+            drawingRect.left += (drawingRect.bottom - drawingRect.top); // add the width of the icon for the basically the x cord for the text.
 
-    hOldFont = SelectObject(hDC, mainbar->m_hFont);
+        hOldFont = SelectObject(hDC, mainbar->m_hFont);
 
-    SetBkMode(hDC, TRANSPARENT);
+        SetBkMode(hDC, TRANSPARENT);
 
-    if (bSelected)
-        color = m_Style.focusedTextColor;
-    else
-        color = m_Style.unfocusedTextColor;
+        if (bSelected)
+            color = m_Style.focusedTextColor;
+        else
+            color = m_Style.unfocusedTextColor;
 
-    SetTextColor(hDC, color);
-    DrawText(hDC, m_strName.c_str(), -1, &drawingRect, DT_LEFT | DT_VCENTER | DT_SINGLELINE | DT_WORD_ELLIPSIS | DT_NOPREFIX);
-    SelectObject(hDC, hOldFont);
+        SetTextColor(hDC, color);
+        DrawText(hDC, m_strName.c_str(), -1, &drawingRect, DT_LEFT | DT_VCENTER | DT_SINGLELINE | DT_WORD_ELLIPSIS | DT_NOPREFIX);
+        SelectObject(hDC, hOldFont);
+    }
     SelectObject(hDC, hOldPen);
     SelectObject(hDC, hOldBrush);
     SelectObject(hDC, GetStockObject(NULL_BRUSH));
@@ -205,41 +206,48 @@ TrayEntryBtn::~TrayEntryBtn()
 void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
 {
     FLogger log;
-    const int trayIconSize = 16;//TODO
+     int iconSize = m_Style.tray_iconSize; // max is 20
 
     int      h{ 0 };
     RECT drawingRect;
     int y = m_Style.border_Width;
     drawingRect.left = itemRect.left;
-    drawingRect.top = y;
+    drawingRect.top = y   ;
     drawingRect.right = itemRect.right;
-    drawingRect.bottom = itemRect.bottom - (y);
+    drawingRect.bottom = itemRect.bottom - (y) +1;
 
     // draw/clear the selection rectangle
     HBRUSH brush = CreateSolidBrush(m_Style.windowBackgroundColor);
+    HPEN taskPen = CreatePen(PS_SOLID, 1,  m_Style.windowBackgroundColor);
+
     HGDIOBJ hOldBrush = SelectObject(hDC, brush);
+    HGDIOBJ hOldPen = SelectObject(hDC, taskPen);
 
     Rectangle(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom);
-    // is there an icon?
-    int ypos = (itemRect.bottom / 2) - (trayIconSize / 2);
-
+    
     if (LB_Api::isIconValid(m_icon) == false)
         log.error("ICON NOT VALID? TRAY STR : %s", m_strName);
+
+    if (iconSize > (drawingRect.right - drawingRect.left)) { // make sure the icon is not bigger than the box.
+        iconSize = 18;
+    }
 
     DrawIconEx(
         hDC,
         drawingRect.left,
-        ypos, // centers the icon
+        ((drawingRect.bottom + drawingRect.top) / 2) - (iconSize / 2), // centers the icon
         m_icon,
-        trayIconSize,
-        trayIconSize,
+        iconSize,
+        iconSize,
         0, NULL, DI_NORMAL);
 
 
 
     SelectObject(hDC, hOldBrush);
+    SelectObject(hDC, hOldPen);
     SelectObject(hDC, GetStockObject(NULL_BRUSH));
     DeleteObject(brush);
+    DeleteObject(taskPen);
 }
 
 void TrayEntryBtn::mouse_event(int mx, int my, int message, unsigned flags)
@@ -628,7 +636,7 @@ void clockBtn::draw(HWND hWnd, HDC hDC)
     RECT drawingRect;
     int y = m_Style.border_Width;
     drawingRect.left = itemRect.left;
-    drawingRect.top = y;
+    drawingRect.top = y > 0 ? y : 1;
     drawingRect.right = itemRect.right;
     drawingRect.bottom = itemRect.bottom - (y);
 
@@ -672,4 +680,9 @@ void clockBtn::draw(HWND hWnd, HDC hDC)
 
 void clockBtn::mouse_event(int mx, int my, int message, unsigned flags)
 {
+
+    if (message == WM_RBUTTONUP) {
+        ShellExecuteA(NULL, "open", "sndvol.exe", NULL, NULL, SW_SHOW);
+    }
+
 }

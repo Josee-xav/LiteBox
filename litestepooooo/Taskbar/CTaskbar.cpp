@@ -150,7 +150,7 @@ void CTaskbar::calc_barItemLists() {
     int xpos = m_Style.border_Width;
     trayItemList* tl = trayService.getTrayList();
     if (tl != NULL)
-        trayWidth = m_Style.iconSize * tl->m_Items.size();
+        trayWidth = 20 * tl->m_Items.size();
     // --- 1st pass ----------------------------------
     for (int i = 0; i < m_barItemList.size(); i++) {
         barItem* bi = m_barItemList.at(i);
@@ -327,10 +327,17 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam,
             }
         }
     } break;
-
+    case WM_CLOSE: // if the user alt f4's the taskbar, it then proceeds to gracefully close.
+    {
+        SendMessage(pClass->m_hWndCommand, EXIT_TASKBAR, 0, 0);
+    }
+    break;
     case WM_DESTROY:
+        {
         pClass->OnDestroy(hWnd);
         break;
+        }
+       
     }
 
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
