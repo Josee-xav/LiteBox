@@ -89,7 +89,6 @@ int APIENTRY WinMain(HINSTANCE hInstance,
         MessageBoxA(NULL, "error!", "Application is already running!\nClose all of the other instances and try again.", S_OK);
         return 0;
     }
-
     wc.cbSize = sizeof(WNDCLASSEX);
     wc.style = 0;
     wc.lpfnWndProc = WndProcParent;

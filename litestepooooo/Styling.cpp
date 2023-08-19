@@ -33,11 +33,11 @@ int _Stylizing::task_buttonSpacing = 0;
 int _Stylizing::task_buttonTopSpacing = 0;
 
 //font stuff
-std::wstring _Stylizing::font = L"Gabriola";
-int _Stylizing::task_fontSize = 25;
+std::wstring _Stylizing::font = L"Arial";
+int _Stylizing::task_fontSize = 20;
 LONG _Stylizing::fontWeight = 1;
 int _Stylizing::menu_fontSize = 15;
-int _Stylizing::clock_fontSize = 45;
+int _Stylizing::clock_fontSize = 15;
 
 // bevels
 int _Stylizing::task_BevelStyle = 0;

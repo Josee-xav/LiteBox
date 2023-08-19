@@ -66,7 +66,7 @@ char __fastcall _sws_IsOwnerToolWindow(HWND hWnd) {
 	return v1;
 }
 
-
+// TODO __fastcall is default in x64 bit. remove?
 __int64 __fastcall WindowQueryHelper::IsTaskWindow(HWND a2) {
 	HWND v5; // rdi
 	unsigned int v6; // ebx
