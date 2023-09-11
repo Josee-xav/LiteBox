@@ -29,7 +29,6 @@ namespace ini
         }
 
         template <> std::wstring StringTo<std::wstring>(std::string val) {
-            FLogger log;
 
             if (val.empty())
                 return std::wstring();
@@ -37,13 +36,13 @@ namespace ini
             size_t charsNeeded = ::MultiByteToWideChar(CP_UTF8, 0,
                 val.data(), (int)val.size(), NULL, 0);
             if (charsNeeded == 0)
-                log.error("Failed converting UTF-8 string to UTF-16");
+                FLogger::error("Failed converting UTF-8 string to UTF-16");
 
             std::vector<wchar_t> buffer(charsNeeded);
             int charsConverted = ::MultiByteToWideChar(CP_UTF8, 0,
                 val.data(), (int)val.size(), &buffer[0], buffer.size());
             if (charsConverted == 0)
-                log.error("Failed converting UTF-8 string to UTF-16");
+                FLogger::error("Failed converting UTF-8 string to UTF-16");
 
             return std::wstring(&buffer[0], charsConverted);
         }

@@ -211,9 +211,6 @@ void LB_Api::setWorkArea(int height)
     primaryScreenRect.bottom = primaryScreenRect.bottom - height;
     bool ret = SystemParametersInfo(SPI_SETWORKAREA, 0, &primaryScreenRect, 0);
 
-    if (ret) {
-        //outputDebugStringA((getLasterrorAsString() + "\n").c_str());
-    }
 }
 
 

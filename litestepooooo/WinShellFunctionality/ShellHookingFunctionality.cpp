@@ -20,9 +20,7 @@ static const char* rtl_libs[] =
 
 void init_shellHookFuncs(void)
 {
-
     _pRegisterShellHook = (pRegisterShellHook)GetProcAddress(LoadLibraryA("SHELL32") , (char*)0xB5);
-
 }
 
 void exit_shellHookFuncs(void)
@@ -95,7 +93,7 @@ BOOL getShellFunctions()
     return TRUE;
 }
 
-void initShellHook(HWND hwnd)
+void initShellFuncs(HWND hwnd)
 {
 
     init_shellHookFuncs();
@@ -106,7 +104,7 @@ void initShellHook(HWND hwnd)
 
 }
 
-void exitShellHook(HWND hwnd)
+void exitShellFuncs(HWND hwnd)
 {
     exit_shellHookFuncs();
     unregister_shellhook(hwnd);

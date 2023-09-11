@@ -29,23 +29,12 @@ public:
     int                m_FontSize;                  // font point-size for items
 
 
-    // internal state settings
 
-    enum
-    {
-        stateInactive,
-        stateShow,
-        stateTrack
-    } m_State;
-
-    HWND               m_hWnd;
-    HWND               m_hWndCommand;
-    bool               m_bWaitRightButton;
-    bool               m_bWaitLeftButton;
-
+    HWND               m_hWnd;   //taskbar hwnd
+    HWND               m_hWndCommand; // command window hwnd
     // GDI objects
 
-    HFONT              m_hFont;
+    HFONT             m_hFont;
     HFONT              m_hClockFont;
     HPEN m_hBorderPen;
     HBRUSH m_hBackBrush;

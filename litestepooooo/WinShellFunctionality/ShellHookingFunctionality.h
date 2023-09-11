@@ -26,5 +26,5 @@ extern pGhostWindowFromHungWindow _GhostWindowFromHungWindow;
 extern unsigned WM_ShellHook;
 extern HINSTANCE _hUser32 ;
 
-void initShellHook(HWND hwnd);
-void exitShellHook(HWND hwnd);
+void initShellFuncs(HWND hwnd);
+void exitShellFuncs(HWND hwnd);

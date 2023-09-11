@@ -17,7 +17,7 @@ BOOL CALLBACK ProcessWindow(HWND hwnd, LPARAM lparam) {
 
 // https://stackoverflow.com/questions/32149880/how-to-identify-windows-10-background-store-processes-that-have-non-displayed-wi
 // https://github.com/valinet/ExplorerPatcher/issues/266
-// /https://forum.rehips.com/index.php?topic=9599.0
+// https://forum.rehips.com/index.php?topic=9599.0
 // https://github.com/valinet/ExplorerPatcher/issues/161
 // https://github.com/valinet/sws/blob/55f2ba472b2fcfe9419e5aef88a5b0a4141030f1/SimpleWindowSwitcher/sws_WindowHelpers.c  872
 // uwp apps are.. complicated *sigh*..
@@ -30,7 +30,6 @@ bool WindowQueryHelper::inspectWindows10AppWindow(HWND hWnd, bool cloakTest = tr
 	// ApplicationFrame
 	// 
 	if (foundTHEchild == true) {
-		//outputDebugStringA("--working--\n");
 		return true;
 
 	}
@@ -194,7 +193,6 @@ BOOL WindowQueryHelper::initWinHelper() {
 		0,
 		WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS
 	)) {
-		//outputDebugString(L"Failed to hook to win EVENTS\n");
 		return false;
 	}
 

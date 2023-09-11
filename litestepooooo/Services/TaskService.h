@@ -9,7 +9,7 @@ struct taskButtonData
     std::wstring wName;
     HICON icon;
 
-    taskButtonData(HWND h = NULL , std::wstring n = L"" , HICON i = NULL)
+    taskButtonData(HWND h = NULL, std::wstring n = L"", HICON i = NULL)
     {
         hwnd = h;
         wName = n;
@@ -25,8 +25,8 @@ public:
     ~TaskService();
 
     taskItemList* getTaskList();
-    void TaskWndProc(WPARAM wParam , LPARAM lparam);
-    void updateActiveTask(HWND hwnd , bool removeUnactive = FALSE);
+    void TaskWndProc(WPARAM wParam, LPARAM lparam);
+    void updateActiveTask(HWND hwnd, bool removeUnactive = FALSE);
 private:
     taskItemList* taskList;
     barItem* activeBtn;
@@ -36,7 +36,7 @@ private:
     bool removeBtn(HWND hwndToRemove);
     bool removeBtn(int index);
 
-    bool AppendTaskBtn(const DWORD dwFlags , LPCTSTR pszName , const UINT itemid , HWND appHwnd , HICON icon);
+    bool AppendTaskBtn(const DWORD dwFlags, LPCTSTR pszName, const UINT itemid, HWND appHwnd, HICON icon);
     // returns true if it was able to find the window in the list. false otherwise
     bool updateWindow(HWND hwnd);
 };

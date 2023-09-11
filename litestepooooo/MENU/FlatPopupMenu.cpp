@@ -463,11 +463,6 @@ static LRESULT CALLBACK stubWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPAR
         pClass->OnTimer(hWnd, wParam);
         break;
 
-    case WM_CHAR:
-
-        pClass->OnChar(hWnd, (char)wParam);
-        break;
-
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
@@ -487,33 +482,6 @@ static LRESULT CALLBACK stubWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPAR
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
-
-/***********/
-/* WM_CHAR */
-/***********/
-
-void PopupMenu::OnChar(HWND hWnd, TCHAR c)
-{
-    std::vector<CItem>::const_iterator it;
-    std::string::size_type pos;
-
-    // convert to lower case
-
-    c = (TCHAR)CharLower((LPTSTR)c);
-
-    // search the menu items
-
-    for (it = m_Items.begin(); it != m_Items.end(); it++) {
-        if ((it->m_dwFlags & (itemSeparator | itemGrayed | itemNotSelectable)) == 0) {
-            if ((pos = it->m_strName.find('&')) != std::string::npos && it->m_strName.length() > pos + 1 && c == (TCHAR)CharLower((LPTSTR)it->m_strName[pos + 1])) {
-                // set return value and exit
-
-                SetReturn(it->m_ItemID);
-                return;
-            }
-        }
-    }
-}
 
 
 /************/

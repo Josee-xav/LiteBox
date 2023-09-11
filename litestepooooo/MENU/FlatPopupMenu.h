@@ -1,8 +1,3 @@
-// A flat popup menu for controls
-// Copyright (c) 1999 Andy Brown
-// You may do whatever you like with this file, I just don't care.
-
-
 #pragma once
 
 #include <vector>
@@ -10,9 +5,6 @@
 #include <string>
 
 #define GWL_USERDATA -21
-// flat popup menu class
-
-// figure out WHY setcapture is what fixed the drawing ting for the sub popup
 
 class PopupMenu
 {
@@ -158,7 +150,6 @@ public:
     void OnDestroy(HWND hWnd);
     void OnMouseMove(HWND hWnd, short x, short y);
     void OnTimer(HWND hWnd, unsigned short id);
-    void OnChar(HWND hWnd, TCHAR c);
 };
 
 
@@ -203,7 +194,7 @@ inline void PopupMenu::OnPaint(HWND hWnd, HDC hDC)
     // draw each item
 
     pos = 0;
-    for (it = m_Items.begin(); it != m_Items.end(); it++)
+    for(it = m_Items.begin(); it != m_Items.end(); it++)
         DrawItem(hWnd, hDC, pos++, *it);
 }
 
@@ -232,7 +223,7 @@ inline void PopupMenu::DestroyAll(void)
 
     // find the root
 
-    for (pMenu = this; pMenu->m_pPrevious; pMenu = pMenu->m_pPrevious);
+    for(pMenu = this; pMenu->m_pPrevious; pMenu = pMenu->m_pPrevious);
     DestroyWindow(pMenu->m_hWnd);
 }
 

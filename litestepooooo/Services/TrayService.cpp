@@ -48,19 +48,18 @@ HWND TrayService::create_Tray_Child(HWND hwndParent, const wchar_t* class_name)
 }
 void TrayService::initTrayService()
 {
-    FLogger log;
     trayBtnList = new trayItemList();
     std::vector< TrayEntryBtn::_TrayItem*> trayItems = getTrayItems();
 
     for (int i = 0; i < trayItems.size(); i++) {
         AppendTrayBtn(0, trayItems.at(i)->sIconText, trayItems.at(i)->hWnd, trayItems.at(i)->hIcon, trayItems.at(i));
-        log.debug("LINE 52, appending tray btn via send message mthod. tray name:  %S", trayItems.at(i)->sIconText);
+        FLogger::debug("LINE 52, appending tray btn via send message mthod. tray name:  %S", trayItems.at(i)->sIconText);
     }
     // ^ i feel like this is a better way as the tray hook doesnt seem to work 100% the time for me on windows 10
     // TODO mabye just hook shell_notify instead..... super autistic tho.
 
 
-    log.info("Tray Starting!");
+    FLogger::info("Tray Starting!",0);
 
     std::wstring trayClassName = L"Shell_TrayWnd";
     //Tray_SetEncoding();
@@ -76,14 +75,14 @@ void TrayService::initTrayService()
 
         if (NULL == th_libfunc)
         {
-            log.error("Hook failed.");
+            FLogger::error("Hook failed.");
             return;
         }
 
     }
     else {
         MessageBoxA(NULL, "TRAYHOOK", "couldnt load dll.", S_OK);
-        log.error("Couldnt load dll .");
+        FLogger::error("Couldnt load dll .");
     }
 
 
@@ -281,7 +280,6 @@ typedef struct _SHELLTRAYDATA
 
 void TrayService::trayEvent(void* data, unsigned size)
 {
-    FLogger log;
     NIDBB nid;
     memset(&nid, 0, sizeof nid);
     DWORD trayCommand = ((SHELLTRAYDATA*)data)->dwMessage;
@@ -300,7 +298,7 @@ void TrayService::trayEvent(void* data, unsigned size)
             barItem* item = trayBtnList->m_Items.at(i);
             TrayEntryBtn::TrayItem* ni = (TrayEntryBtn::_TrayItem*)item->m_data;
             if (ni->hWnd == nid.hWnd) {
-                log.debug("found a already existing tray icon, trying to be added again..   : %S", ni->sIconText);
+                FLogger::info("Found a already existing tray icon, trying to be added again..   : %S", ni->sIconText);
                 return;
 
             }
@@ -327,7 +325,7 @@ void TrayService::trayEvent(void* data, unsigned size)
 
 
         tray->uID = nid.uID;
-        log.debug("adding button   : %S", tray->sIconText);
+        FLogger::info("Adding a tray icon   : %S", tray->sIconText);
         AppendTrayBtn(0, tray->sIconText, tray->hWnd, tray->hIcon, tray);
         trayBtnList->invalidate(true);
     }
@@ -338,7 +336,7 @@ void TrayService::trayEvent(void* data, unsigned size)
             barItem* item = trayBtnList->m_Items.at(i);
             TrayEntryBtn::TrayItem* ni = (TrayEntryBtn::_TrayItem*)item->m_data;
             if (ni->hWnd == nid.hWnd) {
-                log.debug("removing a button..   : %S", ni->sIconText);
+                FLogger::debug("Removing a button..   : %S", ni->sIconText);
                 trayBtnList->m_Items.erase(trayBtnList->m_Items.begin() + i);
                 trayBtnList->invalidate(true);
                 return;
