@@ -1,0 +1,165 @@
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SyncTrayzor
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: PRO Edition
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4 (elevated)
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
+Internet access
+14:39:13  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Speakers: 100%
+14:39:13  11-09-2023     [INFO]Tray Starting!
+14:39:13  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4 (elevated)
+14:39:13  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+14:39:13  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: PRO Edition
+14:39:13  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+14:39:13  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:13  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:14  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:19  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:19  11-09-2023     [DEBUG]HSHELL_WINDOWCREATED   : P<fî
+14:39:19  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:20  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:23  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:23  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:24  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:26  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:27  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:29  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:30  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:31  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:33  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:33  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SyncTrayzor
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: PRO Edition
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4 (elevated)
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
+Internet access
+14:39:34  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Speakers: 100%
+14:39:34  11-09-2023     [INFO]Tray Starting!
+14:39:34  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4 (elevated)
+14:39:34  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+14:39:34  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: PRO Edition
+14:39:34  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+14:39:34  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:34  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:36  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:37  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:39  11-09-2023     [DEBUG]HSHELL_WINDOWCREATED   : <fî
+14:39:39  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:40  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:40  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:41  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:42  11-09-2023     [DEBUG]HSHELL_WINDOWCREATED   : <fî
+14:39:42  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:43  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:44  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SyncTrayzor
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: PRO Edition
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4 (elevated)
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
+Internet access
+14:39:45  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Speakers: 100%
+14:39:45  11-09-2023     [INFO]Tray Starting!
+14:39:45  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4 (elevated)
+14:39:45  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+14:39:45  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: PRO Edition
+14:39:45  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+14:39:45  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:45  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:46  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:47  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:47  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:48  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:48  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:50  11-09-2023     [DEBUG]HSHELL_WINDOWCREATED   : Ð<fî
+14:39:50  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:52  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:54  11-09-2023     [DEBUG]HSHELL_WINDOWCREATED   : `@:fî
+14:39:54  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:58  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:58  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:39:58  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:00  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:01  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:02  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:02  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SyncTrayzor
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: PRO Edition
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4 (elevated)
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
+Internet access
+14:40:04  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Speakers: 100%
+14:40:04  11-09-2023     [INFO]Tray Starting!
+14:40:04  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4 (elevated)
+14:40:04  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: PRO Edition
+14:40:04  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+14:40:04  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+14:40:04  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:04  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:06  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:06  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:06  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:08  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:08  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:10  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:10  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:13  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:13  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:14  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SyncTrayzor
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: PRO Edition
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4 (elevated)
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
+Internet access
+14:40:15  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Speakers: 100%
+14:40:15  11-09-2023     [INFO]Tray Starting!
+14:40:15  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4 (elevated)
+14:40:15  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: PRO Edition
+14:40:15  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+14:40:15  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+14:40:15  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:15  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:20  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:20  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:20  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:20  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:22  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:23  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:23  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SyncTrayzor
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: PRO Edition
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4 (elevated)
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
+Internet access
+14:40:24  11-09-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Speakers: 100%
+14:40:24  11-09-2023     [INFO]Tray Starting!
+14:40:24  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4 (elevated)
+14:40:24  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+14:40:24  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: PRO Edition
+14:40:24  11-09-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+14:40:24  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:24  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:34  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:40:37  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070
+14:41:00  11-09-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1070

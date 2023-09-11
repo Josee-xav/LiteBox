@@ -339,7 +339,8 @@ bool CTaskbar::createPopupMenu()
     pmenu->SetColor(PopupMenu::colorBorder, m_Style.border_Width == 0
                     ? m_Style.windowBackgroundColor
                     : m_Style.borderColor);
-    pmenu->SetColor(PopupMenu::colorText, m_Style.focusedTextColor);
+    pmenu->SetColor(PopupMenu::colorText, m_Style.unfocusedTextColor);
+    pmenu->SetColor(PopupMenu::colorHighlightText, m_Style.focusedTextColor);
     pmenu->SetColor(PopupMenu::colorBackground, m_Style.windowBackgroundColor);
     pmenu->SetColor(PopupMenu::colorHighlight, m_Style.task_FocusColor);
     pmenu->SetFont(m_Style.font.c_str());
