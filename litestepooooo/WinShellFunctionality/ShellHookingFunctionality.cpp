@@ -9,7 +9,7 @@ unsigned WM_ShellHook = 0;
 HINSTANCE _hUser32 = 0;
 
 // registers the Shell32
-typedef void (WINAPI* pRegisterShellHook)(HWND , DWORD);
+typedef void ( WINAPI* pRegisterShellHook )( HWND, DWORD );
 pRegisterShellHook _pRegisterShellHook;
 
 static const char* rtl_libs[] =
@@ -20,30 +20,30 @@ static const char* rtl_libs[] =
 
 void init_shellHookFuncs(void)
 {
-    _pRegisterShellHook = (pRegisterShellHook)GetProcAddress(LoadLibraryA("SHELL32") , (char*)0xB5);
+    _pRegisterShellHook = (pRegisterShellHook)GetProcAddress(LoadLibraryA("SHELL32"), (char*)0xB5);
 }
 
 void exit_shellHookFuncs(void)
 {
     const char** p = rtl_libs;
-    do FreeLibrary(GetModuleHandleA(*p)); while (*++p);
+    do FreeLibrary(GetModuleHandleA(*p)); while(*++p);
 }
 
 
 
 void register_shellhook(HWND hwnd)
 {
-    if (_pRegisterShellHook) {
-        _pRegisterShellHook(NULL , TRUE);
-        _pRegisterShellHook(hwnd , 3);
+    if(_pRegisterShellHook) {
+        _pRegisterShellHook(NULL, TRUE);
+        _pRegisterShellHook(hwnd, 3);
         WM_ShellHook = RegisterWindowMessage(L"SHELLHOOK");
     }
 }
 
 void unregister_shellhook(HWND hwnd)
 {
-    if (_pRegisterShellHook) {
-        _pRegisterShellHook(hwnd , 0);
+    if(_pRegisterShellHook) {
+        _pRegisterShellHook(hwnd, 0);
     }
 }
 
@@ -52,39 +52,39 @@ void unregister_shellhook(HWND hwnd)
 BOOL getShellFunctions()
 {
 
-    if (!_hUser32) {
+    if(!_hUser32) {
         _hUser32 = LoadLibraryW(L"user32.dll");
-        if (!_hUser32) {
+        if(!_hUser32) {
             //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
     }
 
-    if (!_IsShellManagedWindow) {
-        _IsShellManagedWindow = (pIsShellManagedWindow)GetProcAddress(_hUser32 , (LPCSTR)2574);
-        if (!_IsShellManagedWindow) {
+    if(!_IsShellManagedWindow) {
+        _IsShellManagedWindow = (pIsShellManagedWindow)GetProcAddress(_hUser32, (LPCSTR)2574);
+        if(!_IsShellManagedWindow) {
             //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
     }
-    if (!_IsShellFrameWindow) {
-        _IsShellFrameWindow = (pIsShellManagedWindow)GetProcAddress(_hUser32 , (LPCSTR)2573);
-        if (!_IsShellFrameWindow) {
+    if(!_IsShellFrameWindow) {
+        _IsShellFrameWindow = (pIsShellManagedWindow)GetProcAddress(_hUser32, (LPCSTR)2573);
+        if(!_IsShellFrameWindow) {
             //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
     }
-    if (!_GhostWindowFromHungWindow) {
-        _GhostWindowFromHungWindow = (pGhostWindowFromHungWindow)GetProcAddress(_hUser32 , "GhostWindowFromHungWindow");
-        if (!_GhostWindowFromHungWindow) {
+    if(!_GhostWindowFromHungWindow) {
+        _GhostWindowFromHungWindow = (pGhostWindowFromHungWindow)GetProcAddress(_hUser32, "GhostWindowFromHungWindow");
+        if(!_GhostWindowFromHungWindow) {
             //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }
 
     }
-    if (!_HungWindowFromGhostWindow) {
-        _HungWindowFromGhostWindow = (pHungWindowFromGhostWindow)GetProcAddress(_hUser32 , "HungWindowFromGhostWindow");
-        if (!_HungWindowFromGhostWindow) {
+    if(!_HungWindowFromGhostWindow) {
+        _HungWindowFromGhostWindow = (pHungWindowFromGhostWindow)GetProcAddress(_hUser32, "HungWindowFromGhostWindow");
+        if(!_HungWindowFromGhostWindow) {
             //outputDebugStringA("errorORRRR IN INIT HELPER");
             return false;
         }

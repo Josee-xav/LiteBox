@@ -8,7 +8,7 @@ HINSTANCE LB_Api::main_hinstance = NULL;
 std::wstring LB_Api::getWindowTitle(HWND hwnd)
 {
     wchar_t windowTitle[100];
-    if (GetWindowText(hwnd, windowTitle, 100))
+    if(GetWindowText(hwnd, windowTitle, 100))
         return windowTitle;
     else
         return LB_Api::getWindowClassName(hwnd);
@@ -36,17 +36,17 @@ HICON LB_Api::getHICONFromHWND(HWND hwnd, IconSizes iconsize)
     HICON copyHicon = NULL;
 
     SendMessageTimeout(hwnd, WM_GETICON, iconsize == IconSizes::icon_big ? ICON_BIG : ICON_SMALL, 0, SMTO_ABORTIFHUNG | SMTO_NORMAL, 500, (DWORD_PTR*)&hIco);
-    if (NULL == hIco) {
+    if(NULL == hIco) {
         hIco = (HICON)GetClassLong(hwnd, iconsize == IconSizes::icon_big ? GCLP_HICON : GCLP_HICONSM);
-        if (NULL == hIco) {
+        if(NULL == hIco) {
             SendMessageTimeout(hwnd, WM_GETICON, iconsize == IconSizes::icon_big ? ICON_SMALL : ICON_BIG, 0, SMTO_ABORTIFHUNG | SMTO_NORMAL, 500, (DWORD_PTR*)&hIco);
-            if (NULL == hIco) {
+            if(NULL == hIco) {
                 hIco = (HICON)GetClassLong(hwnd, iconsize == IconSizes::icon_big ? GCLP_HICONSM : GCLP_HICON);
 
             }
         }
     }
-    if (hIco == NULL)
+    if(hIco == NULL)
         hIco = CopyIcon(LoadIcon(NULL, IDI_ASTERISK));
 
     return hIco;
@@ -72,12 +72,12 @@ RECT LB_Api::getPrimaryScreenRes()
 bool LB_Api::IsWinShell(HWND hwnd)
 {
     std::wstring className = LB_Api::getWindowClassName(hwnd);
-    if (className == L"Shell_TrayWnd" || className == L"DV2ControlHost" || className == L"MsgrIMEWindowClass" || className == L"SysShadow" || className == L"Button"
+    if(className == L"Shell_TrayWnd" || className == L"DV2ControlHost" || className == L"MsgrIMEWindowClass" || className == L"SysShadow" || className == L"Button"
         || className == L"Windows.UI.Core.CoreWindow" || className == L"Frame Alternate Owner" || className == L"MultitaskingViewFrame" || className == L"Progman" || className == L"WorkerW") {
         return true;
     }
 
-    if (hwnd == GetShellWindow() || hwnd == GetDesktopWindow())
+    if(hwnd == GetShellWindow() || hwnd == GetDesktopWindow())
         return true;
 
     return false;
@@ -85,21 +85,21 @@ bool LB_Api::IsWinShell(HWND hwnd)
 
 bool LB_Api::isFullscreen(HWND hwnd)
 {
-    if (LB_Api::IsWinShell(hwnd))
+    if(LB_Api::IsWinShell(hwnd))
         return false;
 
     HMONITOR hwndMon = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONULL);
-    if (!hwndMon)
+    if(!hwndMon)
         return false;
     MONITORINFO mi;
     mi.cbSize = sizeof(mi);
-    if (!GetMonitorInfo(hwndMon, &mi))
+    if(!GetMonitorInfo(hwndMon, &mi))
         return false;
 
     RECT appBounds = { 0 };
     GetWindowRect(hwnd, &appBounds);
 
-    if (EqualRect(&appBounds, &mi.rcMonitor)) {
+    if(EqualRect(&appBounds, &mi.rcMonitor)) {
         return true;
     }
 
@@ -112,7 +112,7 @@ bool LB_Api::executeShell(HWND hwnd, const wchar_t* verb, const wchar_t* file, c
 {
     SHELLEXECUTEINFO sei;
 
-    if (NULL == dir || 0 == dir[0]) {
+    if(NULL == dir || 0 == dir[0]) {
         std::wstring temp = LB_Api::getLBExePath().c_str();
         dir = temp.c_str();
     }
@@ -125,14 +125,14 @@ bool LB_Api::executeShell(HWND hwnd, const wchar_t* verb, const wchar_t* file, c
     sei.lpDirectory = dir;
     sei.nShow = showCmds;
 
-    if (flags & RUN_ISPIDL) {
+    if(flags & RUN_ISPIDL) {
         sei.fMask = SEE_MASK_INVOKEIDLIST | SEE_MASK_FLAG_NO_UI;
         sei.lpIDList = (void*)file;
     }
     else {
         sei.fMask = SEE_MASK_DOENVSUBST | SEE_MASK_FLAG_NO_UI;
         sei.lpFile = file;
-        if (NULL == file || 0 == file[0]) {
+        if(NULL == file || 0 == file[0]) {
             /*if (0 == (flags & RUN_NOerrorS)) {
                 char msg[200];
                 MessageBox(MB_OK , NLS2("$error_Execute$" ,
@@ -145,7 +145,7 @@ bool LB_Api::executeShell(HWND hwnd, const wchar_t* verb, const wchar_t* file, c
         }
     }
 
-    if (ShellExecuteEx(&sei))
+    if(ShellExecuteEx(&sei))
         return TRUE;
 
     /* if (0 == (flags & RUN_NOerrorS)) {
@@ -173,7 +173,7 @@ bool LB_Api::register_class(const wchar_t* classname, HINSTANCE hinstance, WNDPR
     wc.hbrBackground = NULL;
     wc.lpszMenuName = NULL;
     wc.lpszClassName = classname;
-    // TODO LOG
+
     return ::RegisterClass(&wc) != FALSE;
 }
 
@@ -182,7 +182,7 @@ std::string LB_Api::getLasterrorAsString()
 {
     //Get the error message ID, if any.
     DWORD errorMessageID = ::GetLastError();
-    if (errorMessageID == 0) {
+    if(errorMessageID == 0) {
         return std::string(); //No error message has been recorded
     }
 
@@ -218,7 +218,7 @@ void LB_Api::setWorkArea(int height)
 std::wstring LB_Api::getWindowClassName(HWND hwnd)
 {
     wchar_t windowClass[256] = {};
-    if (GetClassName(hwnd, windowClass, sizeof(windowClass)))
+    if(GetClassName(hwnd, windowClass, sizeof(windowClass)))
         return windowClass;
     else
         return L"error";
@@ -236,17 +236,17 @@ std::wstring LB_Api::getLBExePath()
 
 void hideWindow(HWND hwnd)
 {
-    if (hwnd && (ShowWindow(hwnd, SW_HIDE)))
+    if(hwnd && ( ShowWindow(hwnd, SW_HIDE) ))
         explorerHwnds.push_back(hwnd);
 }
 
 BOOL CALLBACK EnumExplorerWindowsProc(HWND hwnd, LPARAM lParam)
 {
     wchar_t temp[32];
-    if (GetClassName(hwnd, temp, 32)
-        && (0 == wcscmp(temp, L"BaseBar")
-            || 0 == wcscmp(temp, L"Button")
-            ))
+    if(GetClassName(hwnd, temp, 32)
+        && ( 0 == wcscmp(temp, L"BaseBar")
+       || 0 == wcscmp(temp, L"Button")
+       ))
         hideWindow(hwnd);
     return TRUE;
 }
@@ -254,7 +254,7 @@ BOOL CALLBACK EnumExplorerWindowsProc(HWND hwnd, LPARAM lParam)
 void LB_Api::hideExplorer()
 {
     HWND hw = FindWindow(L"Shell_TrayWnd", NULL);
-    if (hw) {
+    if(hw) {
         hideWindow(hw);
         EnumWindows((WNDENUMPROC)EnumExplorerWindowsProc, 0);
     }
@@ -267,7 +267,7 @@ void LB_Api::restartExplorerWindow()
     GetWindowThreadProcessId(hSysTray, &dwPID);
     HANDLE explorerHandle = OpenProcess(PROCESS_TERMINATE, FALSE, dwPID);
 
-    if (explorerHandle) {
+    if(explorerHandle) {
         TerminateProcess(explorerHandle, 0);
     }
     ShellExecute(NULL, NULL, L"explorer.exe", NULL, NULL, SW_HIDE);
@@ -287,7 +287,7 @@ bool LB_Api::isIconValid(HICON icon)
     ICONINFO iconInfo;
     BOOL success = GetIconInfo(icon, &iconInfo);
 
-    bool ret = (success != false || iconInfo.hbmColor != NULL || iconInfo.hbmMask != NULL);
+    bool ret = ( success != false || iconInfo.hbmColor != NULL || iconInfo.hbmMask != NULL );
 
     DeleteObject(iconInfo.hbmMask);
     DeleteObject(iconInfo.hbmColor);
@@ -296,10 +296,10 @@ bool LB_Api::isIconValid(HICON icon)
 
 void LB_Api::showExplorer()
 {
-    if (explorerHwnds.size() == 0)
+    if(explorerHwnds.size() == 0)
         restartExplorerWindow();
     else
-        for (int i = 0; i < explorerHwnds.size(); i++)
+        for(int i = 0; i < explorerHwnds.size(); i++)
             ShowWindow(explorerHwnds.at(i), SW_SHOW);
 
     explorerHwnds.clear();
@@ -309,10 +309,10 @@ HWND LB_Api::findTrayToolbarWindow()
 {
     HWND hWnd = NULL;
 
-    if ((hWnd = FindWindow((L"Shell_TrayWnd"), NULL)) != NULL) {
-        if ((hWnd = FindWindowEx(hWnd, 0, (L"TrayNotifyWnd"), NULL)) != NULL) {
-            if (hWnd = FindWindowEx(hWnd, 0, (L"SysPager"), NULL)) {
-                hWnd = FindWindowEx(hWnd, 0, (L"ToolbarWindow32"), NULL);
+    if(( hWnd = FindWindow(( L"Shell_TrayWnd" ), NULL) ) != NULL) {
+        if(( hWnd = FindWindowEx(hWnd, 0, ( L"TrayNotifyWnd" ), NULL) ) != NULL) {
+            if(hWnd = FindWindowEx(hWnd, 0, ( L"SysPager" ), NULL)) {
+                hWnd = FindWindowEx(hWnd, 0, ( L"ToolbarWindow32" ), NULL);
             }
         }
     }
@@ -323,16 +323,16 @@ HWND LB_Api::findTrayToolbarWindow()
 int wideToMulti(const WCHAR* src, char* str, int len)
 {
     int x, n;
-    for (x = -1;;) {
+    for(x = -1;;) {
         n = WideCharToMultiByte(
             CP_UTF8,
             0, src, x, str, len, NULL, NULL
         );
-        if (n)
+        if(n)
             return n;
-        if (x < 0)
+        if(x < 0)
             x = len;
-        if (--x == 0)
+        if(--x == 0)
             break;
     }
     str[0] = 0;
@@ -341,11 +341,11 @@ int wideToMulti(const WCHAR* src, char* str, int len)
 bool LB_Api::convert_string(char* dest, const void* src, int nmax, bool is_unicode)
 {
     char buffer[256];
-    if (is_unicode) {
+    if(is_unicode) {
         wideToMulti((const WCHAR*)src, buffer, sizeof buffer); // TODO
         src = buffer;
     }
-    if (strcmp(dest, (const char*)src)) {
+    if(strcmp(dest, (const char*)src)) {
         strcpy_s(dest, nmax, (const char*)src);
         return true;
     }

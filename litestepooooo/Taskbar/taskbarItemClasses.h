@@ -30,7 +30,8 @@ enum BARITEMS
 };
 
 
-namespace taskbarItemFlags {
+namespace taskbarItemFlags
+{
     enum
     {
         itemSeparator = 0x1,                            // not valid with anything else

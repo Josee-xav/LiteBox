@@ -4,7 +4,7 @@ FILE* FLogger::logFile;
 
 FLogger::FLogger()
 {
-    fopen_s(&logFile, LOG_FILE_NAME, "w") ;
+    fopen_s(&logFile, LOG_FILE_NAME, "w");
 }
 
 FLogger::~FLogger()

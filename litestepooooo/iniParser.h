@@ -21,48 +21,52 @@ namespace ini
         KeyVal(std::string strVal) :m_strVal(strVal) { }
         void operator= (const std::string& v) { m_strVal = v; }
         template<typename T>
-        T StringTo(std::string val) {
+        T StringTo(std::string val)
+        {
             std::istrstream ins(val.c_str());
             T tmp;
             ins >> tmp;
             return tmp;
         }
 
-        template <> std::wstring StringTo<std::wstring>(std::string val) {
+        template <> std::wstring StringTo<std::wstring>(std::string val)
+        {
 
-            if (val.empty())
+            if(val.empty())
                 return std::wstring();
 
             size_t charsNeeded = ::MultiByteToWideChar(CP_UTF8, 0,
                 val.data(), (int)val.size(), NULL, 0);
-            if (charsNeeded == 0)
+            if(charsNeeded == 0)
                 FLogger::error("Failed converting UTF-8 string to UTF-16");
 
             std::vector<wchar_t> buffer(charsNeeded);
             int charsConverted = ::MultiByteToWideChar(CP_UTF8, 0,
                 val.data(), (int)val.size(), &buffer[0], buffer.size());
-            if (charsConverted == 0)
+            if(charsConverted == 0)
                 FLogger::error("Failed converting UTF-8 string to UTF-16");
 
             return std::wstring(&buffer[0], charsConverted);
         }
 
         template<typename T>
-        T GetValue(T defval = T()) {
-            if (m_strVal.empty()) {
+        T GetValue(T defval = T())
+        {
+            if(m_strVal.empty()) {
                 return defval;
             }
             return StringTo<T>(m_strVal);
         }
         template<typename T>
-        std::vector<T> GetArray(std::string defval = std::string(), char sep = char()) {
-            if (m_strVal.empty()) {
+        std::vector<T> GetArray(std::string defval = std::string(), char sep = char())
+        {
+            if(m_strVal.empty()) {
                 m_strVal = defval;
             }
             std::vector<T> vRet;
             std::istringstream iss(m_strVal);
             std::string toke;
-            while (getline(iss, toke, sep)) {
+            while(getline(iss, toke, sep)) {
                 Trim(toke);
                 vRet.push_back(StringTo<T>(toke));
             }
@@ -81,8 +85,9 @@ namespace ini
         Section() { m_sectionName.clear(); }
         Section(std::string secName) : m_sectionName(secName) { }
         KeyVal& operator [](std::string key) { return m_sectionConf[key]; }
-        Section& operator= (const Section& sec) {
-            if (&sec == this) {
+        Section& operator= (const Section& sec)
+        {
+            if(&sec == this) {
                 return *this;
             }
             m_sectionName = sec.m_sectionName;

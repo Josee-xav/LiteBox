@@ -201,8 +201,7 @@ bool CTaskbar::create(int x, int y, HWND hWnd)
 {
     // register the class
     if(!m_bClassRegistered) {
-        if(!LB_Api::register_class(L"LiteBox_TaskBar", LB_Api::main_hinstance,
-           windowProc, 0)) {
+        if(!LB_Api::register_class(L"LiteBox_TaskBar", LB_Api::main_hinstance,windowProc, 0)) {
             MessageBoxA(NULL, "LiteBox_TaskBar register class failed." + __LINE__, ".", S_OK);
             return false;
         }

@@ -186,9 +186,9 @@ enum class STR2INTCONVERT_error { E_SUCCESS, E_OVERFLOW, E_UNDERFLOWW, E_INCONVE
 bool readBool(std::wstring data)
 {
     //case-insensitive
-    if (!_wcsicmp(data.c_str(), L"true"))
+    if(!_wcsicmp(data.c_str(), L"true"))
         return true;
-    if (!_wcsicmp(data.c_str(), L"false"))
+    if(!_wcsicmp(data.c_str(), L"false"))
         return false;
 
     return false; // default is false.
@@ -197,95 +197,95 @@ bool readBool(std::wstring data)
 
 void* StyleStructPtr(int sn_index, _Stylizing* pStyle)
 {
-    switch (sn_index) {
-    case  S_WINDOWBACKGROUNDCOLOR:
-        return &pStyle->windowBackgroundColor;
-        break;
-    case  S_TASK_FOCUSCOLOR:
-        return &pStyle->task_FocusColor;
-        break;
-    case  S_BORDERCOLOR:
-        return &pStyle->borderColor;
-        break;
-    case  S_UNFOCUSEDTEXTCOLOR:
-        return &pStyle->unfocusedTextColor;
-        break;
-    case  S_FOCUSEDTEXTCOLOR:
-        return &pStyle->focusedTextColor;
-        break;
-    case  S_CLOCK_COLOR:
-        return &pStyle->clock_Color;
-        break;
-        //===
+    switch(sn_index) {
+        case  S_WINDOWBACKGROUNDCOLOR:
+            return &pStyle->windowBackgroundColor;
+            break;
+        case  S_TASK_FOCUSCOLOR:
+            return &pStyle->task_FocusColor;
+            break;
+        case  S_BORDERCOLOR:
+            return &pStyle->borderColor;
+            break;
+        case  S_UNFOCUSEDTEXTCOLOR:
+            return &pStyle->unfocusedTextColor;
+            break;
+        case  S_FOCUSEDTEXTCOLOR:
+            return &pStyle->focusedTextColor;
+            break;
+        case  S_CLOCK_COLOR:
+            return &pStyle->clock_Color;
+            break;
+            //===
 
-        //width
-    case  S_BORDER_WIDTH:
-        return &pStyle->border_Width;
-        break;
-    case  S_TASKBAR_WIDTH:
-        return &pStyle->taskbar_Width;
-        break;
-        //HEIGHT STUFF
-    case  S_TASKBAR_HEIGHT:
-        return &pStyle->taskbar_Height;
-        break;
+            //width
+        case  S_BORDER_WIDTH:
+            return &pStyle->border_Width;
+            break;
+        case  S_TASKBAR_WIDTH:
+            return &pStyle->taskbar_Width;
+            break;
+            //HEIGHT STUFF
+        case  S_TASKBAR_HEIGHT:
+            return &pStyle->taskbar_Height;
+            break;
 
-        //bevels
-    case  S_TASK_BEVELSTYLE:
-        return &pStyle->task_BevelStyle;
-        break;
-    case  S_CLOCK_BEVELSTYLE:
-        return &pStyle->clock_BevelStyle;
-        break;
-        //roundedness
-    case  S_RECTROUNDEDEDGE_CLOCK:
-        return &pStyle->rectRoundedEdge_Clock;
-        break;
-    case  S_RECTROUNDEDEDGE_TASKBUTTONS:
-        return &pStyle->rectRoundedEdge_TaskButtons;
-        break;
+            //bevels
+        case  S_TASK_BEVELSTYLE:
+            return &pStyle->task_BevelStyle;
+            break;
+        case  S_CLOCK_BEVELSTYLE:
+            return &pStyle->clock_BevelStyle;
+            break;
+            //roundedness
+        case  S_RECTROUNDEDEDGE_CLOCK:
+            return &pStyle->rectRoundedEdge_Clock;
+            break;
+        case  S_RECTROUNDEDEDGE_TASKBUTTONS:
+            return &pStyle->rectRoundedEdge_TaskButtons;
+            break;
 
-    case  S_TASK_ICONSIZE:
-        return &pStyle->task_iconSize;
-        break;
-    case  S_TRAY_ICONSIZE:
-        return &pStyle->tray_iconSize;
-        break;
+        case  S_TASK_ICONSIZE:
+            return &pStyle->task_iconSize;
+            break;
+        case  S_TRAY_ICONSIZE:
+            return &pStyle->tray_iconSize;
+            break;
 
 
-        //spacing
-    case  S_TASK_BUTTONSPACING:
-        return &pStyle->task_buttonSpacing;
-        break;
-    case  S_TASK_BUTTONTOPSPACING:
-        return &pStyle->task_buttonTopSpacing;
-        break;
+            //spacing
+        case  S_TASK_BUTTONSPACING:
+            return &pStyle->task_buttonSpacing;
+            break;
+        case  S_TASK_BUTTONTOPSPACING:
+            return &pStyle->task_buttonTopSpacing;
+            break;
 
-        //FONT
-    case  S_FONT:
-        return &pStyle->font;
-        break;
-    case  S_MENU_FONTSIZE:
-        return &pStyle->menu_fontSize;
-        break;
-    case  S_TASK_FONTSIZE:
-        return &pStyle->task_fontSize;
-        break;
-    case  S_CLOCK_FONTSIZE:
-        return &pStyle->clock_fontSize;
-        break;
+            //FONT
+        case  S_FONT:
+            return &pStyle->font;
+            break;
+        case  S_MENU_FONTSIZE:
+            return &pStyle->menu_fontSize;
+            break;
+        case  S_TASK_FONTSIZE:
+            return &pStyle->task_fontSize;
+            break;
+        case  S_CLOCK_FONTSIZE:
+            return &pStyle->clock_fontSize;
+            break;
 
-    case  S_FONTWEIGHT:
-        return &pStyle->fontWeight;
-        break;
-        ///misc
-    case  S_CLOCK_TIMEFORMAT:
-        return &pStyle->clock_TimeFormat;
-        break;
-    case  S_TASKS_ICONONLY:
-        return &pStyle->tasks_IconOnly;
-        break;
-    default: return NULL;
+        case  S_FONTWEIGHT:
+            return &pStyle->fontWeight;
+            break;
+            ///misc
+        case  S_CLOCK_TIMEFORMAT:
+            return &pStyle->clock_TimeFormat;
+            break;
+        case  S_TASKS_ICONONLY:
+            return &pStyle->tasks_IconOnly;
+            break;
+        default: return NULL;
     }
 }
 
@@ -295,54 +295,54 @@ void getStyleItem(ini::Section& sec, iniOptions item, _Stylizing* pStyle)
     std::wstring data = sec[item.key].GetValue<std::wstring>();
 
     // couldnt find a match.
-    if (data == L"") {
+    if(data == L"") {
         return;
     }
 
-    switch (item.type) {
-    case style_data_types::C_BOOL:
-    {
+    switch(item.type) {
+        case style_data_types::C_BOOL:
+        {
 
-        bool boolData = readBool(data);
+            bool boolData = readBool(data);
 
-        bool* v = (bool*)StyleStructPtr(item.sn, pStyle);
-        *v = boolData;
-    }
-    break;
-    case style_data_types::C_STR:
-    {
+            bool* v = (bool*)StyleStructPtr(item.sn, pStyle);
+            *v = boolData;
+        }
+        break;
+        case style_data_types::C_STR:
+        {
 
 
 
-        std::wstring* v = (std::wstring*)StyleStructPtr(item.sn, pStyle);
-        *v = data;
-    }
-
-    break;
-    case style_data_types::C_INT:
-    {
-        int intData;
-        intData = std::stoi(data.c_str());
-
-        //      prevents negative numbers.
-        if (intData < 0) {
-            intData = 0;
+            std::wstring* v = (std::wstring*)StyleStructPtr(item.sn, pStyle);
+            *v = data;
         }
 
-        int* v = (int*)StyleStructPtr(item.sn, pStyle);
-        *v = intData;
-    }
-    break;
-    case style_data_types::C_COL:
-    {
-        COLORREF colorData = readColorFromString(data.c_str());
-        if (CLR_INVALID == colorData)
-            colorData = m_Style.task_FocusColor;
+        break;
+        case style_data_types::C_INT:
+        {
+            int intData;
+            intData = std::stoi(data.c_str());
 
-        COLORREF* v = (COLORREF*)StyleStructPtr(item.sn, pStyle);
-        *v = colorData;
-    }
-    break;
+            //      prevents negative numbers.
+            if(intData < 0) {
+                intData = 0;
+            }
+
+            int* v = (int*)StyleStructPtr(item.sn, pStyle);
+            *v = intData;
+        }
+        break;
+        case style_data_types::C_COL:
+        {
+            COLORREF colorData = readColorFromString(data.c_str());
+            if(CLR_INVALID == colorData)
+                colorData = m_Style.task_FocusColor;
+
+            COLORREF* v = (COLORREF*)StyleStructPtr(item.sn, pStyle);
+            *v = colorData;
+        }
+        break;
     }
 }
 
@@ -355,10 +355,10 @@ void readStyle(const char* styleFilePath)
 
     std::string data;
 
-    if (fileLoadStatus) {
+    if(fileLoadStatus) {
         ini::Section& sec = ini.GetSection("settings");
 
-        for (int i = 0; i < sizeof(StyleItems) / sizeof(StyleItems[0]); i++) {
+        for(int i = 0; i < sizeof(StyleItems) / sizeof(StyleItems[0]); i++) {
             iniOptions item = StyleItems[i];
 
             getStyleItem(sec, item, &m_Style);

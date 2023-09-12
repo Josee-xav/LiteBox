@@ -107,8 +107,6 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
     if(!RegisterClassEx(&wc))
         MessageBoxA(NULL, "Error failed to register window class " + __LINE__, "error", MB_OK);
-   
-
 
     HWND hWnd = CreateWindowEx(
         0,
@@ -124,7 +122,6 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
     setAutostart(1, 0);
     ShowWindow(hWnd, nCmdShow);
-
 
     while(GetMessage(&msg, NULL, 0, 0)) {
         TranslateMessage(&msg);
@@ -173,7 +170,6 @@ void runTaskbar()
        == false) {
         SendMessage(hDesktopWnd, WM_CLOSE, NULL, NULL); // graceful close?
     }
-
 }
 
 LRESULT CALLBACK WndProcParent(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)

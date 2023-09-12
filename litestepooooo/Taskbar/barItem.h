@@ -27,19 +27,19 @@ public:
     barItem& operator=(const barItem& src);           // assignment operator
 
     // check the item for mouse-over
-    int mouse_over(int mx , int my);
+    int mouse_over(int mx, int my);
 
     //-----------------------------
-    virtual void mouse_event(int mx , int my , int message , unsigned flags);
+    virtual void mouse_event(int mx, int my, int message, unsigned flags);
 
     virtual void invalidate(int flag);
 
 
     //-----------------------------
     // calculate metrics, return true on changes
-    virtual bool calc_size(int* px , int y , int w , int h , int m);
+    virtual bool calc_size(int* px, int y, int w, int h, int m);
 
     //-----------------------------
-    virtual void draw(HWND hWnd , HDC hDC);
+    virtual void draw(HWND hWnd, HDC hDC);
 };
 

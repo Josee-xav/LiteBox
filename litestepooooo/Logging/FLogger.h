@@ -5,7 +5,8 @@
 #define LOG_FILE_NAME "Litebox_log.txt"
 
 
-class FLogger{
+class FLogger
+{
     static FILE* logFile;
 public:
 
@@ -16,7 +17,7 @@ public:
     template<typename... Args>
     static void log(const char* message_str, const char* message, Args... args)
     {
-        if (logFile != 0) {
+        if(logFile != 0) {
             std::time_t current_time = std::time(0);
             std::tm timestamp;
             errno_t  err = localtime_s(&timestamp, &current_time);
@@ -31,21 +32,24 @@ public:
         }
     }
 
-     template<typename... Args>
-     static void debug(const char* message, Args... args) {
-         FLogger::log<Args...>("[DEBUG]", message, args...);
-     }
+    template<typename... Args>
+    static void debug(const char* message, Args... args)
+    {
+        FLogger::log<Args...>("[DEBUG]", message, args...);
+    }
 
 
-   
+
 
     template<typename... Args>
-    static void info(const char* message, Args... args ) {
+    static void info(const char* message, Args... args)
+    {
         FLogger::log<Args...>("[INFO]", message, args...);
     }
 
     template<typename... Args>
-    static void error(const char* message, Args... args ) {
+    static void error(const char* message, Args... args)
+    {
         FLogger::log<Args ...>("[error]", message, args...);
     }
 
