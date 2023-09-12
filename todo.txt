@@ -1,4 +1,0 @@
-TODO WHEN NOT BUSY:
-
-* Implement the ability to move the taskbar top, left,right.
-* Mabye allow the system tray snap outside of the main bar so it can be placed elsewhere? (not sure)
