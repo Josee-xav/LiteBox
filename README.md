@@ -3,6 +3,7 @@
 SHIFT + RIGHT CLICK  = open litebox menu
 
 Middle click = Closes application windows when over the app button on taskbar
+
 Left , Right click = open and close window
 
 You can right click tray icons just like normal but some tray applications might be funky...
