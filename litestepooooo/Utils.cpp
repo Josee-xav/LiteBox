@@ -33,7 +33,6 @@ This function is borrowed and slightly modified from an MSDN sample */
 HICON LB_Api::getHICONFromHWND(HWND hwnd, IconSizes iconsize)
 {
     HICON hIco = NULL;
-    HICON copyHicon = NULL;
 
     SendMessageTimeout(hwnd, WM_GETICON, iconsize == IconSizes::icon_big ? ICON_BIG : ICON_SMALL, 0, SMTO_ABORTIFHUNG | SMTO_NORMAL, 500, (DWORD_PTR*)&hIco);
     if(NULL == hIco) {

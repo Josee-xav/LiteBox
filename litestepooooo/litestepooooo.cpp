@@ -27,7 +27,7 @@ void setAutostart(int on, int elevate)
     HKEY key;
     int error = RegCreateKeyEx(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run", 0, NULL, 0, KEY_SET_VALUE, NULL, &key, NULL);
     if(error != ERROR_SUCCESS) {
-        MessageBoxA(NULL, ( "RegCreateKeyEx(HKEY_CURRENT_USER,'Software\\Microsoft\\Windows\\CurrentVersion\\Run') error opening reg" + error ), "error", MB_OK);
+        MessageBoxA(NULL, ( "Error setting autostart regkey " + error ), "error", MB_OK);
         return;
     }
     if(on) {
@@ -38,7 +38,7 @@ void setAutostart(int on, int elevate)
         // Set autostart
         error = RegSetValueEx(key, windowClassName.c_str(), 0, REG_SZ, (LPBYTE)value, ( wcslen(value) + 1 ) * sizeof(value[0]));
         if(error != ERROR_SUCCESS) {
-            MessageBoxA(NULL, "RegSetValueEx('APP_NAME'), LSetAutostart()" + error, "error", MB_OK);
+            MessageBoxA(NULL, "Error setting autostart regkey" + error, "error", MB_OK);
 
             return;
         }
@@ -47,7 +47,7 @@ void setAutostart(int on, int elevate)
         // Remove
         error = RegDeleteValue(key, windowClassName.c_str());
         if(error != ERROR_SUCCESS) {
-            MessageBoxA(NULL, "RegSetValueEx('APP_NAME'), LSetAutostart()" + error, "error", MB_OK);
+            MessageBoxA(NULL, "Error deleting autostart regkey " + error, "error", MB_OK);
             return;
         }
     }

@@ -27,6 +27,8 @@ public:
     taskItemList* getTaskList();
     void TaskWndProc(WPARAM wParam, LPARAM lparam);
     void updateActiveTask(HWND hwnd, bool removeUnactive = FALSE);
+
+    bool closeWindow(HWND hwnd);
 private:
     taskItemList* taskList;
     barItem* activeBtn;
@@ -39,4 +41,5 @@ private:
     bool AppendTaskBtn(const DWORD dwFlags, LPCTSTR pszName, const UINT itemid, HWND appHwnd, HICON icon);
     // returns true if it was able to find the window in the list. false otherwise
     bool updateWindow(HWND hwnd);
+
 };

@@ -164,7 +164,6 @@ void CTaskbar::calc_barItemLists()
     int rest_width = max(0, mainbarRect.right - xpos); // for the taskzone.
 
     int top = 0;
-    int height = mainbarRect.bottom;
 
     // 2nd passsss
 
@@ -250,6 +249,7 @@ bool CTaskbar::create(int x, int y, HWND hWnd)
 
 // WM_PAINT
 
+
 void CTaskbar::OnPaint(HWND hWnd, HDC hDC)
 {
     calc_barItemLists();
@@ -285,6 +285,7 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam,
         case WM_LBUTTONUP:
         case WM_RBUTTONUP:
         case WM_LBUTTONDBLCLK:
+        case WM_MBUTTONDOWN:
             pClass->OnMouseButton(hWnd, uMsg, wParam, LOWORD(lParam), HIWORD(lParam));
             break;
 
@@ -304,6 +305,7 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 
             EndPaint(hWnd, &ps);
         } break;
+
 
         case WM_TIMER:
         {
@@ -422,20 +424,6 @@ int CTaskbar::getItem(short x, short y, const RECT& rect)
     return newitem;
 }
 
-/********************/
-/* a button is down */
-/********************/
-
-void CTaskbar::ButtonDown(HWND hWnd, short x, short y, const bool bLeft)
-{
-    RECT rect;
-
-    // check for click outside
-    GetClientRect(hWnd, &rect);
-    if(checkOutsideWindow(rect, x, y))
-        return;
-}
-
 /****************/
 /* WM_LBUTTONUP */
 /****************/
@@ -445,7 +433,7 @@ void CTaskbar::OnMouseButton(HWND hWnd, int message, WPARAM wparam, short x,
 {
     RECT rect;
 
-    if(WM_RBUTTONUP && ( wparam & MK_SHIFT )) {
+    if(message == WM_RBUTTONDOWN && (wparam & MK_SHIFT )) {
 
         POINT pos;
         GetCursorPos(&pos);

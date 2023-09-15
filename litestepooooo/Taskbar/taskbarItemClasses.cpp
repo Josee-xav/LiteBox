@@ -44,7 +44,6 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
 {
     bool    bSelected = ( m_dwFlags == taskbarItemFlags::M_TASKBUTTONACTIVE_FLAG );
     HGDIOBJ hOldPen, hOldBrush, hOldFont;
-    int     h{ 0 };
     COLORREF color;
 
     RECT drawingRect;
@@ -127,17 +126,21 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
 void taskEntryBtn::mouse_event(int mx, int my, int message, unsigned flags)
 {
     HWND taskAppHwnd = (HWND)m_data;
-    DWORD_PTR dwResult = 0;
+    
 
     if(message == WM_LBUTTONDOWN) {
         SetForegroundWindow(taskAppHwnd);
         // sends WM_SYSCOMMAND the parm SC_RESTORE which is kinda like right clicking the taskbutton on the normal windows shell and clicking open or something
-        SendMessageTimeout(taskAppHwnd, WM_SYSCOMMAND, SC_RESTORE, 0, 2, 500, &dwResult);
+        SendMessageTimeout(taskAppHwnd, WM_SYSCOMMAND, SC_RESTORE, 0, 2, 500, NULL);
         mainbar->taskService.updateActiveTask(taskAppHwnd);
     }
     else if(message == WM_RBUTTONDOWN) {
-        SendMessageTimeout(taskAppHwnd, WM_SYSCOMMAND, SC_MINIMIZE, 0, 2, 500, &dwResult);
+        SendMessageTimeout(taskAppHwnd, WM_SYSCOMMAND, SC_MINIMIZE, 0, 2, 500, NULL);
         mainbar->taskService.updateActiveTask(NULL, true);
+    }
+    else if(message == WM_MBUTTONDOWN) {
+        //graceful close of a window
+        SendMessageTimeout(taskAppHwnd, WM_SYSCOMMAND, SC_CLOSE, 0, 2, 500, NULL);
     }
 }
 
@@ -339,35 +342,23 @@ void baritemlist::draw(HWND hWnd, HDC hDC)
 void baritemlist::mouse_event(int mx, int my, int message, unsigned flags)
 {
     RECT            rect;
-    int              newitem;
     POINT           p;
 
     // get a DC and the window rectangle
-    HWND mainbarHwnd = mainbar->m_hWnd;
-    GetClientRect(mainbarHwnd, &rect);
+    GetClientRect(mainbar->m_hWnd, &rect);
 
     // shift tracking if we're over another menu
 
     p.x = mx;
     p.y = my;
-    ClientToScreen(mainbarHwnd, &p);
+    ClientToScreen(mainbar->m_hWnd, &p);
 
-    switch(message) {
-        case WM_LBUTTONUP:
-        case WM_RBUTTONUP:
-        case WM_RBUTTONDOWN:
-        case WM_LBUTTONDOWN:
-        case WM_LBUTTONDBLCLK:
-        {
-            // get new selected item, if any
-            newitem = getItem(mx, my, rect);
 
-            if(newitem != -1)
-                m_Items.at(newitem)->mouse_event(mx, my, message, 0);
-        }
-        break;
+    // get new selected item, if any
+    int newitem = getItem(mx, my, rect);
 
-    }
+    if(newitem != -1)
+        m_Items.at(newitem)->mouse_event(mx, my, message, 0);
 }
 
 bool baritemlist::calc_size(int* px, int y, int w, int h, int m)
@@ -483,7 +474,6 @@ bool trayItemList::calc_itemsSizes()
     int xpos = itemRect.left;
     int y = itemRect.top;
 
-    int is = h;
 
     max_width = amountOfTasks * 20;
 
@@ -629,7 +619,6 @@ void clockBtn::createClockTimer()
 
 void clockBtn::draw(HWND hWnd, HDC hDC)
 {
-    int      h{ 0 };
     COLORREF color;
 
     RECT drawingRect;

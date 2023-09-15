@@ -182,7 +182,7 @@ void TaskService::TaskWndProc(WPARAM wParam, LPARAM lparam)
             if(winTaskApplication) {
                 std::wstring window = LB_Api::getWindowTitle(winTaskApplication);
 
-                bool ret = updateWindow(winTaskApplication);
+                updateWindow(winTaskApplication);
             }
             break;
     }
