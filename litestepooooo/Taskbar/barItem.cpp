@@ -66,10 +66,10 @@ bool barItem::calc_size(int* px, int y, int w, int h, int m)
     int x = *px;
     bool f = false;
 
-    if(itemRect.left != x)
+    if (itemRect.left != x)
         itemRect.left = x, f = true;
     x += w;
-    if(itemRect.right != x)
+    if (itemRect.right != x)
         itemRect.right = x, f = true;
     *px = x;
 

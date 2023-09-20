@@ -9,7 +9,8 @@ FLogger::FLogger()
 
 FLogger::~FLogger()
 {
-    fclose(logFile);
+    if (logFile != NULL)
+        fclose(logFile);
 }
 
 

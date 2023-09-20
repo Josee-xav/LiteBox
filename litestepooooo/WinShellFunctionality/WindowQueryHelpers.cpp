@@ -5,11 +5,11 @@
 // Tries to find the CoreWindow class in a UWP application as thats the main class thats shown when not cloaked to my understanding..
 BOOL CALLBACK ProcessWindow(HWND hwnd, LPARAM lparam)
 {
-    bool* foundTHEchild = reinterpret_cast<bool*>( lparam );
+    bool* foundTHEchild = reinterpret_cast<bool*>(lparam);
     char windowClass[256] = {};
     GetClassNameA(hwnd, windowClass, sizeof(windowClass));
 
-    if(strcmp(windowClass, "Windows.UI.Core.CoreWindow") == 0) {
+    if (strcmp(windowClass, "Windows.UI.Core.CoreWindow") == 0) {
         *foundTHEchild = true;
     }
 
@@ -26,12 +26,12 @@ bool WindowQueryHelper::inspectWindows10AppWindow(HWND hWnd, bool cloakTest = tr
 {
     bool foundTHEchild = false;
     //Sleep(2000);
-    EnumChildWindows(hWnd, ProcessWindow, reinterpret_cast<LPARAM>( &foundTHEchild ));
+    EnumChildWindows(hWnd, ProcessWindow, reinterpret_cast<LPARAM>(&foundTHEchild));
 
     // Windows.UI.Core.CoreWindow
     // ApplicationFrame
     // 
-    if(foundTHEchild == true) {
+    if (foundTHEchild == true) {
         return true;
 
     }
@@ -51,14 +51,14 @@ char __fastcall _sws_IsOwnerToolWindow(HWND hWnd)
     v1 = 0;
     v2 = hWnd;
     Window = GetWindow(hWnd, 4u);
-    while(( GetWindowLongPtrW(v2, -20) & 0x40000 ) == 0 && Window) {
+    while ((GetWindowLongPtrW(v2, -20) & 0x40000) == 0 && Window) {
         v4 = v2;
         v2 = Window;
         v5 = GetWindow(Window, 4u);
         v6 = Window;
         Window = v5;
-        if(( GetWindowLongPtrW(v6, -20) & 0x80 ) == 0x80) {
-            if(( GetWindowLongPtrW(v4, -20) & 0x10000 ) == 0 || Window)
+        if ((GetWindowLongPtrW(v6, -20) & 0x80) == 0x80) {
+            if ((GetWindowLongPtrW(v4, -20) & 0x10000) == 0 || Window)
                 return 1;
 
             return v1;
@@ -87,42 +87,42 @@ __int64 __fastcall WindowQueryHelper::IsTaskWindow(HWND a2)
 
     v5 = a2;
     v6 = 0;
-    if(IsWindow(a2)) {
+    if (IsWindow(a2)) {
         WindowLongPtrW = GetWindowLongPtrW(v5, -20);
         Window = GetWindow(v5, 4u);
-        if(!IsWindow(Window)
-                //|| !IsWindowEnabled(Window)
-                || ( GetWindowRect(Window, &Rect), !IsWindowVisible(Window) )
-                || ( v9 = 1, IsRectEmpty(&Rect) )) {
+        if (!IsWindow(Window)
+            //|| !IsWindowEnabled(Window)
+            || (GetWindowRect(Window, &Rect), !IsWindowVisible(Window))
+            || (v9 = 1, IsRectEmpty(&Rect))) {
             v9 = 0;
         }
 
-        if(( WindowLongPtrW & 0x8000000 ) != 0 || ( v10 = 0, ( WindowLongPtrW & 0x80u ) != 0 ))
+        if ((WindowLongPtrW & 0x8000000) != 0 || (v10 = 0, (WindowLongPtrW & 0x80u) != 0))
             v10 = 1;
 
         v11 = v10;
-        v12 = ( WindowLongPtrW & 0x40000i64 ) != 0;
-        if(v12)
+        v12 = (WindowLongPtrW & 0x40000i64) != 0;
+        if (v12)
             v11 = 0;
 
         GetWindowRect(v5, &rc);
-        if(IsWindowVisible(v5)
-                && !IsRectEmpty(&rc)
-                //&& IsWindowEnabled(v5)
-                && !v11
-                && ( v12 || !v9 && !_sws_IsOwnerToolWindow(v5) )
-                && !_GhostWindowFromHungWindow(v5)) {
-            for(i = v5; ; i = v16) {
+        if (IsWindowVisible(v5)
+            && !IsRectEmpty(&rc)
+            //&& IsWindowEnabled(v5)
+            && !v11
+            && (v12 || !v9 && !_sws_IsOwnerToolWindow(v5))
+            && !_GhostWindowFromHungWindow(v5)) {
+            for (i = v5; ; i = v16) {
                 v15 = GetWindow(i, 4u);
                 v16 = v15;
-                if(!v15)
+                if (!v15)
                     break;
 
                 v14 = GetWindowLongPtrW(v15, -20);
-                if(( v14 & 0x40000i64 ) == 0 && ( ( v14 & 0x80u ) != 0 || ( v14 & 0x8000000 ) != 0 ))
+                if ((v14 & 0x40000i64) == 0 && ((v14 & 0x80u) != 0 || (v14 & 0x8000000) != 0))
                     break;
 
-                if(!IsWindowVisible(v16) || _GhostWindowFromHungWindow(v16))
+                if (!IsWindowVisible(v16) || _GhostWindowFromHungWindow(v16))
                     break;
 
                 v5 = v16;
@@ -137,7 +137,7 @@ __int64 __fastcall WindowQueryHelper::IsTaskWindow(HWND a2)
 
 BOOL ShouldTreatShellManagedWindowAsNotShellManaged(HWND hWnd)
 {
-    return ( GetPropW(hWnd, L"Microsoft.Windows.ShellManagedWindowAsNormalWindow") != NULL );
+    return (GetPropW(hWnd, L"Microsoft.Windows.ShellManagedWindowAsNormalWindow") != NULL);
 }
 
 // https://github.com/valinet/ExplorerPatcher/issues/161 Thank you valinet <3 <3 for your time researching into windows api to allow people to extend microsofts operating system 
@@ -148,8 +148,8 @@ bool WindowQueryHelper::isAppWindow(HWND hwnd, bool checkWin10)
     // and we want those in the Alt-Tab list
     // Bugfix: Exclude hung shell frame (immersive) UWP windows, as we already include
     // ghost app windows in their place already
-    if(_IsShellFrameWindow(hwnd) && !_GhostWindowFromHungWindow(hwnd)) {
-        if(inspectWindows10AppWindow(hwnd, checkWin10))
+    if (_IsShellFrameWindow(hwnd) && !_GhostWindowFromHungWindow(hwnd)) {
+        if (inspectWindows10AppWindow(hwnd, checkWin10))
             return true;
 
     }
@@ -157,7 +157,7 @@ bool WindowQueryHelper::isAppWindow(HWND hwnd, bool checkWin10)
     // Shell managed windows, as far as I can tell, represent all immersive UI the
     // Windows shell might present the user with, like: Start menu, Search (Win+Q),
     // notifications, taskbars etc
-    if(_IsShellManagedWindow(hwnd) && !ShouldTreatShellManagedWindowAsNotShellManaged(hwnd)) {
+    if (_IsShellManagedWindow(hwnd) && !ShouldTreatShellManagedWindowAsNotShellManaged(hwnd)) {
         return FALSE;
     }
 
@@ -169,18 +169,18 @@ bool WindowQueryHelper::isAppWindow(HWND hwnd, bool checkWin10)
 }
 
 void winEventProc(
-        HWINEVENTHOOK hWinEventHook,
-        DWORD event,
-        HWND hwnd,
-        LONG idObject,
-        LONG idChild,
-        DWORD idEventThread,
-        DWORD dwmsEventTime
+    HWINEVENTHOOK hWinEventHook,
+    DWORD event,
+    HWND hwnd,
+    LONG idObject,
+    LONG idChild,
+    DWORD idEventThread,
+    DWORD dwmsEventTime
 )
 {
     // SHOULD REMOVE THE LITERAL..
-    if(( event == EVENT_OBJECT_UNCLOAKED ) && hwnd && idObject == OBJID_WINDOW && _IsShellFrameWindow(hwnd) && !_GhostWindowFromHungWindow(hwnd)) {
-        SendMessage(FindWindowW(( L"LiteBoxDesktopWindoww" ), NULL), WM_ShellHook, WM_USER + 44, (LPARAM)hwnd); // sends the UWP message to the SHELLHOOK proc wit WM_WINDOWCREATED
+    if ((event == EVENT_OBJECT_UNCLOAKED) && hwnd && idObject == OBJID_WINDOW && _IsShellFrameWindow(hwnd) && !_GhostWindowFromHungWindow(hwnd)) {
+        SendMessage(FindWindowW((L"LiteBoxDesktopWindoww"), NULL), WM_ShellHook, WM_USER + 44, (LPARAM)hwnd); // sends the UWP message to the SHELLHOOK proc wit WM_WINDOWCREATED
     }
 
 }
@@ -192,7 +192,7 @@ BOOL WindowQueryHelper::initWinHelper()
 {
 
 
-    if(!SetWinEventHook(
+    if (!SetWinEventHook(
         EVENT_MIN,
         EVENT_MAX,
         NULL,
@@ -200,7 +200,7 @@ BOOL WindowQueryHelper::initWinHelper()
         0,
         0,
         WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS
-        )) {
+    )) {
         return false;
     }
 

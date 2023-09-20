@@ -194,7 +194,7 @@ inline void PopupMenu::OnPaint(HWND hWnd, HDC hDC)
     // draw each item
 
     pos = 0;
-    for(it = m_Items.begin(); it != m_Items.end(); it++)
+    for (it = m_Items.begin(); it != m_Items.end(); it++)
         DrawItem(hWnd, hDC, pos++, *it);
 }
 
@@ -223,7 +223,7 @@ inline void PopupMenu::DestroyAll(void)
 
     // find the root
 
-    for(pMenu = this; pMenu->m_pPrevious; pMenu = pMenu->m_pPrevious);
+    for (pMenu = this; pMenu->m_pPrevious; pMenu = pMenu->m_pPrevious);
     DestroyWindow(pMenu->m_hWnd);
 }
 

@@ -11,16 +11,16 @@ typedef struct
     PVOID pData;
     ULONG ulDataSize;
 } WINCOMPATTRDATA;
-typedef BOOL(WINAPI* pSetWindowCompositionAttribute)( HWND, WINCOMPATTRDATA* );
+typedef BOOL(WINAPI* pSetWindowCompositionAttribute)(HWND, WINCOMPATTRDATA*);
 extern pSetWindowCompositionAttribute _SetWindowCompositionAttribute;
 
-typedef BOOL(WINAPI* pIsShellManagedWindow)( HWND );
+typedef BOOL(WINAPI* pIsShellManagedWindow)(HWND);
 extern pIsShellManagedWindow _IsShellManagedWindow;
 extern pIsShellManagedWindow _IsShellFrameWindow;
 
-typedef HWND(WINAPI* pHungWindowFromGhostWindow)( HWND );
+typedef HWND(WINAPI* pHungWindowFromGhostWindow)(HWND);
 extern pHungWindowFromGhostWindow _HungWindowFromGhostWindow;
-typedef HWND(WINAPI* pGhostWindowFromHungWindow)( HWND );
+typedef HWND(WINAPI* pGhostWindowFromHungWindow)(HWND);
 extern pGhostWindowFromHungWindow _GhostWindowFromHungWindow;
 
 

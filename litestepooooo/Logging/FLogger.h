@@ -17,7 +17,7 @@ public:
     template<typename... Args>
     static void log(const char* message_str, const char* message, Args... args)
     {
-        if(logFile != 0) {
+        if (logFile != NULL) {
             std::time_t current_time = std::time(0);
             std::tm timestamp;
             errno_t  err = localtime_s(&timestamp, &current_time);

@@ -11,7 +11,7 @@ char* extract_string(char* dest, const char* src, int n)
 char* unquote(char* src)
 {
     int l = (int)strlen(src);
-    if(l >= 2 && ( src[0] == '\"' || src[0] == '\'' ) && src[l - 1] == src[0])
+    if (l >= 2 && (src[0] == '\"' || src[0] == '\'') && src[l - 1] == src[0])
         return extract_string(src, src + 1, l - 2);
     return src;
 }
@@ -29,16 +29,16 @@ COLORREF rgb(unsigned r, unsigned g, unsigned b)
 
 COLORREF switchRgb(COLORREF c)
 {
-    return ( ( c & 0x0000ff ) << 16 ) | ( c & 0x00ff00 ) | ( ( c & 0xff0000 ) >> 16 );
+    return ((c & 0x0000ff) << 16) | (c & 0x00ff00) | ((c & 0xff0000) >> 16);
 }
 
 COLORREF mixcolors(COLORREF c1, COLORREF c2, int f)
 {
     int n = 255 - f;
     return RGB(
-            ( GetRValue(c1) * f + GetRValue(c2) * n ) / 255,
-            ( GetGValue(c1) * f + GetGValue(c2) * n ) / 255,
-            ( GetBValue(c1) * f + GetBValue(c2) * n ) / 255
+        (GetRValue(c1) * f + GetRValue(c2) * n) / 255,
+        (GetGValue(c1) * f + GetGValue(c2) * n) / 255,
+        (GetBValue(c1) * f + GetBValue(c2) * n) / 255
     );
 }
 
@@ -48,12 +48,12 @@ COLORREF shadecolor(COLORREF c, int f)
     r = (int)GetRValue(c) + f;
     g = (int)GetGValue(c) + f;
     b = (int)GetBValue(c) + f;
-    if(r < 0) r = 0;
-    if(g < 0) g = 0;
-    if(b < 0) b = 0;
-    if(r > 255) r = 255;
-    if(g > 255) g = 255;
-    if(b > 255) b = 255;
+    if (r < 0) r = 0;
+    if (g < 0) g = 0;
+    if (b < 0) b = 0;
+    if (r > 255) r = 255;
+    if (g > 255) g = 255;
+    if (b > 255) b = 255;
     return RGB(r, g, b);
 }
 
@@ -63,7 +63,7 @@ unsigned greyvalue(COLORREF c)
     r = GetRValue(c);
     g = GetGValue(c);
     b = GetBValue(c);
-    return ( r * 79 + g * 156 + b * 21 ) / 256;
+    return (r * 79 + g * 156 + b * 21) / 256;
 }
 
 /* X-Windows color names */
@@ -211,8 +211,8 @@ static struct litcolor5 { const char* cname; COLORREF cref[5]; } litcolor5_ary[]
 };
 int iminmax(int a, int b, int c)
 {
-    if(a > c) a = c;
-    if(a < b) a = b;
+    if (a > c) a = c;
+    if (a < b) a = b;
     return a;
 }
 /* ------------------------------------------------------------------------- */
@@ -224,29 +224,29 @@ COLORREF ParseLiteralColor(LPCWSTR color)
     int i, n, s; unsigned l; wchar_t* p, c, buf[32]; const char* cp;
 
     l = (int)wcslen(color) + 1;
-    if(l > sizeof buf)
+    if (l > sizeof buf)
         return (COLORREF)-1;
 
     memcpy(buf, color, l);
     buf[sizeof buf - 1] = '\0';
 
-    while(NULL != ( p = wcschr(buf, ' ') ))
+    while (NULL != (p = wcschr(buf, ' ')))
         wcscpy(p, p + 1), --l;
 
-    if(l < 3)
+    if (l < 3)
         return (COLORREF)-1;
 
-    if(NULL != ( p = wcsstr(buf, L"grey") ))
+    if (NULL != (p = wcsstr(buf, L"grey")))
         p[2] = 'a';
 
-    if(0 == memcmp(buf, "gray", 4) && ( c = buf[4] ) >= '0' && c <= '9') {
+    if (0 == memcmp(buf, "gray", 4) && (c = buf[4]) >= '0' && c <= '9') {
         i = iminmax(_wtoi(buf + 4), 0, 100);
-        i = ( i * 255 + 50 ) / 100;
+        i = (i * 255 + 50) / 100;
         return rgb(i, i, i);
     }
 
-    i = *( p = &buf[l - 2] ) - '0';
-    if(i >= 1 && i <= 4)
+    i = *(p = &buf[l - 2]) - '0';
+    if (i >= 1 && i <= 4)
         *p = 0, --l;
     else
         i = 0;
@@ -254,21 +254,19 @@ COLORREF ParseLiteralColor(LPCWSTR color)
     cp = (const char*)litcolor5_ary;
     n = sizeof litcolor5_ary / sizeof litcolor5_ary[0];
     s = sizeof litcolor5_ary[0];
-    for(;;) {
+    for (;;) {
         do {
-            if(*buf <= **(const char**)cp)
+            if (*buf <= **(const char**)cp)
                 break;
-        }
-        while(cp += s, --n);
+        } while (cp += s, --n);
         do {
-            if(*buf < **(const char**)cp)
+            if (*buf < **(const char**)cp)
                 break;
-            if(0 == memcmp(buf, *(const char**)cp, l))
-                return ( (struct litcolor5*)cp )->cref[i];
-        }
-        while(cp += s, --n);
+            if (0 == memcmp(buf, *(const char**)cp, l))
+                return ((struct litcolor5*)cp)->cref[i];
+        } while (cp += s, --n);
 
-        if(i || s == sizeof litcolor1_ary[0])
+        if (i || s == sizeof litcolor1_ary[0])
             return (COLORREF)-1;
 
         cp = (const char*)litcolor1_ary;
@@ -284,7 +282,7 @@ COLORREF readColorFromString(const wchar_t* string)
     wchar_t* s, * d, * r, c;
     COLORREF cr;
 
-    if(NULL == string)
+    if (NULL == string)
         return CLR_INVALID;
 
     //s = _strlwr(unquote(strcpy_max(stub, string, sizeof stub)));
@@ -292,16 +290,16 @@ COLORREF readColorFromString(const wchar_t* string)
     s = _wcslwr(stub);
 
     /* check if its an "rgb:12/ee/4c" type string */
-    if(0 == memcmp(s, "rgb:", 4)) {
+    if (0 == memcmp(s, "rgb:", 4)) {
         int j = 3;
         s += 4, d = rgbstr, r = s;
-        for(;;) {
+        for (;;) {
             d[0] = *r && '/' != *r ? *r++ : '0';
             d[1] = *r && '/' != *r ? *r++ : d[0];
             d += 2;
-            if(0 == --j)
+            if (0 == --j)
                 break;
-            if('/' != *r)
+            if ('/' != *r)
                 goto check_hex;
             ++r;
         }
@@ -309,21 +307,21 @@ COLORREF readColorFromString(const wchar_t* string)
     }
 check_hex:
     /* check if its a valid hex number */
-    if('#' == *s)
+    if ('#' == *s)
         s++;
-    for(cr = 0, d = s; ( c = *d ) != 0; ++d) {
+    for (cr = 0, d = s; (c = *d) != 0; ++d) {
         cr <<= 4;
-        if(c >= '0' && c <= '9')
+        if (c >= '0' && c <= '9')
             cr |= c - '0';
         else
-            if(c >= 'a' && c <= 'f')
-                cr |= c - ( 'a' - 10 );
+            if (c >= 'a' && c <= 'f')
+                cr |= c - ('a' - 10);
             else /* must be a literal color name (or is invalid) */
                 return ParseLiteralColor(s);
     }
     /* #AB4 short type colors */
-    if(d - s == 3)
-        cr = ( ( cr & 0xF00 ) << 12 ) | ( ( cr & 0xFF0 ) << 8 ) | ( ( cr & 0x0FF ) << 4 ) | ( cr & 0x00F );
+    if (d - s == 3)
+        cr = ((cr & 0xF00) << 12) | ((cr & 0xFF0) << 8) | ((cr & 0x0FF) << 4) | (cr & 0x00F);
     return switchRgb(cr);
 }
 

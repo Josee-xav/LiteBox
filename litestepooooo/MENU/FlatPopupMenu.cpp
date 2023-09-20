@@ -65,12 +65,12 @@ PopupMenu::~PopupMenu()
 {
     // if we're tracking, release it
 
-    if(m_State == stateTrack)
+    if (m_State == stateTrack)
         ReleaseCapture();
 
     // clean up the window
 
-    if(m_hWnd)
+    if (m_hWnd)
         DestroyWindow(m_hWnd);
 
     // clean up the GDI objects
@@ -85,7 +85,7 @@ PopupMenu::~PopupMenu()
 
 void PopupMenu::Cleanup(void)
 {
-    if(m_hFont) {
+    if (m_hFont) {
         DeleteObject(m_hFont);
         DeleteObject(m_hBoldFont);
         DeleteObject(m_hBorderPen);
@@ -179,7 +179,7 @@ void PopupMenu::CreateObjects(void)
 
     // create the bitmap
 
-    if(m_BitmapID != (UINT)-1)
+    if (m_BitmapID != (UINT)-1)
         m_hBitmap = LoadBitmap(m_hInstance, MAKEINTRESOURCE(m_BitmapID));
 
 }
@@ -198,8 +198,8 @@ bool PopupMenu::Create(HINSTANCE hInstance, const UINT bitmap_id)
 
     // register the class
 
-    if(!m_bClassRegistered) {
-        if(!RegisterClass())
+    if (!m_bClassRegistered) {
+        if (!RegisterClass())
             return false;
 
         m_bClassRegistered = true;
@@ -249,7 +249,7 @@ bool PopupMenu::AppendItem(const DWORD dwFlags, LPCTSTR pszName, const UINT item
 
     item.m_dwFlags = dwFlags;
 
-    if(pszName)
+    if (pszName)
         item.m_strName = pszName;
 
     item.m_ItemID = itemid;
@@ -271,7 +271,7 @@ bool PopupMenu::AppendPopup(const DWORD dwFlags, LPCTSTR pszName, PopupMenu& pop
 
     // the separator flag is not allowed
 
-    if(( dwFlags & itemSeparator ) != 0)
+    if ((dwFlags & itemSeparator) != 0)
         return false;
 
     // add the item
@@ -313,11 +313,11 @@ UINT PopupMenu::Track(int x, int y, HWND hWnd, const bool bModal, const bool bPo
     maxw = 0;
     top = 3;
 
-    for(it = m_Items.begin(); it != m_Items.end(); it++) {
+    for (it = m_Items.begin(); it != m_Items.end(); it++) {
         it->m_Top = top;
 
-        if(!( it->m_dwFlags & itemSeparator )) {
-            hOldFont = SelectObject(hDC, ( it->m_dwFlags & itemBold ) == 0 ? m_hFont : m_hBoldFont);
+        if (!(it->m_dwFlags & itemSeparator)) {
+            hOldFont = SelectObject(hDC, (it->m_dwFlags & itemBold) == 0 ? m_hFont : m_hBoldFont);
             GetTextExtentPoint32(hDC, it->m_strName.c_str(), it->m_strName.length(), &size);
             maxw = max(size.cx, maxw);
             SelectObject(hDC, hOldFont);
@@ -345,11 +345,11 @@ UINT PopupMenu::Track(int x, int y, HWND hWnd, const bool bModal, const bool bPo
 
     SystemParametersInfo(SPI_GETWORKAREA, 0, &rcScreen, 0);
 
-    if(x + m_Width > rcScreen.right)
+    if (x + m_Width > rcScreen.right)
         x = max(0, rcScreen.right - m_Width);
 
-    if(y + top + 2 > rcScreen.bottom)
-        y = max(0, rcScreen.bottom - ( top + 2 ));
+    if (y + top + 2 > rcScreen.bottom)
+        y = max(0, rcScreen.bottom - (top + 2));
 
     // create the window
 
@@ -368,10 +368,10 @@ UINT PopupMenu::Track(int x, int y, HWND hWnd, const bool bModal, const bool bPo
 
     // check created OK
 
-    if(m_hWnd == NULL)
+    if (m_hWnd == NULL)
         return false;
 
-    if(bPopup) {
+    if (bPopup) {
         // already in the menu, no need to wait for any buttons
         m_bWaitLeftButton = false;
         m_bWaitRightButton = false;
@@ -384,8 +384,8 @@ UINT PopupMenu::Track(int x, int y, HWND hWnd, const bool bModal, const bool bPo
         m_State = stateTrack;
         // we wait for any already-down buttons to come up
 
-        m_bWaitLeftButton = ( GetKeyState(VK_LBUTTON) & 0x8000 ) != 0;
-        m_bWaitRightButton = ( GetKeyState(VK_RBUTTON) & 0x8000 ) != 0;
+        m_bWaitLeftButton = (GetKeyState(VK_LBUTTON) & 0x8000) != 0;
+        m_bWaitRightButton = (GetKeyState(VK_RBUTTON) & 0x8000) != 0;
     }
 
     // remember modal setting and command window handle
@@ -393,10 +393,10 @@ UINT PopupMenu::Track(int x, int y, HWND hWnd, const bool bModal, const bool bPo
     m_bModal = bModal;
     m_hWndCommand = hWnd;
 
-    if(m_bModal) {
+    if (m_bModal) {
         // go into a modal loop
 
-        while(GetMessage(&msg, NULL, 0, 0) == TRUE && IsWindow(m_hWnd)) {
+        while (GetMessage(&msg, NULL, 0, 0) == TRUE && IsWindow(m_hWnd)) {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
@@ -409,7 +409,7 @@ UINT PopupMenu::Track(int x, int y, HWND hWnd, const bool bModal, const bool bPo
 
 void PopupMenu::hidePopUp()
 {
-    if(m_hWnd)
+    if (m_hWnd)
         ShowWindow(m_hWnd, SW_HIDE);
 
 }
@@ -423,60 +423,60 @@ static LRESULT CALLBACK stubWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPAR
 {
 
     // the usual window procedure...
-    PopupMenu* pClass = ( (PopupMenu*)GetWindowLongPtr(hWnd, GWLP_USERDATA) );
-    switch(uMsg) {
-        case WM_CREATE:
-            SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)( (LPCREATESTRUCT)lParam )->lpCreateParams); break;
-            break;
-        case WM_ERASEBKGND:
+    PopupMenu* pClass = ((PopupMenu*)GetWindowLongPtr(hWnd, GWLP_USERDATA));
+    switch (uMsg) {
+    case WM_CREATE:
+        SetWindowLongPtr(hWnd, GWLP_USERDATA, (LONG_PTR)((LPCREATESTRUCT)lParam)->lpCreateParams); break;
+        break;
+    case WM_ERASEBKGND:
 
-            pClass->OnEraseBkgnd(hWnd, (HDC)wParam);
-            return TRUE;
+        pClass->OnEraseBkgnd(hWnd, (HDC)wParam);
+        return TRUE;
 
-        case WM_LBUTTONDOWN:
+    case WM_LBUTTONDOWN:
 
-            pClass->OnLButtonDown(hWnd, LOWORD(lParam), HIWORD(lParam));
-            break;
-
-        case WM_RBUTTONDOWN:
-
-            pClass->OnLButtonDown(hWnd, LOWORD(lParam), HIWORD(lParam));
-            break;
-
-        case WM_LBUTTONUP:
-
-            pClass->OnLButtonUp(hWnd, LOWORD(lParam), HIWORD(lParam));
-            break;
-
-        case WM_RBUTTONUP:
-
-            pClass->OnRButtonUp(hWnd, LOWORD(lParam), HIWORD(lParam));
-            break;
-
-        case WM_MOUSEMOVE:
-
-            pClass->OnMouseMove(hWnd, LOWORD(lParam), HIWORD(lParam));
-            break;
-
-        case WM_TIMER:
-
-            pClass->OnTimer(hWnd, wParam);
-            break;
-
-        case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-
-            BeginPaint(hWnd, &ps);
-
-            pClass->OnPaint(hWnd, ps.hdc);
-            EndPaint(hWnd, &ps);
-        }
+        pClass->OnLButtonDown(hWnd, LOWORD(lParam), HIWORD(lParam));
         break;
 
-        case WM_DESTROY:
-            pClass->OnDestroy(hWnd);
-            break;
+    case WM_RBUTTONDOWN:
+
+        pClass->OnLButtonDown(hWnd, LOWORD(lParam), HIWORD(lParam));
+        break;
+
+    case WM_LBUTTONUP:
+
+        pClass->OnLButtonUp(hWnd, LOWORD(lParam), HIWORD(lParam));
+        break;
+
+    case WM_RBUTTONUP:
+
+        pClass->OnRButtonUp(hWnd, LOWORD(lParam), HIWORD(lParam));
+        break;
+
+    case WM_MOUSEMOVE:
+
+        pClass->OnMouseMove(hWnd, LOWORD(lParam), HIWORD(lParam));
+        break;
+
+    case WM_TIMER:
+
+        pClass->OnTimer(hWnd, wParam);
+        break;
+
+    case WM_PAINT:
+    {
+        PAINTSTRUCT ps;
+
+        BeginPaint(hWnd, &ps);
+
+        pClass->OnPaint(hWnd, ps.hdc);
+        EndPaint(hWnd, &ps);
+    }
+    break;
+
+    case WM_DESTROY:
+        pClass->OnDestroy(hWnd);
+        break;
     }
 
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -498,7 +498,7 @@ void PopupMenu::OnTimer(HWND hWnd, unsigned short timerid)
 
     // show the popup menu
 
-    if(m_SelectedItem != -1 && m_Items.at(m_SelectedItem).m_pPopup) {
+    if (m_SelectedItem != -1 && m_Items.at(m_SelectedItem).m_pPopup) {
         // get the display position
 
         p.x = m_Width - 10;
@@ -507,7 +507,7 @@ void PopupMenu::OnTimer(HWND hWnd, unsigned short timerid)
 
         // track it
 
-        if(m_Items.at(m_SelectedItem).m_pPopup->Track(p.x, p.y, NULL, true, true))
+        if (m_Items.at(m_SelectedItem).m_pPopup->Track(p.x, p.y, NULL, true, true))
             DestroyAll();
     }
 }
@@ -528,7 +528,7 @@ void PopupMenu::DrawItem(HWND hWnd, HDC hDC, const int index, const CItem& item)
 
     // test if a separator
 
-    if(( item.m_dwFlags & itemSeparator ) != 0) {
+    if ((item.m_dwFlags & itemSeparator) != 0) {
         DrawSeparator(hDC, item.m_Top);
         return;
     }
@@ -540,7 +540,7 @@ void PopupMenu::DrawItem(HWND hWnd, HDC hDC, const int index, const CItem& item)
 
     // is there an icon?
 
-    if(item.m_IconIndex != -1) {
+    if (item.m_IconIndex != -1) {
         // draw or erase the frame
 
         p[0].x = p[1].x = x;
@@ -579,7 +579,7 @@ void PopupMenu::DrawItem(HWND hWnd, HDC hDC, const int index, const CItem& item)
 
     // draw the item text
 
-    if(( item.m_dwFlags & itemBold ) != 0) {
+    if ((item.m_dwFlags & itemBold) != 0) {
         h = m_BoldFontHeight;
         hOldFont = SelectObject(hDC, m_hBoldFont);
     }
@@ -590,17 +590,17 @@ void PopupMenu::DrawItem(HWND hWnd, HDC hDC, const int index, const CItem& item)
 
     SetBkMode(hDC, TRANSPARENT);
 
-    if(bSelected)
+    if (bSelected)
         nColor = colorHighlightText;
     else {
-        if(( item.m_dwFlags & itemGrayed ) != 0)
+        if ((item.m_dwFlags & itemGrayed) != 0)
             nColor = colorGrayedText;
         else
             nColor = colorText;
     }
 
     rect.left = 1 + 2 + 18 + 2;
-    rect.top = item.m_Top + ( ( 17 - h ) / 2 );
+    rect.top = item.m_Top + ((17 - h) / 2);
     rect.bottom = rect.top + 1000;
     rect.right = rect.left + 1000;
 
@@ -610,14 +610,14 @@ void PopupMenu::DrawItem(HWND hWnd, HDC hDC, const int index, const CItem& item)
 
     // draw a subitem arrow
 
-    if(item.m_pPopup) {
+    if (item.m_pPopup) {
         hOldPen = SelectObject(hDC, bSelected ? m_hSelectedTextPen : m_hTextPen);
 
         p[0].x = p[1].x = m_Width - 7;
         p[0].y = item.m_Top + 8;
         p[1].y = item.m_Top + 9;
 
-        for(i = 0; i < 4; i++) {
+        for (i = 0; i < 4; i++) {
             Polyline(hDC, p, 2);
             p[0].x--;
             p[1].x--;
@@ -664,18 +664,18 @@ void PopupMenu::OnDestroy(HWND hWnd)
     std::vector<CItem>::const_iterator it;
     // any active popups must also be destroyed
 
-    for(it = m_Items.begin(); it != m_Items.end(); it++)
-        if(it->m_pPopup && it->m_pPopup->m_State != stateInactive)
+    for (it = m_Items.begin(); it != m_Items.end(); it++)
+        if (it->m_pPopup && it->m_pPopup->m_State != stateInactive)
             DestroyWindow(it->m_pPopup->m_hWnd);
 
-    if(m_State == stateTrack)
+    if (m_State == stateTrack)
         ReleaseCapture();
 
     m_State = stateInactive;
     m_hWnd = NULL;
 
 
-    if(!m_bModal && m_SelectedID && !m_bChild)
+    if (!m_bModal && m_SelectedID && !m_bChild)
         PostMessage(m_hWndCommand, WM_COMMAND, m_SelectedID, 0);
 }
 
@@ -706,9 +706,9 @@ void PopupMenu::OnMouseMove(HWND hWnd, short x, short y)
 
     //!= NULL && GetClassName(hPointWnd, szClass, sizeof(szClass) / sizeof(TCHAR)) && !lstrcmp(szClass, "fpmMenuClass")
 
-    if(( hPointWnd = WindowFromPoint(p) ) != NULL && GetClassName(hPointWnd, szClass, sizeof(szClass) / sizeof(TCHAR)) && !lstrcmp(szClass, L"fpmMenuClass")) {
-        PopupMenu* pClass = ( (PopupMenu*)GetWindowLongPtr(hPointWnd, GWLP_USERDATA) );
-        if(pClass != this) {
+    if ((hPointWnd = WindowFromPoint(p)) != NULL && GetClassName(hPointWnd, szClass, sizeof(szClass) / sizeof(TCHAR)) && !lstrcmp(szClass, L"fpmMenuClass")) {
+        PopupMenu* pClass = ((PopupMenu*)GetWindowLongPtr(hPointWnd, GWLP_USERDATA));
+        if (pClass != this) {
             ReleaseCapture();
             m_State = stateShow;
 
@@ -725,12 +725,12 @@ void PopupMenu::OnMouseMove(HWND hWnd, short x, short y)
 
     // remove previous selection?
 
-    if(m_SelectedItem != -1 && newitem != m_SelectedItem) {
+    if (m_SelectedItem != -1 && newitem != m_SelectedItem) {
         // kill any ongoing timer
         KillTimer(m_hWnd, 1);
 
         //	// remove any popups associated with the last active item
-        if(m_Items.at(m_SelectedItem).m_pPopup && m_Items.at(m_SelectedItem).m_pPopup->m_State != stateInactive)
+        if (m_Items.at(m_SelectedItem).m_pPopup && m_Items.at(m_SelectedItem).m_pPopup->m_State != stateInactive)
             DestroyWindow(m_Items.at(m_SelectedItem).m_pPopup->m_hWnd);
 
         //	// deselect the old item
@@ -741,14 +741,14 @@ void PopupMenu::OnMouseMove(HWND hWnd, short x, short y)
     }
 
     // new selected item?
-    if(newitem != -1 && m_SelectedItem != newitem) {
+    if (newitem != -1 && m_SelectedItem != newitem) {
 
         // draw the new item
         m_SelectedItem = newitem;
         DrawItem(hWnd, hDC, m_SelectedItem, m_Items.at(m_SelectedItem));
 
         // start a timer if this is a popup
-        if(m_Items.at(m_SelectedItem).m_pPopup)
+        if (m_Items.at(m_SelectedItem).m_pPopup)
             SetTimer(m_hWnd, 1, m_PopupDelay, NULL);
     }
 
@@ -765,15 +765,15 @@ int PopupMenu::GetItem(short x, short y, const RECT& rect)
     int newitem;
     std::vector<CItem>::size_type i;
 
-    if(x <= 2 || y <= 2 || x > rect.right || y > rect.bottom)
+    if (x <= 2 || y <= 2 || x > rect.right || y > rect.bottom)
         newitem = -1;
     else {
-        for(i = 0; i < m_Items.size(); i++)
-            if(y > m_Items.at(i).m_Top && y < m_Items.at(i).m_Top + m_Items.at(i).m_Height)
+        for (i = 0; i < m_Items.size(); i++)
+            if (y > m_Items.at(i).m_Top && y < m_Items.at(i).m_Top + m_Items.at(i).m_Height)
                 break;
 
         newitem = i == m_Items.size() ? -1 : i;
-        if(newitem != -1 && ( m_Items.at(newitem).m_dwFlags & itemNotSelectable ) != 0)
+        if (newitem != -1 && (m_Items.at(newitem).m_dwFlags & itemNotSelectable) != 0)
             newitem = -1;
     }
 
@@ -793,11 +793,11 @@ void PopupMenu::ButtonDown(HWND hWnd, short x, short y, const bool bLeft)
 
 
     GetClientRect(hWnd, &rect);
-    if(CheckOutsideMenu(hWnd, rect, x, y))
+    if (CheckOutsideMenu(hWnd, rect, x, y))
         return;
     // check for click on popup
 
-    if(m_SelectedItem != -1 && m_Items.at(m_SelectedItem).m_pPopup && m_Items.at(m_SelectedItem).m_pPopup->m_State == stateInactive)
+    if (m_SelectedItem != -1 && m_Items.at(m_SelectedItem).m_pPopup && m_Items.at(m_SelectedItem).m_pPopup->m_State == stateInactive)
         OnTimer(hWnd, 1);
 }
 
@@ -810,16 +810,16 @@ void PopupMenu::OnLButtonUp(HWND hWnd, short x, short y)
 {
     RECT rect;
 
-    if(m_bWaitLeftButton) {
+    if (m_bWaitLeftButton) {
         m_bWaitLeftButton = false;
         return;
     }
 
     GetClientRect(hWnd, &rect);
-    if(CheckOutsideMenu(hWnd, rect, x, y))
+    if (CheckOutsideMenu(hWnd, rect, x, y))
         return;
 
-    if(m_SelectedItem != -1 && m_Items.at(m_SelectedItem).m_ItemID)
+    if (m_SelectedItem != -1 && m_Items.at(m_SelectedItem).m_ItemID)
         SetReturn(m_Items.at(m_SelectedItem).m_ItemID);
 }
 
@@ -832,16 +832,16 @@ void PopupMenu::OnRButtonUp(HWND hWnd, short x, short y)
 {
     RECT rect;
 
-    if(m_bWaitRightButton) {
+    if (m_bWaitRightButton) {
         m_bWaitRightButton = false;
         return;
     }
 
     GetClientRect(hWnd, &rect);
-    if(CheckOutsideMenu(hWnd, rect, x, y))
+    if (CheckOutsideMenu(hWnd, rect, x, y))
         return;
 
-    if(m_SelectedItem != -1 && m_Items.at(m_SelectedItem).m_ItemID)
+    if (m_SelectedItem != -1 && m_Items.at(m_SelectedItem).m_ItemID)
         SetReturn(m_Items.at(m_SelectedItem).m_ItemID);
 }
 
@@ -856,7 +856,7 @@ void PopupMenu::SetReturn(const UINT id)
 
     // find the root
 
-    for(pMenu = this; pMenu->m_pPrevious; pMenu = pMenu->m_pPrevious);
+    for (pMenu = this; pMenu->m_pPrevious; pMenu = pMenu->m_pPrevious);
     pMenu->m_SelectedID = id;
     DestroyAll();
 }
@@ -868,9 +868,9 @@ void PopupMenu::SetReturn(const UINT id)
 
 bool PopupMenu::CheckOutsideMenu(HWND hWnd, const RECT& rect, short x, short y)
 {
-    if(x <= 2 || y <= 2 || x > rect.right || y > rect.bottom) {
-        if(m_SelectedItem != -1)
-            if(m_Items.at(m_SelectedItem).m_pPopup && m_Items.at(m_SelectedItem).m_pPopup->m_State != stateInactive) {
+    if (x <= 2 || y <= 2 || x > rect.right || y > rect.bottom) {
+        if (m_SelectedItem != -1)
+            if (m_Items.at(m_SelectedItem).m_pPopup && m_Items.at(m_SelectedItem).m_pPopup->m_State != stateInactive) {
                 return false;
             }
         // clicked outside the window
@@ -1053,7 +1053,7 @@ bool PopupMenu::SetMenuItemText(const UINT itemid, LPCTSTR pszName, const bool b
 
     // get the item
 
-    if(( pItem = GetItem(itemid, bByPosition) ) == NULL)
+    if ((pItem = GetItem(itemid, bByPosition)) == NULL)
         return false;
 
     // adjust the name
@@ -1073,7 +1073,7 @@ bool PopupMenu::SetMenuItemFlags(const UINT itemid, const DWORD dwFlags, const b
 
     // get the item
 
-    if(( pItem = GetItem(itemid, bByPosition) ) == NULL)
+    if ((pItem = GetItem(itemid, bByPosition)) == NULL)
         return false;
 
     // adjust the flags
@@ -1093,10 +1093,10 @@ bool PopupMenu::GetString(const UINT itemid, LPTSTR pszText, const UINT cchText,
 
     // get the item
 
-    if(( pItem = GetItem(itemid, bByPosition) ) == NULL)
+    if ((pItem = GetItem(itemid, bByPosition)) == NULL)
         return false;
 
-    if(pItem->m_strName.length() + 1 > cchText)
+    if (pItem->m_strName.length() + 1 > cchText)
         return false;
 
     pItem->m_strName = pszText;
@@ -1114,7 +1114,7 @@ bool PopupMenu::SetMenuItemIcon(const UINT itemid, const int icon, const bool bB
 
     // get the item
 
-    if(( pItem = GetItem(itemid, bByPosition) ) == NULL)
+    if ((pItem = GetItem(itemid, bByPosition)) == NULL)
         return false;
 
     // adjust the icon
@@ -1132,16 +1132,16 @@ PopupMenu::CItem* PopupMenu::GetItem(const UINT itemid, const bool bByPosition)
 {
     std::vector<CItem>::iterator it;
 
-    if(bByPosition) {
-        if(itemid >= m_Items.size())
+    if (bByPosition) {
+        if (itemid >= m_Items.size())
             return NULL;
 
         return &m_Items.at(itemid);
     }
     else {
-        for(it = m_Items.begin(); it != m_Items.end(); it++)
-            if(it->m_ItemID == itemid)
-                return &( *it );
+        for (it = m_Items.begin(); it != m_Items.end(); it++)
+            if (it->m_ItemID == itemid)
+                return &(*it);
 
         return NULL;
     }

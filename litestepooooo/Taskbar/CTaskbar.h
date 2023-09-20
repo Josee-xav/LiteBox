@@ -49,7 +49,7 @@ protected:
     bool checkOutsideWindow(const RECT& rect, short x, short y);
     int getItem(short x, short y, const RECT& rect);
     barItem* getItem(const UINT itemid, const bool bByPosition);
-    
+
     static LRESULT CALLBACK windowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
     bool createPopupMenu();

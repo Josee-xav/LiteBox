@@ -3,7 +3,7 @@
 #include "../Taskbar/taskbarItemClasses.h"
 
 #include "../WinShellFunctionality/TrayShit.h"
-typedef int ( *trayHookDll_EntryFunc )( HWND );
+typedef int (*trayHookDll_EntryFunc)(HWND);
 
 
 class TrayService
