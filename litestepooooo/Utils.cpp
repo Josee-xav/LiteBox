@@ -217,7 +217,7 @@ void LB_Api::setWorkArea(int height)
 std::wstring LB_Api::getWindowClassName(HWND hwnd)
 {
     wchar_t windowClass[256] = {};
-    if (GetClassName(hwnd, windowClass, sizeof(windowClass)))
+    if (GetClassName(hwnd, windowClass, sizeof(windowClass) / sizeof(windowClass[0])))
         return windowClass;
     else
         return L"error";
@@ -262,14 +262,14 @@ void LB_Api::hideExplorer()
 void LB_Api::restartExplorerWindow()
 {
     DWORD dwPID;
-    HWND hSysTray = ::FindWindow(TEXT("Shell_TrayWnd"), NULL);
+    HWND hSysTray = ::FindWindow(TEXT("CabinetWClass"), NULL); // CabinetWClass is the explorer window
     GetWindowThreadProcessId(hSysTray, &dwPID);
     HANDLE explorerHandle = OpenProcess(PROCESS_TERMINATE, FALSE, dwPID);
 
     if (explorerHandle) {
         TerminateProcess(explorerHandle, 0);
     }
-    ShellExecute(NULL, NULL, L"explorer.exe", NULL, NULL, SW_HIDE);
+    ShellExecute(NULL, NULL, L"explorer.exe", NULL, NULL, SW_SHOW);
 }
 
 wchar_t* LB_Api::charToWChar(const char* text)
@@ -295,7 +295,7 @@ bool LB_Api::isIconValid(HICON icon)
 
 void LB_Api::showExplorer()
 {
-    if (explorerHwnds.size() == 0)
+    if(explorerHwnds.size() == 0)
         restartExplorerWindow();
     else
         for (int i = 0; i < explorerHwnds.size(); i++)

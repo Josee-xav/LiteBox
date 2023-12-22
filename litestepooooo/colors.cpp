@@ -1,6 +1,7 @@
 #include "colors.h"
 #include <stdlib.h>
 #pragma warning(disable : 4996)
+
 char* extract_string(char* dest, const char* src, int n)
 {
     memcpy(dest, src, n);

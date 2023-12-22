@@ -22,6 +22,7 @@ TrayService::~TrayService()
     if (hinstTrayLib != nullptr) {
         (th_libfunc)(NULL);
         FreeLibrary(hinstTrayLib);
+        DestroyWindow(hTrayWnd);
     }
 }
 

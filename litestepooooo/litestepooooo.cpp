@@ -60,7 +60,7 @@ BOOL isAppRunning()
 //The system closes the handle automatically when the process terminates.
 {
     if (CreateMutex(NULL, TRUE, L"WINDOW_CLASS") && GetLastError() == ERROR_ALREADY_EXISTS) {
-        return TRUE;
+        return TRUE; //application is running
     }
 
     return FALSE;
@@ -100,8 +100,10 @@ int APIENTRY WinMain(HINSTANCE hInstance,
     wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
 
-    if (!RegisterClassEx(&wc))
+    if (!RegisterClassEx(&wc)){
         MessageBoxA(NULL, "Error failed to register window class " + __LINE__, "error", MB_OK);
+        return 0;
+    }
 
     HWND hWnd = CreateWindowEx(
         0,
@@ -114,6 +116,11 @@ int APIENTRY WinMain(HINSTANCE hInstance,
         NULL,
         NULL
     );
+
+    if(hWnd == NULL){
+        MessageBoxA(NULL, "Error failed to create window. " + __LINE__, "error", MB_OK);
+        return 0;
+    }
 
     setAutostart(1, 0);
     ShowWindow(hWnd, nCmdShow);
@@ -163,6 +170,7 @@ void runTaskbar()
 
     if (taskbar->create((monitorSize.right / 2) - (m_Style.taskbar_Width / 2), monitorSize.bottom - (m_Style.taskbar_Height + m_Style.border_Width), hDesktopWnd)
         == false) {
+
         SendMessage(hDesktopWnd, WM_CLOSE, NULL, NULL); // graceful close?
     }
 }
@@ -222,7 +230,7 @@ LRESULT CALLBACK WndProcParent(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
             taskbar = NULL;
         }
         exitShellFuncs(hwnd);
-        /*LB_Api::restartExplorerWindow();*/
+        //LB_Api::restartExplorerWindow();
         LB_Api::showExplorer();
         PostQuitMessage(0);
     }
