@@ -259,10 +259,11 @@ void LB_Api::hideExplorer()
     }
 }
 
-void LB_Api::restartExplorerWindow() // need to improve this when eyes are better cus only works half of the time. mabye use CreateToolhelp32Snapshot or something to get all the programs and search for shell then terminate em.
-{ //https://learn.microsoft.com/en-us/windows/win32/toolhelp/taking-a-snapshot-and-viewing-processes
+void LB_Api::restartExplorerWindow()
+{
+
     DWORD dwPID;
-    HWND hSysTray = ::FindWindow(TEXT("CabinetWClass"), NULL); // CabinetWClass is the explorer window
+    HWND hSysTray = ::FindWindow(TEXT("Shell_TrayWnd"), NULL); 
     GetWindowThreadProcessId(hSysTray, &dwPID);
     HANDLE explorerHandle = OpenProcess(PROCESS_TERMINATE, FALSE, dwPID);
 
