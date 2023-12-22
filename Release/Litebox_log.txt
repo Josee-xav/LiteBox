@@ -1,681 +1,212 @@
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: Adrenalin Edition
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Steam - downloading at 4.6 MB/s
-    DayZ (35%)
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SteelSeries GG
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Steam
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
 Internet access
-17:28:31  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Headphones (Bluetooth): 53%
-17:28:31  20-12-2023     [INFO]Tray Starting!
-17:28:31  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
-17:28:31  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
-17:28:31  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
-17:28:31  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SteelSeries GG
-17:28:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:28:31  20-12-2023     [DEBUG]Removing a button..   : Steam - downloading at 4.6 MB/s
-    DayZ (35%)
-17:28:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-17:28:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-17:28:31  20-12-2023     [INFO]Adding a tray icon   : Steam
-17:28:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:28:31  20-12-2023     [INFO]Adding a tray icon   : 
-17:28:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:34  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:34  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:35  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:38  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:38  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:40  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Headphones (Bluetooth): 53%
-17:28:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:51  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:28:59  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:02  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:03  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:40  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:44  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:51  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:29:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:07  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:09  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:17  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:17  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:24  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:26  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:26  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:26  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:29  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:29  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:34  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:30:56  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:04  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:25  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:25  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:27  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:28  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:30  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:30  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:30  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:31:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:32:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:32:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:32:48  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:32:48  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:32:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:32:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:32:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:32:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:33:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:33:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:33:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:28  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : P∞T*Ÿ
-17:34:28  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:54  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:56  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:34:56  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:35:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:35:02  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:35:02  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:35:02  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:35:42  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : ∞XR*Ÿ
-17:35:42  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : Ä∞T*Ÿ
-17:36:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:35  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:35  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:56  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:56  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:58  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:36:59  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:05  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:21  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:37:57  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:01  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:04  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:05  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:05  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:06  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:16  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:16  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:16  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:27  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:48  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:38:59  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:06  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:07  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:15  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:23  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:41  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:45  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:51  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:39:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:40:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:40:07  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:40:19  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:40:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:40:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:40:38  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:40:55  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:40:55  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:01  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:07  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:09  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:41:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:07  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:09  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:09  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:17  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:17  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:42:18  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:43:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:43:05  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:43:06  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:43:06  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:44:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:45:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:45:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:45:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:45:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:45:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:45:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:45:54  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : S
-17:45:54  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:46:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:46:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:46:48  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:46:48  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:47:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:47:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:27  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:27  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:27  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:38  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:39  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:39  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:39  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:48:40  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:49:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:49:25  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:49:36  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:49:41  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : `ØT*Ÿ
-17:49:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:50:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:50:01  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:50:01  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:50:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:50:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:50:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:51:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:48  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:51  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:54  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : ∞YR*Ÿ
-17:52:54  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:54  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:52:58  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:53:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:53:01  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:53:01  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:53:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:53:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:53:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:53:27  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:53:34  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:29  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:30  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:34  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:34  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 200    taskzone width: 1250
-17:54:53  20-12-2023     [DEBUG]Removing a button..   : Headphones (Bluetooth): 53%
-17:54:53  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:54:55  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:54:57  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:54:59  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:55:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:55:04  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:55:06  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:29  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:29  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:29  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:46  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:56  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:56:57  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:57:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:57:01  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:57:03  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:57:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:57:16  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:57:53  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:58:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-17:59:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:00:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:01:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:02:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:03  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:07  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : p´T*Ÿ
-18:03:07  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:07  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:45  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : D
-18:03:45  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:45  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:45  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : D
-18:03:45  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-18:03:46  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : pUR*Ÿ
-18:03:46  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : ∞≠T*Ÿ
-18:04:50  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:04:51  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:22:41  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:22:42  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:48:14  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:48:32  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:48:32  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:48:35  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:48:37  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:48:42  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:48:47  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:48:51  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:48:51  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:48:53  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:48:55  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:48:57  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:54:37  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:54:44  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:56:30  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:56:34  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:58:06  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:58:08  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:58:28  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:58:37  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-18:59:42  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-18:59:47  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-19:04:17  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-19:04:18  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : DayZ is using your microphone
-19:04:20  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-19:04:20  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-19:04:34  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-19:05:07  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-19:05:21  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-19:47:11  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-19:47:16  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-19:48:26  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-19:48:38  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-20:16:58  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-20:17:18  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-20:36:06  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-20:36:07  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-20:45:05  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:06  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SteelSeries GG
-20:45:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:15  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:39  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:44  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : D
-20:45:44  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:44  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : D
-20:45:44  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:45:44  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:09  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:11  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:13  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:15  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:15  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:17  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:21  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:21  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:22  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:22  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:22  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:22  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:23  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:23  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:23  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:23  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:34  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : 0`R*Ÿ
-20:46:35  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : –ÆT*Ÿ
-20:46:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:38  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SteelSeries GG
-20:46:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:46:51  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:47:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:47:52  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : D
-20:47:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:47:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:47:52  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : D
-20:47:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-20:48:55  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-20:48:56  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-21:42:45  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:50  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : S
-21:42:50  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:51  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:51  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:52  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  AMD Software: Adrenalin Edition
-21:42:52  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  PowerToys v0.72.0
-21:42:52  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Windows Security - Actions recommended.
-21:42:52  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Bluetooth Devices
-21:42:52  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Steam
-21:42:52  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SteelSeries GG
-21:42:52  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  SuperF4
-21:42:52  20-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Network
-Internet access
-21:42:52  20-12-2023     [INFO]Tray Starting!
-21:42:52  20-12-2023     [error]l
-21:42:52  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
-21:42:52  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
-21:42:52  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
-21:42:52  20-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SteelSeries GG
-21:42:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-21:42:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-21:42:52  20-12-2023     [INFO]Adding a tray icon   : 
-21:42:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:52  20-12-2023     [DEBUG]Removing a button..   : Steam
-21:42:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-21:42:52  20-12-2023     [INFO]Adding a tray icon   : Steam
-21:42:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:52  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:53  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:53  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:53  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:42:53  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:43:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:43:01  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:43:03  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:43:04  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:43:06  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:46:16  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:46:16  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:46:40  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:04  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:04  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:22  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:31  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:36  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:44  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:45  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:46  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:47:48  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:49:30  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:49:30  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:49:36  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:49:36  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:49:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:49:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:28  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:28  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:30  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:37  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:39  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:41  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:44  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:56  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:59  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:52:59  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:53:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:03  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:08  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:08  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:17  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:21  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:56:23  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:59:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:59:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-21:59:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:22  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:23  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:27  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:30  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:43  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:46  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:01:47  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:04:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:04:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:05:06  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:05:06  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:05:09  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:05:24  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:06:32  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:06:33  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:06:35  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:06:36  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:06:40  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:06:41  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:06:44  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:06:49  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:09:34  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:09:35  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-22:09:35  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:09:49  20-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-23:09:50  20-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-23:09:54  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:09:56  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:09:57  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:10:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:10:03  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : êfR*Ÿ
-23:10:03  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:10:04  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:10:10  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:10:12  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:10:53  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:10:58  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : ∞ZR*Ÿ
-23:10:58  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:10:58  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:00  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:04  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:08  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:08  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:14  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:38  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:38  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:40  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:40  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:11:42  20-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-23:52:19  20-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : ∞∞T*Ÿ
-00:08:59  21-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-00:09:04  21-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-00:19:28  21-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-00:19:33  21-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-00:28:26  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:28  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:28  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:28  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:29  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:36  21-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : p\R*Ÿ
-00:28:36  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:36  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:36  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:36  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:36  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:37  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:38  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:38  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:28:38  21-12-2023     [DEBUG]Removing a button..   : 
-00:28:38  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:28:39  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:28:46  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:28:47  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:28:50  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:29:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:29:21  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:26  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:27  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:37  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:37  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:38  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:39  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:40  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:41  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:43  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:44  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:45  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:45  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:47  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:52  21-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : ‡≠T*Ÿ
-00:33:53  21-12-2023     [DEBUG]Calc.... Tray width:   : 160    taskzone width: 1290
-00:33:53  21-12-2023     [INFO]Adding a tray icon   : 
-00:33:53  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:33:53  21-12-2023     [DEBUG]HSHELL_WINDOWCREATED   : D
-00:33:53  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:33:54  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:33:57  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:33:58  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:33:59  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:33:59  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:33:59  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:33:59  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:01  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:01  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:03  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:03  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:10  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:13  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:16  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:29  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:34:48  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:01  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:14  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:19  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:36  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:37  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:46  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:47  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:47  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:47  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:51  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:35:52  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:36:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:36:01  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:04  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:05  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:06  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:07  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:07  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:07  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:11  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:13  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:24  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:26  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:27  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:27  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:32  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:39:33  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:41:00  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:41:01  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:41:01  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:41:01  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:41:04  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:41:05  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:41:13  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-00:41:52  21-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-00:41:57  21-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-01:16:07  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-01:16:07  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-01:26:26  21-12-2023     [INFO]Adding a tray icon   : DayZ is using your microphone
-01:26:27  21-12-2023     [DEBUG]Removing a button..   : DayZ is using your microphone
-02:43:15  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-02:43:15  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-02:43:15  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-02:43:15  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-02:43:17  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-02:43:21  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-03:16:21  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
-03:16:22  21-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SteelSeries GG
-03:16:22  21-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:35  22-12-2023     [DEBUG]LINE 52, appending tray btn via send message mthod. tray name:  Headphones (Bluetooth): 53%
+20:33:35  22-12-2023     [INFO]Tray Starting!
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : SuperF4
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : AMD Software: Adrenalin Edition
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : PowerToys v0.72.0
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : 
+20:33:35  22-12-2023     [DEBUG]Removing a button..   : Steam
+20:33:35  22-12-2023     [INFO]Adding a tray icon   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Steam
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [INFO]Found a already existing tray icon, trying to be added again..   : Windows Security - Actions recommended.
+20:33:35  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:35  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:36  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:36  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:36  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:39  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:40  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:40  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:33:47  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:34:00  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:34:03  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:34:07  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:34:07  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
+20:34:11  22-12-2023     [DEBUG]Calc.... Tray width:   : 180    taskzone width: 1270
