@@ -113,7 +113,7 @@ struct iniOptions
     std::string key;
 };
 
-static const struct iniOptions StyleItems[] = {
+static const iniOptions StyleItems[] = {
     { style_data_types::C_COL, S_WINDOWBACKGROUNDCOLOR, "WINDOW_FRAME_COLOR"},
     { style_data_types::C_COL, S_TASK_FOCUSCOLOR , "TASK_FOCUS_COLOR"},
     { style_data_types::C_COL, S_BORDERCOLOR, "BORDER_COLOR"},

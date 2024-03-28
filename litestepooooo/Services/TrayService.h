@@ -13,8 +13,8 @@ public:
     ~TrayService();
 
     trayItemList* getTrayList();
-    std::vector<TrayEntryBtn::_TrayItem* > getTrayItems();
-    bool AppendTrayBtn(const DWORD dwFlags, LPCTSTR pszName, HWND appHwnd, HICON icon, TrayEntryBtn::_TrayItem* trayItem);
+    bool getAllTrayItems();
+    bool AppendTrayBtn(LPCTSTR pszName, HWND hwnd,HICON icon,UINT uID, UINT uCallbackMessage, DWORD dwState );
     static LRESULT CALLBACK trayProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
     static LRESULT CALLBACK TrayNotifyWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
     void trayEvent(void* data, unsigned size);

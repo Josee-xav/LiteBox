@@ -119,8 +119,8 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
 
     DeleteObject(taskPen);
     DeleteObject(taskBrush);
-
 }
+
 
 
 void taskEntryBtn::mouse_event(int mx, int my, int message, unsigned flags)
@@ -151,7 +151,8 @@ void taskEntryBtn::mouse_event(int mx, int my, int message, unsigned flags)
 
 void TrayEntryBtn::trayMouseDown(int message)
 {
-    TrayItem* ni = (_TrayItem*)m_data;
+
+    TrayItem* ni = (TrayItem*)m_data;
     DWORD procId = 0;
     GetWindowThreadProcessId(ni->hWnd, &procId);
     AllowSetForegroundWindow(procId);
@@ -164,7 +165,7 @@ void TrayEntryBtn::trayMouseDown(int message)
 // only when the mouse is up is when the menu is actually opened. 
 void TrayEntryBtn::trayMouseUp(int message)
 {
-    TrayItem* ni = (_TrayItem*)m_data;
+    TrayItem* ni = (TrayItem*)m_data;
 
     POINT ps;
     GetCursorPos(&ps);
@@ -184,7 +185,7 @@ void TrayEntryBtn::trayMouseUp(int message)
 
 void TrayEntryBtn::trayMouseDOUBLECLICKDown(int message)
 {
-    _TrayItem* ni = (_TrayItem*)m_data;
+    TrayItem* ni = (TrayItem*)m_data;
 
     DWORD procId = 0;
     GetWindowThreadProcessId(ni->hWnd, &procId);
@@ -197,13 +198,10 @@ void TrayEntryBtn::trayMouseDOUBLECLICKDown(int message)
 TrayEntryBtn::TrayEntryBtn() : barItem(M_TRAY)
 {
 }
-// TODO
-//HBRUSH TrayEntryBtn::brush = CreateSolidBrush(m_Style.windowBackgroundColor);
-
 
 TrayEntryBtn::~TrayEntryBtn()
 {
-
+    delete (TrayItem*)m_data; // not the best way to handle this but cant use uniquepointer with lparam i believe so ehre we are.
 }
 
 void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
@@ -308,13 +306,14 @@ baritemlist::baritemlist(int type) : barItem(type)
 
 baritemlist::~baritemlist()
 {
-    clear();
+    for (int i = 0; i < m_Items.size(); i++) {
+        delete m_Items.at(i);
+    }
+    m_Items.clear();
 }
 
 void baritemlist::add(barItem* entry)
 {
-
-
     m_Items.push_back(entry);
 }
 
@@ -322,15 +321,6 @@ void baritemlist::remove(barItem* entry)
 {
 
 }
-
-void baritemlist::clear(void)
-{
-    for (int i = 0; i < m_Items.size(); i++) {
-        delete m_Items.at(i);
-    }
-    m_Items.clear();
-}
-
 
 void baritemlist::draw(HWND hWnd, HDC hDC)
 {
@@ -429,6 +419,7 @@ taskItemList::taskItemList() : baritemlist(M_TASKLIST)
 {
 }
 
+
 bool compareString(barItem* a, barItem* b)
 {
     TCHAR           abuf[100];
@@ -438,11 +429,21 @@ bool compareString(barItem* a, barItem* b)
 
     return std::wcscmp(abuf, bbuf) < 0;
 }
-
+ 
 void taskItemList::add(barItem* entry)
 {
+
+    // i believe worse case its o(n ^ 2) when factoring in the insert vector function which is better than before where it was o(n log n)
+    for(int i =0 ; i < m_Items.size(); i++){
+        
+       if(compareString(m_Items.at(i), entry)){ // if new entry has same icon then normally its the same app as unlike trayicons they dont often change when same applicaiton
+            m_Items.insert(m_Items.begin() +i, entry);
+            return ;
+        }
+
+    }
     m_Items.push_back(entry);
-    std::sort(std::begin(m_Items), std::end(m_Items), compareString); // quick sort, O(N LOG N)
+
 }
 
 void taskItemList::remove(barItem* entry)

@@ -445,7 +445,6 @@ void CTaskbar::OnMouseButton(HWND hWnd, int message, WPARAM wparam, short x,
 
         case 2:
             SendMessage(m_hWndCommand, RESTART_TASKBAR, 0, 0);
-            // todo
             return;
         case 3:
             SendMessage(m_hWndCommand, OPEN_STYLE_FILE, 0, 0);

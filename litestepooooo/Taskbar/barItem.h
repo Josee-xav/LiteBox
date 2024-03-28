@@ -2,6 +2,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <string>
+#include "drawingApi.h"
 
 class CTaskbar;
 class barItem
@@ -11,11 +12,13 @@ public:
     RECT itemRect; // use this to know where it is.
     DWORD           m_dwFlags;                    // various flags
     std::wstring     m_strName;                    // text name
-    HICON            m_icon;                  // index into the bitmap
+    HICON            m_icon;               
     int buttonType;
+    int m_ItemID;
+    
+
 
     LPARAM m_data; // Data which could be a HWND or something
-    int m_ItemID;
 protected:
     static int s_id;
     void Assign(const barItem& src);                // copy src to 

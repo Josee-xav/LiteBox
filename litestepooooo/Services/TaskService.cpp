@@ -11,36 +11,39 @@
 
 BOOL CALLBACK initTaskProc(HWND hwnd, LPARAM lParam)
 {
-    std::vector<taskButtonData*>* windowsVec =
-        reinterpret_cast<std::vector<taskButtonData*> *>(lParam);
+    std::vector<taskButtonData>* windowsVec =
+        reinterpret_cast<std::vector<taskButtonData> *>(lParam);
 
     // checks if the app is a window and checks if the hwnd is not the taskbar
     if (WindowQueryHelper::isAppWindow(hwnd)) {
         std::wstring wName = LB_Api::getWindowTitle(hwnd);
         HICON icon = LB_Api::getHICONFromHWND(hwnd, IconSizes::icon_small);
-        windowsVec->push_back(new taskButtonData(hwnd, wName, icon));
+        windowsVec->push_back(taskButtonData(hwnd, wName, icon));
     }
     return true;
 }
 
-void TaskService::init_TaskButtons()
+void TaskService::initTaskService()
 {
-    taskList = new taskItemList();
-    std::vector<taskButtonData*> taskbuttonDataVec;
-    EnumWindows(initTaskProc, reinterpret_cast<LPARAM>(&taskbuttonDataVec));
+    std::vector<taskButtonData> taskbuttonDataVec;
+    EnumWindows(initTaskProc, (LPARAM)(&taskbuttonDataVec));
 
     for (int i = 0; i < taskbuttonDataVec.size(); i++) {
-        AppendTaskBtn(0, taskbuttonDataVec.at(i)->wName.c_str(), 1, taskbuttonDataVec.at(i)->hwnd, taskbuttonDataVec.at(i)->icon);
+        AppendTaskBtn(0, taskbuttonDataVec.at(i).wName.c_str(), 1, taskbuttonDataVec.at(i).hwnd, taskbuttonDataVec.at(i).icon);
     }
 }
 
-TaskService::TaskService() : activeBtn(nullptr) { init_TaskButtons(); }
+TaskService::TaskService() : activeBtn(nullptr)
+{ 
+    taskList = new taskItemList();
+    initTaskService(); 
+
+}
 
 TaskService::~TaskService() { activeBtn = NULL; }
 
 
-bool TaskService::AppendTaskBtn(const DWORD dwFlags, LPCTSTR pszName,
-    const UINT itemid, HWND appHwnd, HICON icon)
+bool TaskService::AppendTaskBtn(const DWORD dwFlags, LPCTSTR pszName,const UINT itemid, HWND appHwnd, HICON icon)
 {
     taskEntryBtn* item = new taskEntryBtn();
 

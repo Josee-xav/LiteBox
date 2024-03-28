@@ -33,12 +33,13 @@ private:
     taskItemList* taskList;
     barItem* activeBtn;
 
-    void init_TaskButtons();
+    void initTaskService();
 
     bool removeBtn(HWND hwndToRemove);
     bool removeBtn(int index);
 
     bool AppendTaskBtn(const DWORD dwFlags, LPCTSTR pszName, const UINT itemid, HWND appHwnd, HICON icon);
+
     // returns true if it was able to find the window in the list. false otherwise
     bool updateWindow(HWND hwnd);
 

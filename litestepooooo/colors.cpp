@@ -2,26 +2,14 @@
 #include <stdlib.h>
 #pragma warning(disable : 4996)
 
-char* extract_string(char* dest, const char* src, int n)
-{
-    memcpy(dest, src, n);
-    dest[n] = 0;
-    return dest;
-}
-
+/*
 char* unquote(char* src)
 {
     int l = (int)strlen(src);
     if (l >= 2 && (src[0] == '\"' || src[0] == '\'') && src[l - 1] == src[0])
         return extract_string(src, src + 1, l - 2);
     return src;
-}
-
-char* strcpy_max(char* dest, const char* src, int maxlen)
-{
-    int l = (int)strlen(src);
-    return extract_string(dest, src, l < maxlen ? l : maxlen - 1);
-}
+}*/
 
 COLORREF rgb(unsigned r, unsigned g, unsigned b)
 {

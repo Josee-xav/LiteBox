@@ -16,9 +16,8 @@ std::wstring LB_Api::getWindowTitle(HWND hwnd)
 
 HBITMAP LB_Api::getBitmapFromHicon(HICON icon)
 {
-    HICON copyHicon = CopyIcon(icon);
     ICONINFO iconinfo;
-    GetIconInfo(copyHicon, &iconinfo);
+    GetIconInfo(icon, &iconinfo);
 
     return iconinfo.hbmColor;
 }
@@ -46,7 +45,7 @@ HICON LB_Api::getHICONFromHWND(HWND hwnd, IconSizes iconsize)
         }
     }
     if (hIco == NULL)
-        hIco = CopyIcon(LoadIcon(NULL, IDI_ASTERISK));
+        hIco = LoadIcon(NULL, IDI_ASTERISK);
 
     return hIco;
 }
@@ -105,59 +104,6 @@ bool LB_Api::isFullscreen(HWND hwnd)
     return false;
 }
 
-// THE
-//TODO NO USE?
-bool LB_Api::executeShell(HWND hwnd, const wchar_t* verb, const wchar_t* file, const wchar_t* args, const wchar_t* dir, int showCmds, int flags)
-{
-    SHELLEXECUTEINFO sei;
-
-    if (NULL == dir || 0 == dir[0]) {
-        std::wstring temp = LB_Api::getLBExePath().c_str();
-        dir = temp.c_str();
-    }
-
-    memset(&sei, 0, sizeof(sei));
-    sei.cbSize = sizeof(sei);
-    sei.hwnd = hwnd;
-    sei.lpVerb = verb;
-    sei.lpParameters = args;
-    sei.lpDirectory = dir;
-    sei.nShow = showCmds;
-
-    if (flags & RUN_ISPIDL) {
-        sei.fMask = SEE_MASK_INVOKEIDLIST | SEE_MASK_FLAG_NO_UI;
-        sei.lpIDList = (void*)file;
-    }
-    else {
-        sei.fMask = SEE_MASK_DOENVSUBST | SEE_MASK_FLAG_NO_UI;
-        sei.lpFile = file;
-        if (NULL == file || 0 == file[0]) {
-            /*if (0 == (flags & RUN_NOerrorS)) {
-                char msg[200];
-                MessageBox(MB_OK , NLS2("$error_Execute$" ,
-                           "error: Could not execute: %s\n(%s)") ,
-                           file && file[0] ? file : NLS1("<empty>") ,
-                           win_error(msg , sizeof msg));
-            }*/
-
-            return false;
-        }
-    }
-
-    if (ShellExecuteEx(&sei))
-        return TRUE;
-
-    /* if (0 == (flags & RUN_NOerrorS)) {
-         char msg[200];
-         BBMessageBox(MB_OK , NLS2("$error_Execute$" ,
-                      "error: Could not execute: %s\n(%s)") ,
-                      file && file[0] ? file : NLS1("<empty>") ,
-                      win_error(msg , sizeof msg));
-     }*/
-
-    return false;
-}
-
 bool LB_Api::register_class(const wchar_t* classname, HINSTANCE hinstance, WNDPROC wndproc, int flags)
 {
     WNDCLASS wc;
@@ -177,7 +123,7 @@ bool LB_Api::register_class(const wchar_t* classname, HINSTANCE hinstance, WNDPR
 }
 
 //Returns the last Win32 error, in string format. Returns an empty string if there is no error.
-std::string LB_Api::getLasterrorAsString()
+std::string LB_Api::getLastError()
 {
     //Get the error message ID, if any.
     DWORD errorMessageID = ::GetLastError();
@@ -273,14 +219,6 @@ void LB_Api::restartExplorerWindow()
     ShellExecute(NULL, NULL, L"explorer.exe", NULL, NULL, SW_SHOW);
 }
 
-wchar_t* LB_Api::charToWChar(const char* text)
-{
-    const size_t size = strlen(text) + 1;
-    wchar_t* wText = new wchar_t[size];
-    mbstowcs(wText, text, size);//TODO
-    return wText;
-}
-
 // true when icon is valid 
 bool LB_Api::isIconValid(HICON icon)
 {
@@ -320,34 +258,41 @@ HWND LB_Api::findTrayToolbarWindow()
     return hWnd;
 }
 
-int wideToMulti(const WCHAR* src, char* str, int len)
+// TODO utlizie thes functioins
+std::string wstrtostr(const std::wstring &wstr)
 {
-    int x, n;
-    for (x = -1;;) {
-        n = WideCharToMultiByte(
-            CP_UTF8,
-            0, src, x, str, len, NULL, NULL
-        );
-        if (n)
-            return n;
-        if (x < 0)
-            x = len;
-        if (--x == 0)
-            break;
-    }
-    str[0] = 0;
-    return 0;
+    // Convert a Unicode string to an ASCII string
+    std::string strTo;
+    char *szTo = new char[wstr.length() + 1];
+    szTo[wstr.size()] = '\0';
+    WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), -1, szTo, (int)wstr.length(), NULL, NULL);
+    strTo = szTo;
+    delete[] szTo;
+    return strTo;
 }
-bool LB_Api::convert_string(char* dest, const void* src, int nmax, bool is_unicode)
+
+std::wstring strtowstr(const std::string &str)
 {
-    char buffer[256];
+    // Convert an ASCII string to a Unicode String
+    std::wstring wstrTo;
+    wchar_t *wszTo = new wchar_t[str.length() + 1];
+    wszTo[str.size()] = L'\0';
+    MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, wszTo, (int)str.length());
+    wstrTo = wszTo;
+    delete[] wszTo;
+    return wstrTo;
+}
+
+// TODO not in use
+// truncates string if string buffer is too small
+/*bool LB_Api::convert_string(char* dest, const void* src, int nmax, bool is_unicode)
+{
     if (is_unicode) {
-        wideToMulti((const WCHAR*)src, buffer, sizeof buffer); // TODO
-        src = buffer;
     }
     if (strcmp(dest, (const char*)src)) {
-        strcpy_s(dest, nmax, (const char*)src);
+        strncpy_s(dest, nmax, (const char*)src, _TRUNCATE);
+
         return true;
     }
     return false;
-}
+}*/

@@ -145,9 +145,11 @@ std::wstring getStylePath()
 
 void edit_file(int id)
 {
-    char buffer[2 * MAX_PATH];
-    sprintf(buffer, "\"%s\" \"%s\"", "notepad.exe", getStylePath().c_str());
-    LB_Api::executeShell(NULL, NULL, L"notepad.exe", getStylePath().c_str(), LB_Api::getLBExePath().c_str(), 1, 0);
+
+    wchar_t buffer[2 * MAX_PATH];
+    swprintf(buffer, 2*MAX_PATH,L"\"%s\" \"%s\"", L"notepad.exe", getStylePath().c_str());
+    //LB_Api::executeShell(NULL, NULL, L"notepad.exe", getStylePath().c_str(), LB_Api::getLBExePath().c_str(), 1, 0);
+    ShellExecute(NULL, L"edit", getStylePath().c_str(), NULL, LB_Api::getLBExePath().c_str(), SW_SHOW);
 }
 
 void runTaskbar()
@@ -186,12 +188,7 @@ LRESULT CALLBACK WndProcParent(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
         runTaskbar();
     }
     break;
-    case RESTART_TASKBAR: // TODO should probably remove, causes gdi object issues. i cant seem to find out why anymore.
-        /*
-        GDI objects that have been released or deleted are not immediately removed from the GDI object pool.
-        Instead, they are marked as "free" and can be reused when a new GDI object is requested by the process.
-        */
-        // probs cus ? https://stackoverflow.com/questions/67712605/brushes-deleteobjecthbrush-in-c
+    case RESTART_TASKBAR: 
     {
         if (taskbar != NULL) {
             delete taskbar;

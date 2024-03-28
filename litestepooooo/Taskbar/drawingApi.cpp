@@ -1,5 +1,7 @@
 #include "drawingApi.h"
 
+#include <unordered_map>
+
 enum edgeTypes
 {
     FLAT = 1,

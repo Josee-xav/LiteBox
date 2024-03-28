@@ -11,7 +11,6 @@ enum class IconSizes
     icon_small,
     icon_big
 };
-// TODO make it nicer rather than all types of shit everywhere.
 namespace LB_Api
 {
     extern HINSTANCE main_hinstance;
@@ -29,7 +28,7 @@ namespace LB_Api
     HICON getHICONFromHWND(HWND hwnd, IconSizes iconsize);
 
     //Returns the last Win32 error, in string format. Returns an empty string if there is no error.
-    std::string getLasterrorAsString();
+    std::string getLastError();
 
 
 
@@ -40,7 +39,6 @@ namespace LB_Api
     void setWorkArea(int height);
 
     std::wstring getWindowClassName(HWND hwnd);
-
     std::wstring getLBExePath();
 
 
@@ -50,8 +48,6 @@ namespace LB_Api
 
 
 
-    bool convert_string(char* dest, const void* src, int nmax, bool is_unicode);
-    wchar_t* charToWChar(const char* text);
-
+   // bool convert_string(char* dest, const void* src, int nmax, bool is_unicode);
 };
 

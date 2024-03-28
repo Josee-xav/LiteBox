@@ -4,12 +4,14 @@
 #include <dwmapi.h>
 #include "../Utils.h"
 #include "../Logging/FLogger.h"
-
+#include <memory> 
 HWND TrayService::hTrayWnd = NULL;
 HINSTANCE TrayService::hinstTrayLib = NULL;
 trayItemList* TrayService::trayBtnList = NULL;
 
 trayHookDll_EntryFunc TrayService::th_libfunc = NULL;
+
+
 
 TrayService::TrayService()
 {
@@ -49,16 +51,7 @@ HWND TrayService::create_Tray_Child(HWND hwndParent, const wchar_t* class_name)
 }
 void TrayService::initTrayService()
 {
-    trayBtnList = new trayItemList();
-    std::vector< TrayEntryBtn::_TrayItem*> trayItems = getTrayItems();
-
-    for (int i = 0; i < trayItems.size(); i++) {
-        AppendTrayBtn(0, trayItems.at(i)->sIconText, trayItems.at(i)->hWnd, trayItems.at(i)->hIcon, trayItems.at(i));
-        FLogger::debug("LINE 52, appending tray btn via send message mthod. tray name:  %S", trayItems.at(i)->sIconText);
-    }
-    // ^ i feel like this is a better way as the tray hook doesnt seem to work 100% the time for me on windows 10
-    // TODO mabye just hook shell_notify instead..... super autistic tho.
-
+    getAllTrayItems();
 
     FLogger::info("Tray Starting!", 0);
 
@@ -118,9 +111,28 @@ void TrayService::initTrayService()
 }
 
 // RETURNS vector.empty when something has failed. otherwise it returns a nice vector full of notification area icons  
-std::vector<TrayEntryBtn::_TrayItem* > TrayService::getTrayItems()
+bool TrayService::getAllTrayItems()
 {
-    std::vector< TrayEntryBtn::_TrayItem*> trayItems;
+       
+    typedef struct _WinTrayIcon
+    {
+        HWND hWnd;
+        UINT uID;
+        UINT uCallbackMessage;
+        DWORD dwState;
+        UINT uVersion;
+        HICON hIcon;
+        ULONG  uIconDemoteTimerID;
+        DWORD dwUserPref;
+        DWORD dwLastSoundTime;
+        wchar_t	sExeName[MAX_PATH];
+        wchar_t	sIconText[MAX_PATH];
+        UINT uNumSeconds;
+        GUID guidItem;
+    } WinTrayIcon;
+
+
+
     HWND toolBarhWnd = LB_Api::findTrayToolbarWindow();
 
     if (toolBarhWnd == NULL) {
@@ -141,7 +153,7 @@ std::vector<TrayEntryBtn::_TrayItem* > TrayService::getTrayItems()
 
     LPVOID pvAddress = VirtualAllocEx(hProcess, 0, sizeof(TBBUTTON), MEM_COMMIT, PAGE_READWRITE);
     for (int i = 0; i < nBtnCount; ++i) {
-        TrayEntryBtn::_TrayItem* tray = new TrayEntryBtn::_TrayItem();
+        _WinTrayIcon* trayicon = new _WinTrayIcon();
         SIZE_T nNumberOfBytesRead = 0;
 
         // Use ReadProcessMemory to read data from the process memory space: icon title, icon area
@@ -149,7 +161,7 @@ std::vector<TrayEntryBtn::_TrayItem* > TrayService::getTrayItems()
 
         TBBUTTON bi = {};
         ReadProcessMemory(hProcess, (LPVOID)pvAddress, &bi, sizeof(TBBUTTON), &nNumberOfBytesRead);
-        ReadProcessMemory(hProcess, (LPCVOID)bi.dwData, (LPVOID)tray, sizeof(TrayEntryBtn::_TrayItem), NULL);
+        ReadProcessMemory(hProcess, (LPCVOID)bi.dwData, (LPVOID)trayicon, sizeof(WinTrayIcon), NULL);
 
         TCHAR szBtnText[_MAX_PATH] = { 0 };
         SendMessage(toolBarhWnd, TB_GETBUTTONTEXT, bi.idCommand, (LPARAM)(pvAddress));
@@ -157,36 +169,47 @@ std::vector<TrayEntryBtn::_TrayItem* > TrayService::getTrayItems()
 
         //ReadProcessMemory(hProcess, (void*)(pvAddress), icon, _MAX_PATH * sizeof(HICON), &nNumberOfBytesRead);
 
-        wcscpy_s(tray->sIconText, _MAX_PATH, szBtnText);
-        tray->hIcon = CopyIcon(tray->hIcon);
-
-        if (tray->hIcon == NULL)
+        wcsncpy_s(trayicon->sIconText, _MAX_PATH, szBtnText, _TRUNCATE);
+        trayicon->hIcon = ( trayicon->hIcon );
+        //TODO need CopyIcon alternative. 
+        // Yes you need to call DestroyIcon after calling CopyIcon which is also bit of a pain. could make custom HICON wrapper with destructor with destroyicon in it.
+        // Main issue is that it creates multiple gdi handles from one call of copyicon every iteration.
+        // Just obtain a shared icon so you dont have to deal with fuckery. 
+        // Copy Image with LR_COPYRETURNORG sounds promising. just gotta make sure the dimensions and color depth shit is correct or else it actually copys..
+        if (trayicon->hIcon == NULL)
             continue;
 
-        trayItems.push_back(tray);
+                    // gonna need to call DestroyIcon on the icon...
+        AppendTrayBtn(trayicon->sIconText, trayicon->hWnd, trayicon->hIcon, trayicon->uID, trayicon->uCallbackMessage,trayicon->dwState);
+        FLogger::debug("LINE %d, appending tray btn via send message mthod. tray name:  %S",__LINE__, trayicon->sExeName);
+    
+        delete trayicon;
     }
     VirtualFreeEx(hProcess, pvAddress, 0, MEM_RELEASE);
     CloseHandle(hProcess);
 
-    return trayItems;
+    return true;
 }
 
-bool TrayService::AppendTrayBtn(const DWORD dwFlags, LPCTSTR pszName, HWND appHwnd, HICON icon, TrayEntryBtn::_TrayItem* trayItem)
+bool TrayService::AppendTrayBtn(LPCTSTR pszName, HWND hwnd,HICON icon,UINT uID, UINT uCallbackMessage, DWORD dwState )
 {
     TrayEntryBtn* item = new TrayEntryBtn();
 
-    item->m_dwFlags = dwFlags;
+    item->m_dwFlags = 0;
 
     if (pszName)
         item->m_strName = pszName;
 
     item->m_icon = icon;
-    item->m_data = (LPARAM)trayItem;
-    //item.m_pPopup = NULL;
+
+    TrayEntryBtn::TrayItem* trayitem=  new TrayEntryBtn::TrayItem{hwnd, uID, uCallbackMessage, dwState};
+
+    item->m_data = (LPARAM)trayitem;
 
     trayBtnList->add(item);
     return true;
 }
+
 void TrayService::extractTrayData(NIDBB* nid, void* trayData)
 {
 
@@ -265,9 +288,6 @@ typedef struct _SHELLTRAYDATA
 } SHELLTRAYDATA;
 #pragma pack(pop)
 
-
-
-
 void TrayService::trayEvent(void* data, unsigned size)
 {
     NIDBB nid;
@@ -276,7 +296,6 @@ void TrayService::trayEvent(void* data, unsigned size)
     void* pData = &((SHELLTRAYDATA*)data)->iconData;
 
     extractTrayData(&nid, pData);
-    std::wstring g = LB_Api::getWindowClassName(nid.hWnd);
 
     switch (trayCommand) {
     case NIM_ADD:
@@ -286,47 +305,35 @@ void TrayService::trayEvent(void* data, unsigned size)
 
         for (int i = 0; i < trayBtnList->m_Items.size(); i++) {
             barItem* item = trayBtnList->m_Items.at(i);
-            TrayEntryBtn::TrayItem* ni = (TrayEntryBtn::_TrayItem*)item->m_data;
+            TrayEntryBtn::TrayItem* ni = (TrayEntryBtn::TrayItem*)(item->m_data);
             if (ni->hWnd == nid.hWnd) {
-                FLogger::info("Found a already existing tray icon, trying to be added again..   : %S", ni->sIconText);
+                item->m_icon = nid.hIcon;
+                FLogger::info("Found a already existing tray icon, trying to be added again..   : %P", ni->hWnd);
                 return;
 
             }
         }
 
-
-        char tip[200];
-        LB_Api::convert_string(tip, nid.pTip, 100, nid.is_unicode);
-
-
-        TrayEntryBtn::_TrayItem* tray = new TrayEntryBtn::_TrayItem;
-        wchar_t* ad = LB_Api::charToWChar(tip);
-        wcscpy_s(tray->sIconText, _MAX_PATH, ad);
-        delete[] ad;
-
         if (LB_Api::isIconValid(nid.hIcon) == FALSE)
             break;
 
-        tray->hIcon = CopyIcon(nid.hIcon);
-        tray->hWnd = nid.hWnd;
-        tray->uCallbackMessage = nid.uCallbackMessage;
+ // todo: future add tray icon text over icon. and fix this mess. this code was when i was debuging NIM_ADD then wanted to do a quick test of getting the texxt
+        TCHAR szBtnText[_MAX_PATH] = { 0 };  
+        wcsncpy_s(szBtnText, _MAX_PATH, (const TCHAR*)nid.pTip, _TRUNCATE); // truncates the string if too long
 
-        tray->dwState = *nid.pState;
-
-
-        tray->uID = nid.uID;
-        FLogger::info("Adding a tray icon   : %S", tray->sIconText);
-        AppendTrayBtn(0, tray->sIconText, tray->hWnd, tray->hIcon, tray);
+        AppendTrayBtn(szBtnText, nid.hWnd, nid.hIcon, nid.uID, nid.uCallbackMessage, *nid.pState);
         trayBtnList->invalidate(true);
+
+        FLogger::info("Adding a tray icon   : %S", szBtnText);
     }
     break;
     case NIM_DELETE:
     {
         for (int i = 0; i < trayBtnList->m_Items.size(); i++) {
             barItem* item = trayBtnList->m_Items.at(i);
-            TrayEntryBtn::TrayItem* ni = (TrayEntryBtn::_TrayItem*)item->m_data;
+            TrayEntryBtn::TrayItem* ni = (TrayEntryBtn::TrayItem*)item->m_data;
             if (ni->hWnd == nid.hWnd) {
-                FLogger::debug("Removing a button..   : %S", ni->sIconText);
+                FLogger::debug("Removing a button..   : %S", item->m_strName);
                 trayBtnList->m_Items.erase(trayBtnList->m_Items.begin() + i);
                 trayBtnList->invalidate(true);
                 return;

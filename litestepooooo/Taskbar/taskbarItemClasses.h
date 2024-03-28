@@ -94,24 +94,14 @@ class TrayEntryBtn : public barItem
 {
 public:
 
-    typedef struct _TrayItem
-    {
+    
+    struct TrayItem {
         HWND hWnd;
         UINT uID;
         UINT uCallbackMessage;
-        DWORD dwState;
-        UINT uVersion;
-        HICON hIcon;
-        ULONG  uIconDemoteTimerID;
-        DWORD dwUserPref;
-        DWORD dwLastSoundTime;
-        wchar_t	sExeName[MAX_PATH];
-        wchar_t	sIconText[MAX_PATH];
-        UINT uNumSeconds;
-        GUID guidItem;
-    } TrayItem;
-
-
+        DWORD dwState; // TODO not in use. should be though
+    };
+    
     void trayMouseDown(int message);
     void trayMouseUp(int message);
     void trayMouseDOUBLECLICKDown(int message);
@@ -155,9 +145,6 @@ public:
     virtual void add(barItem* entry);
 
     virtual void remove(barItem* entry);
-
-    // clears the list.
-    virtual void clear(void);
 
     void draw(HWND hWnd, HDC hDC) override;
 
