@@ -4,7 +4,6 @@
 #include <dwmapi.h>
 #include "../Utils.h"
 #include "../Logging/FLogger.h"
-#include <memory> 
 HWND TrayService::hTrayWnd = NULL;
 HINSTANCE TrayService::hinstTrayLib = NULL;
 trayItemList* TrayService::trayBtnList = NULL;
@@ -170,16 +169,12 @@ bool TrayService::getAllTrayItems()
         //ReadProcessMemory(hProcess, (void*)(pvAddress), icon, _MAX_PATH * sizeof(HICON), &nNumberOfBytesRead);
 
         wcsncpy_s(trayicon->sIconText, _MAX_PATH, szBtnText, _TRUNCATE);
-        trayicon->hIcon = ( trayicon->hIcon );
-        //TODO need CopyIcon alternative. 
-        // Yes you need to call DestroyIcon after calling CopyIcon which is also bit of a pain. could make custom HICON wrapper with destructor with destroyicon in it.
-        // Main issue is that it creates multiple gdi handles from one call of copyicon every iteration.
-        // Just obtain a shared icon so you dont have to deal with fuckery. 
-        // Copy Image with LR_COPYRETURNORG sounds promising. just gotta make sure the dimensions and color depth shit is correct or else it actually copys..
+
+        trayicon->hIcon = CopyIcon(trayicon->hIcon ); // creates ~2 gdi handles per call due to ?Icons in Windows are typically composed of two images: one for normal display and another for when the icon is selected or highlighted?
+        // reminder that with CopyIcon() you gotta call destroyicon after
         if (trayicon->hIcon == NULL)
             continue;
 
-                    // gonna need to call DestroyIcon on the icon...
         AppendTrayBtn(trayicon->sIconText, trayicon->hWnd, trayicon->hIcon, trayicon->uID, trayicon->uCallbackMessage,trayicon->dwState);
         FLogger::debug("LINE %d, appending tray btn via send message mthod. tray name:  %S",__LINE__, trayicon->sExeName);
     

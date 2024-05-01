@@ -152,7 +152,7 @@ public:
     void mouse_event(int mx, int my, int message, unsigned flags) override;
 
     // calc size of the baritemlist as a whole and its items in it, automatically.
-    bool calc_size(int* px, int y, int w, int h, int m) override;
+    bool calc_size(int* px, int y, int w, int h) override;
 };
 
 class taskItemList : public baritemlist

@@ -2,7 +2,9 @@
 #include "../Logging/FLogger.h"
 #include "../Utils.h"
 #include "taskbarItemClasses.h"
+#include <Wingdi.h>
 
+#pragma comment(lib, "Msimg32.lib")
 // initialise the static member
 #define TB_WINDOW_CLASS L"LiteBox_TaskBar"
 bool CTaskbar::m_bClassRegistered = false;
@@ -82,7 +84,6 @@ void CTaskbar::cleanup()
 void CTaskbar::createObjects(void)
 {
     LOGFONT lf;
-    HDC hDC;
     TEXTMETRIC tm;
 
     // default font and size
@@ -98,7 +99,7 @@ void CTaskbar::createObjects(void)
 
     ZeroMemory(&lf, sizeof(lf));
 
-    hDC = CreateICA("DISPLAY", NULL, NULL, NULL);
+    HDC hDC = CreateICA("DISPLAY", NULL, NULL, NULL);
     lf.lfHeight = m_FontSize;
 
     lf.lfWeight = m_Style.fontWeight * 100; // https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createfonta
@@ -131,23 +132,25 @@ void CTaskbar::createObjects(void)
 
 void CTaskbar::calc_barItemLists()
 {
-    int taskzone_width, clock_width = 0;
+
+    int taskzone_width = 0;
+    int clock_width = 50;
 
     int trayWidth = 0;
     RECT mainbarRect;
     GetClientRect(m_hWnd, &mainbarRect);
 
-    int xpos = m_Style.border_Width;
+    int xpos = m_Style.border_Width + (m_Style.rectRoundedEdge_Bar_Width);
     trayItemList* tl = trayService.getTrayList();
     if (tl != NULL)
-        trayWidth = 20 * tl->m_Items.size();
+        trayWidth = MAX_ICON_SIZE * tl->m_Items.size();
     // --- 1st pass ----------------------------------
     for (int i = 0; i < m_barItemList.size(); i++) {
         barItem* bi = m_barItemList.at(i);
 
         switch (bi->buttonType) {
         case M_CLOCK:
-            clock_width = 50;
+            
             xpos += clock_width;
             break;
 
@@ -163,14 +166,12 @@ void CTaskbar::calc_barItemLists()
     // assign variable widths
     int rest_width = max(0, mainbarRect.right - xpos); // for the taskzone.
 
-    int top = 0;
-
     // 2nd passsss
 
     taskzone_width = rest_width;
     FLogger::debug("Calc.... Tray width:   : %i    taskzone width: %i", trayWidth, taskzone_width);
 
-    xpos = 0;
+    xpos = (m_Style.rectRoundedEdge_Bar_Width * 0.4) ;
     int ypos = 0;
     for (int i = 0; i < m_barItemList.size(); i++) {
 
@@ -191,7 +192,7 @@ void CTaskbar::calc_barItemLists()
             break;
         }
 
-        bi->calc_size(&xpos, ypos, width, mainbarRect.bottom, ypos - top);
+        bi->calc_size(&xpos, ypos, width, mainbarRect.bottom);
     }
     return;
 }
@@ -211,7 +212,7 @@ bool CTaskbar::create(int x, int y, HWND hWnd)
     // create GDI objects
     createObjects();
 
-    // get the screen dimensions and adjust x and y if necessary
+    // get the screen rectensions and adjust x and y if necessary
     RECT rcScreen;
     SystemParametersInfo(SPI_GETWORKAREA, 0, &rcScreen, 0);
 
@@ -222,7 +223,7 @@ bool CTaskbar::create(int x, int y, HWND hWnd)
 
     // create the window
     m_hWnd = ::CreateWindowExA(
-        WS_EX_TOOLWINDOW | WS_EX_TOPMOST, // prevent button appearing on taskbar
+        WS_EX_TOOLWINDOW | WS_EX_TOPMOST , // prevent button appearing on taskbar
         "LiteBox_TaskBar", "",
         WS_POPUP | WS_VISIBLE, x, y, m_Style.taskbar_Width,
         m_Style.taskbar_Height + m_Style.border_Width, NULL, NULL,
@@ -246,11 +247,10 @@ bool CTaskbar::create(int x, int y, HWND hWnd)
 /*****************************/
 /* Register the window class */
 /*****************************/
-
 // WM_PAINT
 
 
-void CTaskbar::OnPaint(HWND hWnd, HDC hDC)
+void CTaskbar::drawItems(HWND hWnd, HDC hDC)
 {
     calc_barItemLists();
 
@@ -277,9 +277,8 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam,
         SetTimer(hWnd, 0, 2000, 0);
         break;
     case WM_ERASEBKGND:
-
-        pClass->OnEraseBkgnd(hWnd, (HDC)wParam);
-        break;
+        pClass->drawBar(hWnd, (HDC)wParam);
+        return TRUE;
     case WM_LBUTTONDOWN:
     case WM_RBUTTONDOWN:
     case WM_LBUTTONUP:
@@ -299,9 +298,12 @@ LRESULT CALLBACK CTaskbar::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam,
         PAINTSTRUCT ps;
 
         BeginPaint(hWnd, &ps);
+        
+        
+       
+        pClass->drawItems(hWnd, ps.hdc);
 
-        pClass->OnPaint(hWnd, ps.hdc);
-        // CTaskbar::p_rcPaint = &ps.rcPaint;
+        
 
         EndPaint(hWnd, &ps);
     } break;
@@ -488,24 +490,24 @@ bool CTaskbar::checkOutsideWindow(const RECT& rect, short x, short y)
     return false;
 }
 
-/*****************/
-/* WM_ERASEBKGND */
-/*****************/
-
-void CTaskbar::OnEraseBkgnd(HWND hWnd, HDC hDC)
+void CTaskbar::drawBar(HWND hWnd, HDC hDC)
 {
     RECT rect;
-    HGDIOBJ hOldBrush, hOldPen = 0;
+    GetClientRect(hWnd,&rect);
+    int win_width = rect.right - rect.left;
+    int win_height = rect.bottom + rect.left;
 
-    GetClientRect(hWnd, &rect);
-    hOldBrush = SelectObject(hDC, m_hBackBrush);
-    hOldPen = SelectObject(hDC, m_hBorderPen);
+    HGDIOBJ hOldBrush = SelectObject(hDC, m_hBackBrush);
+    HGDIOBJ hOldPen = SelectObject(hDC, m_hBorderPen); // allows the pen to make a bevel for us so its easier when its rounded for example.
+                                                          //
+    if (m_Style.rectRoundedEdge_Bar == TRUE){
+        win_width += m_Style.rectRoundedEdge_Bar_Width;
+        
+        DrawingApi::draw_Transparent_RoundedRectangle(hWnd,hDC, win_width, win_height, rect, m_hBackBrush, m_hBorderPen, m_Style.rectRoundedEdge_Bar_Width, m_Style.rectRoundedEdge_Bar_Height); 
+    }else{
+        Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
+    }
 
-    // draws border and the back of it
-    Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
-
-    SelectObject(hDC, hOldBrush);
-    SelectObject(hDC, hOldPen);
 }
 
 /****************/

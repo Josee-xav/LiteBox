@@ -15,7 +15,14 @@ COLORREF _Stylizing::focusedTextColor = PALETTERGB(255, 255, 255);
 // roundedness
 bool _Stylizing::rectRoundedEdge_Clock = false;
 bool _Stylizing::rectRoundedEdge_TaskButtons = false;
+bool _Stylizing::rectRoundedEdge_Bar = false;
 
+int _Stylizing::rectRoundedEdge_Clock_Width = 0;
+int _Stylizing::rectRoundedEdge_Clock_Height = 0;
+int _Stylizing::rectRoundedEdge_TaskButtons_Width = 0;
+int _Stylizing::rectRoundedEdge_TaskButtons_Height = 0;
+int _Stylizing::rectRoundedEdge_Bar_Width = 0;
+int _Stylizing::rectRoundedEdge_Bar_Height = 0;
 
 //WIDTHS TUFF
 int _Stylizing::taskbar_Width = 1001;
@@ -71,6 +78,17 @@ enum STYLE_INDEX
     // ROUNDEDNESS
     S_RECTROUNDEDEDGE_CLOCK,
     S_RECTROUNDEDEDGE_TASKBUTTONS,
+    S_RECTROUNDEDEDGE_BAR,
+
+
+    S_RECTROUNDEDEDGE_CLOCK_WIDTH ,
+    S_RECTROUNDEDEDGE_CLOCK_HEIGHT ,
+    S_RECTROUNDEDEDGE_TASKBUTTONS_WIDTH ,
+    S_RECTROUNDEDEDGE_TASKBUTTONS_HEIGHT ,
+    S_RECTROUNDEDEDGE_BAR_WIDTH ,
+    S_RECTROUNDEDEDGE_BAR_HEIGHT ,
+
+
 
 
     S_TASK_ICONSIZE,
@@ -132,8 +150,17 @@ static const iniOptions StyleItems[] = {
     { style_data_types::C_INT, S_TRAY_ICONSIZE, "TRAY_ICONSIZE"},
 
     //roundness
+    { style_data_types::C_BOOL, S_RECTROUNDEDEDGE_BAR, "ROUNDED_EDGE_BAR"},
     { style_data_types::C_BOOL, S_RECTROUNDEDEDGE_TASKBUTTONS, "ROUNDED_EDGE_TASKBUTTONS"},
     { style_data_types::C_BOOL, S_RECTROUNDEDEDGE_CLOCK, "ROUNDED_EDGE_CLOCK"},
+
+    { style_data_types::C_INT, S_RECTROUNDEDEDGE_CLOCK_WIDTH , "ROUNDED_EDGE_CLOCK_WIDTH"},
+    { style_data_types::C_INT, S_RECTROUNDEDEDGE_CLOCK_HEIGHT , "ROUNDED_EDGE_CLOCK_HEIGHT"},
+    { style_data_types::C_INT, S_RECTROUNDEDEDGE_TASKBUTTONS_WIDTH , "ROUNDED_EDGE_TASKBUTTON_WIDTH"},
+    { style_data_types::C_INT, S_RECTROUNDEDEDGE_TASKBUTTONS_HEIGHT , "ROUNDED_EDGE_TASKBUTTON_HEIGHT"},
+    { style_data_types::C_INT, S_RECTROUNDEDEDGE_BAR_WIDTH , "ROUNDED_EDGE_BAR_WIDTH"},
+    { style_data_types::C_INT, S_RECTROUNDEDEDGE_BAR_HEIGHT , "ROUNDED_EDGE_BAR_WIDTH"},
+
 
     //spacing
 
@@ -243,6 +270,33 @@ void* StyleStructPtr(int sn_index, _Stylizing* pStyle)
         break;
     case  S_RECTROUNDEDEDGE_TASKBUTTONS:
         return &pStyle->rectRoundedEdge_TaskButtons;
+        break;
+    case  S_RECTROUNDEDEDGE_BAR:
+        return &pStyle->rectRoundedEdge_Bar;
+        break;
+
+    case S_RECTROUNDEDEDGE_CLOCK_WIDTH:
+        return &pStyle->rectRoundedEdge_Clock_Width;
+        break;
+
+    case S_RECTROUNDEDEDGE_CLOCK_HEIGHT: 
+        return &pStyle->rectRoundedEdge_Clock_Height;
+        break;
+
+    case S_RECTROUNDEDEDGE_TASKBUTTONS_WIDTH:
+        return &pStyle->rectRoundedEdge_TaskButtons_Width;
+        break;
+
+    case S_RECTROUNDEDEDGE_TASKBUTTONS_HEIGHT:
+        return &pStyle->rectRoundedEdge_TaskButtons_Height;
+        break;
+
+    case S_RECTROUNDEDEDGE_BAR_WIDTH:
+        return &pStyle->rectRoundedEdge_Bar_Width;
+        break;
+
+    case S_RECTROUNDEDEDGE_BAR_HEIGHT:
+        return &pStyle->rectRoundedEdge_Bar_Height;
         break;
 
     case  S_TASK_ICONSIZE:

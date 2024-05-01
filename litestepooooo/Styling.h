@@ -20,7 +20,14 @@ struct _Stylizing
     // roundedness
     static bool rectRoundedEdge_Clock;
     static bool rectRoundedEdge_TaskButtons;
+    static bool rectRoundedEdge_Bar;
 
+    static int rectRoundedEdge_Clock_Width ;
+    static int rectRoundedEdge_Clock_Height ;
+    static int rectRoundedEdge_TaskButtons_Width ;
+    static int rectRoundedEdge_TaskButtons_Height ;
+    static int rectRoundedEdge_Bar_Width ;
+    static int rectRoundedEdge_Bar_Height ;
 
     //WIDTHS TUFF
     static int taskbar_Width;
@@ -60,5 +67,7 @@ struct _Stylizing
 
 //style
 extern _Stylizing m_Style;
+
+constexpr int MAX_ICON_SIZE{ 20 };
 
 void readStyle(const char* styleFilePath);

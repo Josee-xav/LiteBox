@@ -263,3 +263,38 @@ void DrawingApi::drawTransparentBitmap(HDC hdc, HBITMAP icon, const int xSrcOffs
     DeleteDC(hdcSave);
     DeleteDC(hdcTemp);
 }
+
+
+// but this is one way of giving the illusion of transparency
+// i could use layered window with SetLayeredWindowAttributes but from what ive heard can be performance intensive?
+// this is fine until i have the time and energy to do more
+void DrawingApi::draw_Transparent_RoundedRectangle(HWND hWnd,HDC hDC, int bitmap_width, int bitmap_height, RECT rect, HBRUSH backbrush, HPEN borderpen, int cornerWidth, int cornerHeight) {
+
+    HDC tempHdc = CreateCompatibleDC(hDC);
+	HBITMAP canvas = CreateCompatibleBitmap(hDC, bitmap_width, bitmap_height);
+	SelectObject(tempHdc, canvas);
+
+    HBRUSH bmpcolor = CreateSolidBrush(RGB(0, 255, 3));
+    HGDIOBJ oldcolor = SelectObject(tempHdc, bmpcolor); // allows the pen to make a bevel for us so its easier when its rounded for example.
+    // not ideal
+    FillRect(tempHdc,&rect,bmpcolor);
+
+    HGDIOBJ hOldBrush = SelectObject(tempHdc, backbrush);
+    HGDIOBJ hOldPen = SelectObject(tempHdc, borderpen);
+
+    RoundRect(tempHdc, rect.left , rect.top, rect.right, rect.bottom, cornerWidth, cornerHeight);
+	// Performing the TransparentBlt operation
+	BOOL ret = TransparentBlt(hDC, rect.left, rect.top, bitmap_width, bitmap_height, tempHdc, 0, 0, bitmap_width, bitmap_height, RGB(0, 255, 3));
+    
+    SelectObject(tempHdc, canvas);
+    SelectObject(tempHdc, hOldBrush);
+    SelectObject(tempHdc, hOldPen);
+    SelectObject(tempHdc, oldcolor);
+
+
+	DeleteObject(canvas); // Deleting the bitmap
+	DeleteObject(bmpcolor); // Deleting the bitmap
+	DeleteDC(tempHdc);    // Deleting the device context
+}
+
+

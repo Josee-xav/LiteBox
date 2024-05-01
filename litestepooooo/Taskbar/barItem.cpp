@@ -61,7 +61,7 @@ void barItem::invalidate(int flag)
 
 }
 
-bool barItem::calc_size(int* px, int y, int w, int h, int m)
+bool barItem::calc_size(int* px, int y, int w, int h)
 {
     int x = *px;
     bool f = false;

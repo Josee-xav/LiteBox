@@ -40,7 +40,7 @@ public:
 
     //-----------------------------
     // calculate metrics, return true on changes
-    virtual bool calc_size(int* px, int y, int w, int h, int m);
+    virtual bool calc_size(int* px, int y, int w, int h);
 
     //-----------------------------
     virtual void draw(HWND hWnd, HDC hDC);

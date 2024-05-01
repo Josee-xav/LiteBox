@@ -66,7 +66,7 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
 
         Rectangle(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom);
     else
-        RoundRect(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom, 5, 5);
+        RoundRect(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom, m_Style.rectRoundedEdge_TaskButtons_Width, m_Style.rectRoundedEdge_TaskButtons_Height);
 
     //m_Style.taskBevelStyle != 1 CUS it creates a flat looking bevel using the pen.
     if (m_Style.task_BevelStyle != 0 && m_Style.task_BevelStyle != 1)
@@ -78,7 +78,7 @@ void taskEntryBtn::draw(HWND hWnd, HDC hDC)
         int iconSize = m_Style.task_iconSize;;
 
         if (iconSize > (drawingRect.right - drawingRect.left)) {
-            iconSize = (drawingRect.right - drawingRect.left) - 1; //make sure the icon is not bigger than the box. the icon size does exceed the top tho which i like tbf
+            iconSize = drawingRect.bottom - drawingRect.top; //make sure the icon is not bigger than the box. the icon size does exceed the top tho which i like tbf
         }
 
         DrawIconEx(
@@ -201,12 +201,17 @@ TrayEntryBtn::TrayEntryBtn() : barItem(M_TRAY)
 
 TrayEntryBtn::~TrayEntryBtn()
 {
-    delete (TrayItem*)m_data; // not the best way to handle this but cant use uniquepointer with lparam i believe so ehre we are.
+    
+
+    delete (TrayItem*)m_data; // not the best way to handle this TODO
+    DestroyIcon(m_icon);
+
+
 }
 
 void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
 {
-    int iconSize = m_Style.tray_iconSize; // max is 20
+    int iconSize = m_Style.tray_iconSize;
 
     int      h{ 0 };
     RECT drawingRect;
@@ -214,22 +219,14 @@ void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
     drawingRect.left = itemRect.left;
     drawingRect.top = y;
     drawingRect.right = itemRect.right;
-    drawingRect.bottom = itemRect.bottom - (y)+1;
+    drawingRect.bottom = itemRect.bottom - (y);
 
-    // draw/clear the selection rectangle
-    HBRUSH brush = CreateSolidBrush(m_Style.windowBackgroundColor);
-    HPEN taskPen = CreatePen(PS_SOLID, 1, m_Style.windowBackgroundColor);
-
-    HGDIOBJ hOldBrush = SelectObject(hDC, brush);
-    HGDIOBJ hOldPen = SelectObject(hDC, taskPen);
-
-    Rectangle(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom);
 
     if (LB_Api::isIconValid(m_icon) == false)
         FLogger::error("ICON NOT VALID? TRAY STR : %s", m_strName);
 
-    if (iconSize > (drawingRect.right - drawingRect.left)) { // make sure the icon is not bigger than the box.
-        iconSize = 18;
+    if (iconSize > (drawingRect.bottom - drawingRect.top)){ // make sure the icon is not bigger than the box.
+        iconSize = (drawingRect.bottom - drawingRect.top);
     }
 
     DrawIconEx(
@@ -241,13 +238,6 @@ void TrayEntryBtn::draw(HWND hWnd, HDC hDC)
         iconSize,
         0, NULL, DI_NORMAL);
 
-
-
-    SelectObject(hDC, hOldBrush);
-    SelectObject(hDC, hOldPen);
-    SelectObject(hDC, GetStockObject(NULL_BRUSH));
-    DeleteObject(brush);
-    DeleteObject(taskPen);
 }
 
 void TrayEntryBtn::mouse_event(int mx, int my, int message, unsigned flags)
@@ -351,7 +341,7 @@ void baritemlist::mouse_event(int mx, int my, int message, unsigned flags)
         m_Items.at(newitem)->mouse_event(mx, my, message, 0);
 }
 
-bool baritemlist::calc_size(int* px, int y, int w, int h, int m)
+bool baritemlist::calc_size(int* px, int y, int w, int h)
 {
     int x = *px;
     bool f = false;
@@ -407,7 +397,7 @@ bool taskItemList::calc_itemsSizes()
             right -= b;
 
 
-        m_Items.at(i)->calc_size(&left, y, right - left, h, 0);
+        m_Items.at(i)->calc_size(&left, y, right - left, h);
         ++n;
     }
     return TRUE;
@@ -476,9 +466,6 @@ bool trayItemList::calc_itemsSizes()
     int y = itemRect.top;
 
 
-    max_width = amountOfTasks * 20;
-
-
     int n = 0;
     for (int i = 0; i < m_Items.size(); i++) {
         int left, right;
@@ -491,7 +478,7 @@ bool trayItemList::calc_itemsSizes()
 
 
 
-        m_Items.at(i)->calc_size(&left, y, right - left, h, 0);
+        m_Items.at(i)->calc_size(&left, y, right - left, h);
         ++n;
     }
     return TRUE;
@@ -639,7 +626,7 @@ void clockBtn::draw(HWND hWnd, HDC hDC)
     if (m_Style.rectRoundedEdge_Clock != true)
         Rectangle(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom);
     else
-        RoundRect(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom, 4, 4); // TODO
+        RoundRect(hDC, drawingRect.left, drawingRect.top, drawingRect.right, drawingRect.bottom, m_Style.rectRoundedEdge_Clock_Width, m_Style.rectRoundedEdge_Clock_Height);
 
     //.m_Style.taskBevelStyle != 1 CUS it creates a flat looking bevel using the pen.
     if (m_Style.clock_BevelStyle != 0 && m_Style.clock_BevelStyle != 1)

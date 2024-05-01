@@ -64,8 +64,8 @@ public:
 
     void calc_barItemLists();
 
-    void OnPaint(HWND hWnd, HDC hDC);
-    void OnEraseBkgnd(HWND hWnd, HDC hDC);
+    void drawItems(HWND hWnd, HDC hDC);
+    void drawBar(HWND hWnd, HDC hDC);
     void OnMouseButton(HWND hWnd, int message, WPARAM wparam, short x, short y);
     void OnDestroy(HWND hWnd);
     void OnMouseMove(HWND hWnd, short x, short y);
