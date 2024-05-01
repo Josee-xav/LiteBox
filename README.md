@@ -16,6 +16,9 @@ Fully functioning shell that goes ON TOP of the explorer shell as the explorer s
 There is bugs. normally they can get  resolved by doing SHIFT +  right, click the taskbar then restart litebox which wil clear restart the taskbar window and all the elements. 
 
 Can be styled as you wish. Examples:
+
+![app screenshot](https://github.com/danieljo12/LiteBox/blob/main/pics/rounddd.PNG)
+
 ![app screenshot](https://github.com/danieljo12/LiteBox/blob/main/pics/style2.PNG)
 
 ![app screenshot](https://github.com/danieljo12/LiteBox/blob/main/pics/style3.PNG?raw=true)
